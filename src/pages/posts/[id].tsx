@@ -1,17 +1,27 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import React from 'react'
+import Layout from '../../components/Layout'
 import { Post } from '../../interfaces'
+import { NextPageWithLayout } from '../types'
 
 type Props = {
   post: Post
 }
 
-const Post: NextPage<Props> = ({ post }) => {
+const Post: NextPageWithLayout<Props> = ({ post }) => {
   return (
     <article>
       <p>{post.title}</p>
       <p>{post.body}</p>
     </article>
+  )
+}
+
+Post.getLayout = function getLayout(page) {
+  return (
+    <Layout>
+      {page}
+    </Layout>
   )
 }
 

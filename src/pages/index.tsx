@@ -1,20 +1,27 @@
-import type { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
+import type { GetStaticProps } from 'next'
+import { ReactElement } from 'react'
+import Layout from '../components/Layout'
 import PostList from '../components/PostsList'
 import { Post } from '../interfaces'
+import { NextPageWithLayout } from './types'
 
 type Props = {
   posts: Post[]
 }
 
-const IndexPage: NextPage<Props> = ({ posts }) => {
+const Index: NextPageWithLayout<Props> = ({ posts }) => {
   return (
     <div>
-      <Head>
-        <title>Next blog</title>
-      </Head>
       <PostList posts={posts} />
     </div>
+  )
+}
+
+Index.getLayout = function getLayout(page : ReactElement) {
+  return (
+    <Layout>
+      {page}
+    </Layout>
   )
 }
 
@@ -29,4 +36,4 @@ export const getStaticProps: GetStaticProps = async() => {
   }
 }
 
-export default IndexPage
+export default Index
