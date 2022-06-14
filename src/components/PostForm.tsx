@@ -18,7 +18,7 @@ const PostForm = () => {
   const onSubmit = useCallback(async () => {
     if ([title, body].includes("")) return; // =>
 
-    fetch("https://jsonplaceholder.typicode.com/posts", {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
       method: "POST",
       body: JSON.stringify({
         title,
