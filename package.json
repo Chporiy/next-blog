@@ -10,7 +10,9 @@
     "prettier": "prettier --check \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|md|css)\"",
     "prettier:fix": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|md|css)\"",
     "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged && npm run test",
+    "test": "jest --colors --coverage",
+    "test:watch": "jest --colors --coverage --watch"
   },
   "dependencies": {
     "@next/env": "^12.1.6",
@@ -44,6 +46,7 @@
     "husky": "^8.0.1",
     "jest": "^28.1.1",
     "jest-css-modules-transform": "^4.2.0",
+    "jest-environment-jsdom": "^28.1.1",
     "lint-staged": "^13.0.2",
     "ts-jest": "^28.0.5",
     "ts-node": "^10.2.1",
