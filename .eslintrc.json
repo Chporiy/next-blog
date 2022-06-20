@@ -31,7 +31,8 @@
     "prettier/prettier": [
       "error",
       {
-        "singleQuote": true
+        "singleQuote": true,
+        "trailingComma": "all"
       }
     ],
     "react/function-component-definition": [
@@ -39,6 +40,8 @@
       {
         "namedComponents": "arrow-function"
       }
-    ]
+    ],
+    "indent": "off",
+    "@typescript-eslint/indent": "off"
   }
 }

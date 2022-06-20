@@ -1,37 +1,37 @@
-import React, { FormEvent, useCallback, useState } from "react";
+import React, { FormEvent, useCallback, useState } from 'react';
 
 const PostForm = () => {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
   const onTitleChange = useCallback(
     ({ currentTarget }: FormEvent<HTMLInputElement>) => {
       setTitle(currentTarget.value);
     },
-    [setTitle]
+    [setTitle],
   );
   const onBodyChange = useCallback(
     ({ currentTarget }: FormEvent<HTMLTextAreaElement>) => {
       setBody(currentTarget.value);
     },
-    [setBody]
+    [setBody],
   );
   const onSubmit = useCallback(async () => {
-    if ([title, body].includes("")) return; // =>
+    if ([title, body].includes('')) return; // =>
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify({
         title,
         body,
         userId: 1,
       }),
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
+        'Content-type': 'application/json; charset=UTF-8',
       },
     });
 
-    setTitle("");
-    setBody("");
+    setTitle('');
+    setBody('');
   }, [title, body, setTitle, setBody]);
 
   return (

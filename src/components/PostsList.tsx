@@ -1,26 +1,19 @@
-import Link from 'next/link';
 import React from 'react';
-import { Post } from '../interfaces'
+import { IPost } from '../interfaces';
+import NextLink from './links/NextLink';
 
 type Props = {
-  posts: Post[]
-}
+  posts: IPost[];
+};
 
-const PostsList = ({ posts }: Props) => {
-  return (
-    <ul>
-      {
-        posts.map(({ id, title }) => (
-          <li key={id}>
-            <Link href={`/posts/${id}`}>
-              <a>{title}</a>
-            </Link>
-          </li>
-        ))
-      }
-    </ul>
-    
-  )
-}
+const PostsList = ({ posts }: Props) => (
+  <ul>
+    {posts.map(({ id, title }) => (
+      <li key={id}>
+        <NextLink href={`/posts/${id}`}>{title}</NextLink>
+      </li>
+    ))}
+  </ul>
+);
 
-export default PostsList
+export default PostsList;

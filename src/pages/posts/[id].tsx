@@ -1,21 +1,19 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import React from "react";
-import Layout from "../../components/Layout";
-import { Post } from "../../interfaces";
-import { NextPageWithLayout } from "../types";
+import { GetStaticPaths, GetStaticProps } from 'next';
+import React from 'react';
+import Layout from '../../components/Layout';
+import { IPost } from '../../interfaces';
+import { NextPageWithLayout } from '../types';
 
 type Props = {
-  post: Post;
+  post: IPost;
 };
 
-const Post: NextPageWithLayout<Props> = ({ post }) => {
-  return (
-    <article>
-      <p>{post.title}</p>
-      <p>{post.body}</p>
-    </article>
-  );
-};
+const Post: NextPageWithLayout<Props> = ({ post }: Props) => (
+  <article>
+    <p>{post.title}</p>
+    <p>{post.body}</p>
+  </article>
+);
 
 Post.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
@@ -25,9 +23,9 @@ export default Post;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/posts/${params.id}`
+    `${process.env.NEXT_PUBLIC_API_URL}/posts/${params.id}`,
   );
-  const post: Post = await response.json();
+  const post: IPost = await response.json();
 
   return {
     props: {
@@ -38,7 +36,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`);
-  const posts: Post[] = await response.json();
+  const posts: IPost[] = await response.json();
   const paths = posts.map(({ id }) => ({
     params: {
       id: id.toString(),
