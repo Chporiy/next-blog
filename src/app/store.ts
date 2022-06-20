@@ -1,15 +1,25 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import {
+  nextReduxCookieMiddleware,
+  wrapMakeStore,
+} from 'next-redux-cookie-wrapper';
+import { createWrapper } from 'next-redux-wrapper';
 
-export function makeStore() {
-  return configureStore({
+const makeStore = wrapMakeStore(() =>
+  configureStore({
     reducer: {},
-  });
-}
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().prepend(
+        nextReduxCookieMiddleware({
+          subtrees: [''],
+        }),
+      ),
+  }),
+);
 
-const store = makeStore();
-
-export type AppState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppState = ReturnType<AppStore['getState']>;
+export type AppDispatch = AppStore['dispatch'];
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   AppState,
@@ -17,4 +27,4 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   Action<string>
 >;
 
-export default store;
+export const wrapper = createWrapper(makeStore);
