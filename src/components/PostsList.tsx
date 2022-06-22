@@ -1,9 +1,9 @@
 import React from 'react';
-import { IPost } from '../interfaces';
+import { Post } from '../features/posts/types';
 import NextLink from './links/NextLink';
 
 type Props = {
-  posts: IPost[];
+  posts: Post[];
 };
 
 const PostsList = ({ posts }: Props) => (

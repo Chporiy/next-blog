@@ -4,18 +4,22 @@ import {
   wrapMakeStore,
 } from 'next-redux-cookie-wrapper';
 import { createWrapper } from 'next-redux-wrapper';
+import postsApi from '../features/posts/postsApi';
 
-const makeStore = wrapMakeStore(() =>
+export const makeStore = () =>
   configureStore({
-    reducer: {},
+    reducer: {
+      [postsApi.reducerPath]: postsApi.reducer,
+    },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().prepend(
-        nextReduxCookieMiddleware({
-          subtrees: [''],
-        }),
-      ),
-  }),
-);
+      getDefaultMiddleware()
+        .prepend(
+          nextReduxCookieMiddleware({
+            subtrees: [''],
+          }),
+        )
+        .concat(postsApi.middleware),
+  });
 
 export type AppStore = ReturnType<typeof makeStore>;
 export type AppState = ReturnType<AppStore['getState']>;
@@ -27,4 +31,4 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   Action<string>
 >;
 
-export const wrapper = createWrapper(makeStore);
+export const wrapper = createWrapper(wrapMakeStore(makeStore));

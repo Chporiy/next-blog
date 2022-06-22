@@ -1,35 +1,40 @@
-import type { GetStaticProps } from 'next';
+import { GetStaticProps } from 'next';
 import { ReactElement } from 'react';
+import { wrapper } from '../app/store';
 import Layout from '../components/Layout';
 import PostForm from '../components/PostForm';
 import PostList from '../components/PostsList';
-import { IPost } from '../interfaces';
+import {
+  getPosts,
+  getRunningOperationPromises,
+  useGetPostsQuery,
+} from '../features/posts/postsApi';
 import { NextPageWithLayout } from './types';
 
-type Props = {
-  posts: IPost[];
+const Index: NextPageWithLayout = () => {
+  const { data } = useGetPostsQuery(null);
+  return (
+    <div>
+      {data ? <PostList posts={data} /> : null}
+      <PostForm />
+    </div>
+  );
 };
-
-const Index: NextPageWithLayout<Props> = ({ posts }: Props) => (
-  <div>
-    <PostList posts={posts} />
-    <PostForm />
-  </div>
-);
 
 Index.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`);
-  const posts: IPost[] = await response.json();
+export const getStaticProps: GetStaticProps = wrapper.getServerSideProps(
+  (store) => async () => {
+    store.dispatch(getPosts.initiate(null));
 
-  return {
-    props: {
-      posts,
-    },
-  };
-};
+    await Promise.all(getRunningOperationPromises());
+
+    return {
+      props: {},
+    };
+  },
+);
 
 export default Index;
