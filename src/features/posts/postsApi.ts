@@ -4,6 +4,7 @@ import { Post } from './types';
 
 const postsApi = createApi({
   reducerPath: 'postsApi',
+  tagTypes: ['Post'],
   // eslint-disable-next-line consistent-return
   extractRehydrationInfo: (action, { reducerPath }) => {
     if (action.type === HYDRATE) {
@@ -16,14 +17,34 @@ const postsApi = createApi({
   endpoints: (buidler) => ({
     getPosts: buidler.query<Post[], null>({
       query: () => '/posts',
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ id, type: 'Post' as const })),
+              { type: 'Post', id: 'LIST' },
+            ]
+          : [{ type: 'Post', id: 'LIST' }],
     }),
     getPost: buidler.query<Post, string>({
       query: (id) => `/posts/${id}`,
+      providesTags: (result, error, id) => [{ id, type: 'Post' }],
+    }),
+    addPost: buidler.mutation<Response, Omit<Post, 'id'>>({
+      query: (post) => ({
+        url: '/posts',
+        method: 'POST',
+        body: post,
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      }),
+      invalidatesTags: [{ type: 'Post', id: 'LIST' }],
     }),
   }),
 });
 
-export const { useGetPostsQuery, useGetPostQuery } = postsApi;
+export const { useGetPostsQuery, useGetPostQuery, useAddPostMutation } =
+  postsApi;
 export const { getPosts, getPost } = postsApi.endpoints;
 export const { getRunningOperationPromises } = postsApi.util;
 export default postsApi;

@@ -1,6 +1,8 @@
-import React, { FormEvent, useCallback, useState } from 'react';
+import React, { FormEvent, useCallback, useEffect, useState } from 'react';
+import { useAddPostMutation } from '../features/posts/postsApi';
 
 const PostForm = () => {
+  const [addPost, { isSuccess }] = useAddPostMutation();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const onTitleChange = useCallback(
@@ -18,21 +20,19 @@ const PostForm = () => {
   const onSubmit = useCallback(async () => {
     if ([title, body].includes('')) return; // =>
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
-      method: 'POST',
-      body: JSON.stringify({
-        title,
-        body,
-        userId: 1,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
+    addPost({
+      title,
+      body,
+      userId: 1,
     });
+  }, [title, body, addPost]);
 
-    setTitle('');
-    setBody('');
-  }, [title, body, setTitle, setBody]);
+  useEffect(() => {
+    if (isSuccess) {
+      setTitle('');
+      setBody('');
+    }
+  }, [isSuccess, setTitle, setBody]);
 
   return (
     <form className="postForm">
