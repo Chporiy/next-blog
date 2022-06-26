@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 import { wrapper } from '../app/store';
 import Layout from '../components/Layout';
 import PostForm from '../components/PostForm';
-import PostList from '../components/PostsList';
+import PostList from '../features/posts/PostsList/PostsList';
 import {
   getPosts,
   getRunningOperationPromises,
