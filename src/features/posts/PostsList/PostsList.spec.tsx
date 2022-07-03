@@ -22,43 +22,8 @@ describe('<PostsList />', () => {
     render(<PostsList posts={posts} />);
 
     expect(document.querySelector('ul')).toBeInTheDocument();
-  });
-
-  describe('ListItem', () => {
-    it('should render a title', () => {
-      render(<PostsList posts={posts} />);
-
-      posts.forEach((post) => {
-        expect(screen.getByText(post.title)).toBeInTheDocument();
-      });
-    });
-
-    it('should render truncate a post body', () => {
-      render(<PostsList posts={posts} />);
-
-      posts.forEach((post) => {
-        const element = screen.getByText(post.body);
-        const style = getComputedStyle(element);
-
-        expect(element).toBeInTheDocument();
-        expect(style.overflow).toEqual('hidden');
-        expect(style.textOverflow).toEqual('ellipsis');
-        expect(style.marginBottom).toEqual('5px');
-        expect(style.getPropertyValue('--chakra-line-clamp')).toEqual('1');
-      });
-    });
-
-    it('should render a link to full post page', () => {
-      render(<PostsList posts={posts} />);
-
-      posts.forEach((post) => {
-        const element = document.querySelector(
-          `a[href="/posts/${post.id}"]`,
-        ) as HTMLAnchorElement;
-
-        expect(element).toBeInTheDocument();
-        expect(element.href).toContain(`/posts/${post.id}`);
-      });
+    posts.forEach((post) => {
+      expect(screen.getByText(post.title)).toBeInTheDocument();
     });
   });
 });
