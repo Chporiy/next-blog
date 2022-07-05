@@ -8,14 +8,15 @@ import {
   getPosts,
   getRunningOperationPromises,
   useGetPostsQuery,
-} from '../features/posts/postsApi';
+} from '../app/api/postsApi';
 import { NextPageWithLayout } from './types';
 
 const Index: NextPageWithLayout = () => {
   const { data } = useGetPostsQuery(null);
+
   return (
     <div>
-      {data ? <PostList posts={data} /> : null}
+      {data && <PostList posts={data} />}
       <PostForm />
     </div>
   );

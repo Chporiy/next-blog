@@ -4,12 +4,12 @@ import {
   wrapMakeStore,
 } from 'next-redux-cookie-wrapper';
 import { createWrapper } from 'next-redux-wrapper';
-import postsApi from '../features/posts/postsApi';
+import emptyApi from './api/emptyApi';
 
 export const makeStore = () =>
   configureStore({
     reducer: {
-      [postsApi.reducerPath]: postsApi.reducer,
+      [emptyApi.reducerPath]: emptyApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware()
@@ -18,7 +18,7 @@ export const makeStore = () =>
             subtrees: [''],
           }),
         )
-        .concat(postsApi.middleware),
+        .concat(emptyApi.middleware),
   });
 
 export type AppStore = ReturnType<typeof makeStore>;

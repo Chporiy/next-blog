@@ -1,5 +1,5 @@
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
-import { useAddPostMutation } from '../features/posts/postsApi';
+import { useAddPostMutation } from '../app/api/postsApi';
 
 const PostForm = () => {
   const [addPost, { isSuccess }] = useAddPostMutation();
@@ -24,6 +24,7 @@ const PostForm = () => {
       title,
       body,
       userId: 1,
+      date: new Date().toISOString(),
     });
   }, [title, body, addPost]);
 

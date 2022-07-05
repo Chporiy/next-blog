@@ -14,7 +14,7 @@ const PostPreview = ({ post }: Props) => (
     <Text color="gray.400" fontSize="sm">
       {getPostDate(post.date)}
     </Text>
-    <Text mb={5} noOfLines={1}>
+    <Text mb={5} mt={5} noOfLines={1}>
       {post.body}
     </Text>
     <NextLink href={`/posts/${post.id}`}>read more</NextLink>
