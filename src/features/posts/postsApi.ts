@@ -1,5 +1,5 @@
-import { Post } from '../../features/posts/types';
-import emptyApi from './emptyApi';
+import { Post } from './types';
+import emptyApi from '../../app/api/emptyApi';
 
 const postsApi = emptyApi.injectEndpoints({
   overrideExisting: true,

@@ -1,5 +1,5 @@
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
-import { useAddPostMutation } from '../app/api/postsApi';
+import { useAddPostMutation } from '../features/posts/postsApi';
 
 const PostForm = () => {
   const [addPost, { isSuccess }] = useAddPostMutation();

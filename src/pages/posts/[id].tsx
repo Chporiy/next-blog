@@ -9,7 +9,7 @@ import {
   getPosts,
   getRunningOperationPromises,
   useGetPostQuery,
-} from '../../app/api/postsApi';
+} from '../../features/posts/postsApi';
 import { NextPageWithLayout } from '../types';
 
 const PostPage: NextPageWithLayout = () => {
