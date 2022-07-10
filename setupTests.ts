@@ -7,7 +7,7 @@ import 'whatwg-fetch';
 
 loadEnvConfig(process.cwd());
 
-const server = setupServer(...handlers);
+const server = setupServer(...handlers());
 
 beforeAll(() => server.listen({ onUnhandledRequest: 'warn' }));
 afterEach(() => server.resetHandlers());
