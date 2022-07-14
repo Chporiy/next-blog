@@ -1,4 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
+import { ChakraProvider } from '@chakra-ui/react';
 import { render, RenderOptions } from '@testing-library/react';
 import { PropsWithChildren, ReactElement } from 'react';
 import { Provider } from 'react-redux';
@@ -13,7 +14,9 @@ const renderWithStore = (
   { store = makeStore(), ...renderOptions }: ExtendedRenderOptions = {},
 ) => {
   const wrapper = ({ children }: PropsWithChildren) => (
-    <Provider store={store}>{children}</Provider>
+    <Provider store={store}>
+      <ChakraProvider>{children}</ChakraProvider>
+    </Provider>
   );
 
   return {

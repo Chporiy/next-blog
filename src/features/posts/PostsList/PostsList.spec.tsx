@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import renderWithStore from '../../../../tests/utils/renderWithStore';
 import { Post } from '../types';
 import PostsList from './PostsList';
 
@@ -21,7 +22,7 @@ describe('<PostsList />', () => {
   ];
 
   it('should render list component', () => {
-    render(<PostsList posts={posts} />);
+    renderWithStore(<PostsList posts={posts} />);
 
     expect(document.querySelector('ul')).toBeInTheDocument();
     posts.forEach((post) => {

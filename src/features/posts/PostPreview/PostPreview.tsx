@@ -1,7 +1,7 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
 import NextLink from '../../../components/links/NextLink';
-import getPostDate from '../../../utils/getPostDate/getPostDate';
+import PostAuthor from '../PostAuthor/PostAuthor';
 import { Post } from '../types';
 
 type Props = {
@@ -10,10 +10,8 @@ type Props = {
 
 const PostPreview = ({ post }: Props) => (
   <Box borderWidth="1px" borderRadius="md" p={5}>
-    <Heading fontSize="xl">{post.title}</Heading>
-    <Text color="gray.400" fontSize="sm">
-      {getPostDate(post.date)}
-    </Text>
+    <PostAuthor userId={post.userId} date={post.date} />
+    <Heading fontSize="3xl">{post.title}</Heading>
     <Text mb={5} mt={5} noOfLines={1}>
       {post.body}
     </Text>
