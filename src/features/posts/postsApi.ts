@@ -4,7 +4,7 @@ import emptyApi from '../../app/api/emptyApi';
 const postsApi = emptyApi.injectEndpoints({
   overrideExisting: true,
   endpoints: (buidler) => ({
-    getPosts: buidler.query<Post[], null>({
+    getPosts: buidler.query<Post[], void>({
       query: () => '/posts',
       providesTags: (result) =>
         result
@@ -32,5 +32,4 @@ const postsApi = emptyApi.injectEndpoints({
 export const { useGetPostsQuery, useGetPostQuery, useAddPostMutation } =
   postsApi;
 export const { getPosts, getPost } = postsApi.endpoints;
-export const { getRunningOperationPromises } = postsApi.util;
 export default postsApi;

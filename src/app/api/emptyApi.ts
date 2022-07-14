@@ -15,4 +15,5 @@ const emptyApi = createApi({
   endpoints: () => ({}),
 });
 
+export const { getRunningOperationPromises } = emptyApi.util;
 export default emptyApi;

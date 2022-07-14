@@ -4,15 +4,13 @@ import { wrapper } from '../app/store';
 import Layout from '../components/Layout';
 import PostForm from '../components/PostForm';
 import PostList from '../features/posts/PostsList/PostsList';
-import {
-  getPosts,
-  getRunningOperationPromises,
-  useGetPostsQuery,
-} from '../features/posts/postsApi';
+import { getPosts, useGetPostsQuery } from '../features/posts/postsApi';
 import { NextPageWithLayout } from './types';
+import { getUsers } from '../features/users/usersApi';
+import { getRunningOperationPromises } from '../app/api/emptyApi';
 
 const Index: NextPageWithLayout = () => {
-  const { data } = useGetPostsQuery(null);
+  const { data } = useGetPostsQuery();
 
   return (
     <div>
@@ -28,7 +26,8 @@ Index.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = wrapper.getServerSideProps(
   (store) => async () => {
-    store.dispatch(getPosts.initiate(null));
+    store.dispatch(getPosts.initiate());
+    store.dispatch(getUsers.initiate());
 
     await Promise.all(getRunningOperationPromises());
 
