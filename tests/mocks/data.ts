@@ -6,5 +6,5 @@ export const user: User = {
   firstName: 'John',
   lastName: 'Smith',
   email: 'JohnSmith@mail.com',
-  avatar: 'avatar',
+  avatar: 'https://loremflickr.com/640/480/fashion',
 };
