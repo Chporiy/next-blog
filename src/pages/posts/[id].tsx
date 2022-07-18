@@ -2,19 +2,18 @@ import { skipToken } from '@reduxjs/toolkit/dist/query';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { getRunningOperationPromises } from '../../app/api/emptyApi';
 import { makeStore, wrapper } from '../../app/store';
 import Layout from '../../components/Layout';
 import {
   getPost,
   getPosts,
-  getRunningOperationPromises,
   useGetPostQuery,
 } from '../../features/posts/postsApi';
 import { NextPageWithLayout } from '../types';
 
 const PostPage: NextPageWithLayout = () => {
   const router = useRouter();
-
   const { data } = useGetPostQuery(
     typeof router.query.id === 'string' ? router.query.id : skipToken,
   );
