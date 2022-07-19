@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/react';
 import renderWithStore from '../../../../tests/utils/renderWithStore';
-import getPostDate from '../../../utils/getPostDate/getPostDate';
 import { Post } from '../types';
 import PostPreview from './PostPreview';
 
