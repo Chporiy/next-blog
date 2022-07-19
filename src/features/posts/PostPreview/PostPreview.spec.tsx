@@ -1,17 +1,9 @@
 import { screen } from '@testing-library/react';
+import { post } from '../../../../tests/mocks/data';
 import renderWithStore from '../../../../tests/utils/renderWithStore';
-import { Post } from '../types';
 import PostPreview from './PostPreview';
 
 describe('<PostPreview />', () => {
-  const post: Post = {
-    id: 1,
-    userId: 1,
-    title: 'Title',
-    body: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut similique excepturi dicta illo voluptatibus? Soluta autem, dolores accusamus vero impedit expedita, ea enim architecto tempore voluptates labore aliquam sed? Accusamus ea autem labore dicta, amet porro repellendus blanditiis delectus debitis iusto harum id laboriosam error unde cupiditate facere deserunt minus',
-    date: '2022-01-01T00:00:00.000Z',
-  };
-
   it('should be in the document', () => {
     renderWithStore(<PostPreview post={post} />);
 

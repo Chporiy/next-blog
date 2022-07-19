@@ -11,8 +11,9 @@ export const user: User = {
 
 export const post: Post = {
   id: 0,
+  userId: 0,
   title: 'title',
   body: 'body',
   date: '2022-01-29T00:00:00.000Z',
-  userId: 0,
+  preview: 'https://loremflickr.com/640/480/food',
 };

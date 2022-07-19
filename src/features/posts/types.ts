@@ -4,4 +4,5 @@ export type Post = {
   title: string;
   body: string;
   date: string;
+  preview: string;
 };
