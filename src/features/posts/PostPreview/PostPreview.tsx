@@ -12,7 +12,7 @@ type Props = {
 const PostPreview = ({ post }: Props) => (
   <Box borderWidth="1px" borderRadius="md" p={5}>
     <PostAuthor userId={post.userId} date={post.date} />
-    <PostTitle>{post.title}</PostTitle>
+    <PostTitle marginTop="3">{post.title}</PostTitle>
     <Text mb={5} mt={5} noOfLines={1}>
       {post.body}
     </Text>

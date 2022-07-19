@@ -1,4 +1,4 @@
-import { Heading } from '@chakra-ui/react';
+import { Box, BoxProps, Heading } from '@chakra-ui/react';
 import React, { PropsWithChildren } from 'react';
 
 /**
@@ -6,10 +6,10 @@ import React, { PropsWithChildren } from 'react';
  * Render title as <h2> with font-size
  *
  */
-const PostTitle = ({ children }: PropsWithChildren) => (
-  <Heading fontSize="3xl" marginTop={3}>
-    {children}
-  </Heading>
+const PostTitle = ({ children, ...boxProps }: PropsWithChildren<BoxProps>) => (
+  <Box {...boxProps}>
+    <Heading fontSize="3xl">{children}</Heading>
+  </Box>
 );
 
 export default PostTitle;
