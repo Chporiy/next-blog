@@ -1,6 +1,8 @@
+import nextJest from 'next/jest';
 import type { InitialOptionsTsJest } from 'ts-jest/dist/types';
 
-const config: InitialOptionsTsJest = {
+const createJestConfig = nextJest({ dir: './' });
+const customJestConfig: InitialOptionsTsJest = {
   preset: 'ts-jest',
   setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
   transform: {
@@ -14,4 +16,4 @@ const config: InitialOptionsTsJest = {
   },
 };
 
-export default config;
+export default createJestConfig(customJestConfig);
