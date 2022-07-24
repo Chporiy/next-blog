@@ -15,6 +15,7 @@ const Header = () => (
     left={0}
     right={0}
     zIndex="sticky"
+    shadow="xs"
   >
     <Container h="full" w="full" maxW="container.xl">
       <Box h="full" display="flex" alignItems="center">

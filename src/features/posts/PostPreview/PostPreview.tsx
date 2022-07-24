@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 import NextLink from '../../../components/links/NextLink';
 import PostAuthor from '../PostAuthor/PostAuthor';
@@ -10,13 +10,11 @@ type Props = {
 };
 
 const PostPreview = ({ post }: Props) => (
-  <Box borderWidth="1px" borderRadius="md" p={5}>
+  <Box p={5} borderWidth="1px" borderRadius="md" bg="white" shadow="xs">
     <PostAuthor userId={post.userId} date={post.date} />
-    <PostTitle marginTop="3">{post.title}</PostTitle>
-    <Text mb={5} mt={5} noOfLines={1}>
-      {post.body}
-    </Text>
-    <NextLink href={`/posts/${post.id}`}>read more</NextLink>
+    <NextLink href={`/posts/${post.id}`}>
+      <PostTitle marginTop="3">{post.title}</PostTitle>
+    </NextLink>
   </Box>
 );
 
