@@ -1,6 +1,12 @@
+/* eslint-disable global-require */
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import singletonRouter from 'next/router';
 import renderWithStore from '../../../tests/utils/renderWithStore';
 import Header from './Header';
+
+jest.mock('next/router', () => require('next-router-mock'));
+jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
 describe('<Header />', () => {
   it('should render <header /> tag', () => {
@@ -13,5 +19,17 @@ describe('<Header />', () => {
     renderWithStore(<Header />);
 
     expect(screen.getByAltText('logo')).toBeInTheDocument();
+  });
+
+  it('should redirect to home page by click on logo', async () => {
+    const user = userEvent.setup();
+
+    renderWithStore(<Header />);
+
+    await user.click(screen.getByAltText('logo'));
+
+    expect(singletonRouter).toMatchObject({
+      pathname: '/',
+    });
   });
 });

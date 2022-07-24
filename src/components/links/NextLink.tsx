@@ -1,4 +1,5 @@
 import Link, { LinkProps } from 'next/link';
+import { Link as ChakraLink } from '@chakra-ui/react';
 import React, { PropsWithChildren } from 'react';
 
 /**
@@ -8,7 +9,7 @@ import React, { PropsWithChildren } from 'react';
  */
 const NextLink = ({ children, ...linkProps }: PropsWithChildren<LinkProps>) => (
   <Link {...linkProps} passHref>
-    <a href="passRef">{children}</a>
+    <ChakraLink>{children}</ChakraLink>
   </Link>
 );
 
