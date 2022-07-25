@@ -1,14 +1,23 @@
 import { Avatar, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
-import { useAppSelector } from '../../../hooks/redux';
 import getPostDate from '../../../utils/getPostDate/getPostDate';
-import { selectUserById } from '../../users/usersApi';
+import { selectUserById } from '../../users/selectors';
+import { useGetUsersQuery } from '../../users/usersApi';
 import { Post } from '../types';
 
 type Props = Pick<Post, 'date' | 'userId'>;
 
+/**
+ * A component for display post`s user
+ * Render user, avatar and post date if user is defined
+ * Render error text and 'no user' avatar if iser is`nt defined
+ */
 const PostAuthor = ({ userId, date }: Props) => {
-  const user = useAppSelector((state) => selectUserById(state, userId));
+  const { user } = useGetUsersQuery(undefined, {
+    selectFromResult: ({ data }) => ({
+      user: selectUserById(data, userId),
+    }),
+  });
 
   return user ? (
     <Flex>

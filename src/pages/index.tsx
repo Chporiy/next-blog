@@ -6,12 +6,11 @@ import PostForm from '../components/PostForm';
 import PostList from '../features/posts/PostsList/PostsList';
 import { getPosts, useGetPostsQuery } from '../features/posts/postsApi';
 import { NextPageWithLayout } from './types';
-import { getUsers, useGetUsersQuery } from '../features/users/usersApi';
+import { getUsers } from '../features/users/usersApi';
 import { getRunningOperationPromises } from '../app/api/emptyApi';
 
 const Index: NextPageWithLayout = () => {
   const { data } = useGetPostsQuery();
-  useGetUsersQuery();
 
   return (
     <div>
