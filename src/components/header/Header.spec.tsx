@@ -1,6 +1,5 @@
 /* eslint-disable global-require */
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import singletonRouter from 'next/router';
 import renderWithStore from '../../../tests/utils/renderWithStore';
 import Header from './Header';
@@ -22,9 +21,7 @@ describe('<Header />', () => {
   });
 
   it('should redirect to home page by click on logo', async () => {
-    const user = userEvent.setup();
-
-    renderWithStore(<Header />);
+    const { user } = renderWithStore(<Header />);
 
     await user.click(screen.getByAltText('logo'));
 

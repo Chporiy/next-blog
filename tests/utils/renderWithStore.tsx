@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ChakraProvider } from '@chakra-ui/react';
 import { render, RenderOptions } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { PropsWithChildren, ReactElement } from 'react';
 import { Provider } from 'react-redux';
 import { AppStore, makeStore } from '../../src/app/store';
@@ -21,6 +22,7 @@ const renderWithStore = (
 
   return {
     store,
+    user: userEvent.setup(),
     ...render(ui, { wrapper, ...renderOptions }),
   };
 };

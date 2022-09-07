@@ -1,6 +1,5 @@
 /* eslint-disable global-require */
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import singletonRouter from 'next/router';
 import { post } from '../../../../tests/mocks/data';
 import renderWithStore from '../../../../tests/utils/renderWithStore';
@@ -30,9 +29,7 @@ describe('<PostPreview />', () => {
   });
 
   it('should redirect to a post page by click on a post title', async () => {
-    const user = userEvent.setup();
-
-    renderWithStore(<PostPreview post={post} />);
+    const { user } = renderWithStore(<PostPreview post={post} />);
 
     await user.click(screen.getByRole('link', { name: post.title }));
 

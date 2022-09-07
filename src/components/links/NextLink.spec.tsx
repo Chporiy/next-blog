@@ -1,6 +1,5 @@
 /* eslint-disable global-require */
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import singletonRouter from 'next/router';
 import renderWithStore from '../../../tests/utils/renderWithStore';
 import NextLink from './NextLink';
@@ -17,9 +16,7 @@ describe('<NextLink />', () => {
   });
 
   it('should redirect to some path', async () => {
-    const user = userEvent.setup();
-
-    renderWithStore(<NextLink href="/test">link</NextLink>);
+    const { user } = renderWithStore(<NextLink href="/test">link</NextLink>);
 
     await user.click(screen.getByText('link'));
 
