@@ -7,11 +7,6 @@ import {
 import React from 'react';
 import { FieldProps, getIn } from 'formik';
 
-/* export type BaseFieldProps = FieldProps &
-  Omit<InputProps, 'name' | 'value' | 'error'> & {
-    label: string;
-    disabled: boolean;
-  }; */
 export type BaseFieldProps = FieldProps & FormControlProps;
 
 /**

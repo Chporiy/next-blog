@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { Field, Form, Formik } from 'formik';
-import renderWithStore from '../../../../../tests/utils/renderWithStore';
+import renderWithStore from '../../../../tests/utils/renderWithStore';
 import PasswordField from './PasswordField';
 
 describe('<PasswordField>', () => {

@@ -1,6 +1,6 @@
 import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import BaseField, { BaseFieldProps } from '../BaseField';
+import BaseField, { BaseFieldProps } from '../BaseField/BaseField';
 
 /**
  * A wrapper around <BaseField />
