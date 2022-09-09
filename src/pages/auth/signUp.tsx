@@ -1,13 +1,14 @@
-import { Flex, Heading } from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 import React from 'react';
+import SignUpForm from '../../features/auth/SIgnUpForm/SignUpForm';
 import Layout from '../../components/Layout';
 import { NextPageWithLayout } from '../types';
 
 const SignUp: NextPageWithLayout = () => (
   <Flex
     mx="auto"
-    p="8"
-    maxW="xl"
+    p="12"
+    maxW="2xl"
     direction="column"
     align="center"
     justify="center"
@@ -17,6 +18,9 @@ const SignUp: NextPageWithLayout = () => (
     flex="1 auto"
   >
     <Heading>Welcome to Next blog</Heading>
+    <Box mt="6" w="full">
+      <SignUpForm />
+    </Box>
   </Flex>
 );
 

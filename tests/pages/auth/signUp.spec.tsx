@@ -6,6 +6,7 @@ describe('Page SignUp', () => {
   it('should render signUp page', () => {
     renderWithStore(<SignUp />);
 
-    expect(screen.getByText('Welcome to Next blog'));
+    expect(screen.getByText('Welcome to Next blog')).toBeInTheDocument();
+    expect(document.querySelector('form')).toBeInTheDocument();
   });
 });

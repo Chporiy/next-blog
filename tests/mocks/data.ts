@@ -1,3 +1,4 @@
+import { SignUpResponse } from '../../src/features/auth/types';
 import { Post } from '../../src/features/posts/types';
 import { User } from '../../src/features/users/types';
 
@@ -16,4 +17,12 @@ export const post: Post = {
   body: 'body',
   date: '2022-01-29T00:00:00.000Z',
   preview: 'https://loremflickr.com/640/480/food',
+};
+
+export const signUpResponse: SignUpResponse = {
+  accessToken: 'token',
+  user: {
+    email: 'xxx@xx.xx',
+    id: 0,
+  },
 };
