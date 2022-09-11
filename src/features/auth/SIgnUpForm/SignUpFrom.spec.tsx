@@ -3,6 +3,7 @@ import { screen, waitFor } from '@testing-library/react';
 import singletonRouter from 'next/router';
 import renderWithStore from '../../../../tests/utils/renderWithStore';
 import SignUpForm from './SignUpForm';
+import { user as mockUser } from '../../../../tests/mocks/data';
 
 jest.mock('next/router', () => require('next-router-mock'));
 jest.mock('next/dist/client/router', () => require('next-router-mock'));
@@ -10,6 +11,7 @@ jest.mock('next/dist/client/router', () => require('next-router-mock'));
 describe('<SignUpForm />', () => {
   const emailPlaceholder = 'Enter your email';
   const passwordPlaceholder = 'Enter your password';
+  const fullNamePlaceholder = 'Enter your full name';
 
   it('should render form', () => {
     renderWithStore(<SignUpForm />);
@@ -75,6 +77,38 @@ describe('<SignUpForm />', () => {
     });
   });
 
+  describe('full name field', () => {
+    it('should contain a placeholder', () => {
+      renderWithStore(<SignUpForm />);
+
+      expect(
+        screen.getByPlaceholderText(fullNamePlaceholder),
+      ).toBeInTheDocument();
+    });
+
+    it('should contain an error if it`s empty', async () => {
+      const { user } = renderWithStore(<SignUpForm />);
+
+      await user.type(screen.getByPlaceholderText(fullNamePlaceholder), ' ');
+      await user.click(document.body);
+
+      expect(screen.getByText('Please enter your full name'));
+    });
+
+    it('should contain an error if a value is invalid', async () => {
+      const { user } = renderWithStore(<SignUpForm />);
+
+      await user.type(screen.getByPlaceholderText(fullNamePlaceholder), '123');
+      await user.click(document.body);
+
+      expect(
+        screen.getByText(
+          'Must contains letters and should contians spaces, commas, dots, dashes',
+        ),
+      ).toBeInTheDocument();
+    });
+  });
+
   describe('submitting', () => {
     it('should disable a submitting button if a form is submitting', async () => {
       const { user } = renderWithStore(<SignUpForm />);
@@ -99,9 +133,11 @@ describe('<SignUpForm />', () => {
       const button = screen.getByRole('button', { name: 'Continue' });
       const emailField = screen.getByPlaceholderText(emailPlaceholder);
       const passwordField = screen.getByPlaceholderText(passwordPlaceholder);
+      const fullNameField = screen.getByPlaceholderText(fullNamePlaceholder);
 
-      await user.type(emailField, 'xxx@xx.xx');
+      await user.type(emailField, mockUser.email);
       await user.type(passwordField, 'Qwerty123!');
+      await user.type(fullNameField, mockUser.fullName);
       await user.click(button);
 
       await waitFor(() => {

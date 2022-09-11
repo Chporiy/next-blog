@@ -8,10 +8,12 @@ import password from '../../../utils/validation/password/password';
 import TextField from '../../../components/fields/TextField/TextField';
 import PasswordField from '../../../components/fields/PasswordField/PasswordField';
 import { useSignUpMutation } from '../authApi';
+import fullName from '../../../utils/validation/fullName/fullName';
 
 const validationSchema = object().shape({
   email,
   password,
+  fullName,
 });
 
 /**
@@ -28,6 +30,7 @@ const SignUpForm = () => {
       initialValues={{
         email: '',
         password: '',
+        fullName: '',
       }}
       onSubmit={async (value, { setFieldValue }) => {
         await signUp(value).unwrap();
@@ -40,6 +43,14 @@ const SignUpForm = () => {
     >
       {({ isSubmitting }) => (
         <Form>
+          <Box mb="4">
+            <Field
+              component={TextField}
+              name="fullName"
+              label="Full name"
+              placeholder="Enter your full name"
+            />
+          </Box>
           <Box mb="4">
             <Field
               component={TextField}
