@@ -19,7 +19,7 @@ const Header = () => (
   >
     <Container h="full" w="full" maxW="container.xl">
       <Box h="full" display="flex" alignItems="center">
-        <NextLink href="/">
+        <NextLink next={{ href: '/' }}>
           <Image src={logo} alt="logo" />
         </NextLink>
       </Box>

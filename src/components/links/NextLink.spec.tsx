@@ -9,14 +9,16 @@ jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
 describe('<NextLink />', () => {
   it('should be in document', () => {
-    renderWithStore(<NextLink href="test">link</NextLink>);
+    renderWithStore(<NextLink next={{ href: 'test' }}>link</NextLink>);
 
     expect(screen.getByText('link')).toBeInTheDocument();
     expect(screen.getByText('link').getAttribute('href')).toEqual('/test');
   });
 
   it('should redirect to some path', async () => {
-    const { user } = renderWithStore(<NextLink href="/test">link</NextLink>);
+    const { user } = renderWithStore(
+      <NextLink next={{ href: 'test' }}>link</NextLink>,
+    );
 
     await user.click(screen.getByText('link'));
 

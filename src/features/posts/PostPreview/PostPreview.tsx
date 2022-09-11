@@ -12,7 +12,7 @@ type Props = {
 const PostPreview = ({ post }: Props) => (
   <Box p={5} borderWidth="1px" borderRadius="md" bg="white" shadow="xs">
     <PostAuthor userId={post.userId} date={post.date} />
-    <NextLink href={`/posts/${post.id}`}>
+    <NextLink next={{ href: `/posts/${post.id}` }}>
       <PostTitle marginTop="3">{post.title}</PostTitle>
     </NextLink>
   </Box>
