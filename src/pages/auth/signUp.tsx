@@ -1,8 +1,9 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
+import { Box, Divider, Flex, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
-import SignUpForm from '../../features/auth/SIgnUpForm/SignUpForm';
+import SignUpForm from '../../features/auth/SignUpForm/SignUpForm';
 import Layout from '../../components/Layout';
 import { NextPageWithLayout } from '../types';
+import NextLink from '../../components/links/NextLink';
 
 const SignUp: NextPageWithLayout = () => (
   <Flex
@@ -21,6 +22,14 @@ const SignUp: NextPageWithLayout = () => (
     <Box mt="6" w="full">
       <SignUpForm />
     </Box>
+    <Divider mt="6" />
+    <Text mt="4">
+      Have an account?
+      <NextLink next={{ href: '/auth/signIn' }} chakra={{ color: 'teal.500' }}>
+        {' '}
+        Sign in
+      </NextLink>
+    </Text>
   </Flex>
 );
 

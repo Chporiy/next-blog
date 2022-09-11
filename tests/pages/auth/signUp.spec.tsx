@@ -9,4 +9,9 @@ describe('Page SignUp', () => {
     expect(screen.getByText('Welcome to Next blog')).toBeInTheDocument();
     expect(document.querySelector('form')).toBeInTheDocument();
   });
+
+  it('should have a link to signIn page', () => {
+    renderWithStore(<SignUp />);
+    expect(screen.getByRole('link', { name: 'Sign in' })).toBeInTheDocument();
+  });
 });
