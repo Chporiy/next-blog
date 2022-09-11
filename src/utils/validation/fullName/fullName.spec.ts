@@ -41,4 +41,14 @@ describe('full name validation schema', () => {
       expect(error.errors).toContain(matchesErrorText);
     }
   });
+
+  it('should throw an error is length of full name is greate than max', async () => {
+    try {
+      await fullName.validate('John Smith'.repeat(26));
+    } catch (error) {
+      expect(error.errors).toContain(
+        'Maximum length of full name is 255 characters',
+      );
+    }
+  });
 });
