@@ -25,9 +25,7 @@ describe('<PostAuthor />', () => {
     });
 
     it('should render user first and last name', () => {
-      expect(
-        screen.getByText(`${user.firstName} ${user.lastName}`),
-      ).toBeInTheDocument();
+      expect(screen.getByText(user.fullName)).toBeInTheDocument();
     });
 
     it('should render user avatar', async () => {

@@ -30,12 +30,10 @@ describe('Page Post', () => {
   it('should render post page', () => {
     renderWithStore(<PostPage />, { store });
 
-    const userName = `${user.firstName} ${user.lastName}`;
-
     expect(screen.getByText(post.title)).toBeInTheDocument();
     expect(screen.getByText(post.body)).toBeInTheDocument();
     expect(screen.getByAltText(post.title)).toBeInTheDocument();
-    expect(screen.getByText(userName)).toBeInTheDocument();
+    expect(screen.getByText(user.fullName)).toBeInTheDocument();
     expect(screen.getByText(getPostDate(post.date))).toBeInTheDocument();
   });
 });

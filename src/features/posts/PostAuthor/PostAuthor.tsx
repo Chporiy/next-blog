@@ -21,15 +21,9 @@ const PostAuthor = ({ userId, date }: Props) => {
 
   return user ? (
     <Flex>
-      <Avatar
-        mr="3"
-        src={user.avatar}
-        name={`${user.firstName} ${user.lastName}`}
-      />
+      <Avatar mr="3" src={user.avatar} name={user.fullName} />
       <Flex direction="column">
-        <Text fontWeight="medium">
-          {user.firstName} {user.lastName}
-        </Text>
+        <Text fontWeight="medium">{user.fullName}</Text>
         <Text color="gray.400" fontSize="sm">
           {getPostDate(date)}
         </Text>

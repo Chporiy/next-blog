@@ -4,8 +4,7 @@ import { User } from '../../src/features/users/types';
 
 export const user: User = {
   id: 0,
-  firstName: 'John',
-  lastName: 'Smith',
+  fullName: 'John Smith',
   email: 'JohnSmith@mail.com',
   avatar: 'https://loremflickr.com/640/480/fashion',
 };
