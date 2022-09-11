@@ -37,6 +37,7 @@ const SignUpForm = () => {
 
         setFieldValue('email', '', false);
         setFieldValue('password', '', false);
+        setFieldValue('fullName', '', false);
 
         router.push('/');
       }}

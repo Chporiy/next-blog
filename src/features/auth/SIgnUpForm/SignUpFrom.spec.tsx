@@ -2,8 +2,8 @@
 import { screen, waitFor } from '@testing-library/react';
 import singletonRouter from 'next/router';
 import renderWithStore from '../../../../tests/utils/renderWithStore';
-import SignUpForm from './SignUpForm';
 import { user as mockUser } from '../../../../tests/mocks/data';
+import SignUpForm from './SignUpForm';
 
 jest.mock('next/router', () => require('next-router-mock'));
 jest.mock('next/dist/client/router', () => require('next-router-mock'));
@@ -143,6 +143,7 @@ describe('<SignUpForm />', () => {
       await waitFor(() => {
         expect(emailField).toHaveValue('');
         expect(passwordField).toHaveValue('');
+        expect(fullNameField).toHaveValue('');
       });
     });
 
