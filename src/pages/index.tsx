@@ -1,20 +1,20 @@
 import { GetStaticProps } from 'next';
 import { ReactElement } from 'react';
+import { AppProps } from 'next/app';
 import { wrapper } from '../app/store';
 import Layout from '../components/Layout';
 import PostForm from '../components/PostForm';
 import PostList from '../features/posts/PostsList/PostsList';
 import { getPosts, useGetPostsQuery } from '../features/posts/postsApi';
-import { NextPageWithLayout } from './types';
 import { getUsers } from '../features/users/usersApi';
 import { getRunningOperationPromises } from '../app/api/emptyApi';
 
-const Index: NextPageWithLayout = () => {
-  const { data } = useGetPostsQuery();
+const Index: AppProps['Component'] = () => {
+  const { data: posts } = useGetPostsQuery();
 
   return (
     <div>
-      {data && <PostList posts={data} />}
+      {posts && <PostList posts={posts} />}
       <PostForm />
     </div>
   );
