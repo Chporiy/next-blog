@@ -1,9 +1,10 @@
 import { Box, Flex, Img, Text } from '@chakra-ui/react';
 import { skipToken } from '@reduxjs/toolkit/dist/query';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { getRunningOperationPromises } from '../../app/api/emptyApi';
+import { getRunningQueriesThunk } from '../../app/api/emptyApi';
 import { makeStore, wrapper } from '../../app/store';
 import Layout from '../../components/Layout';
 import PostAuthor from '../../features/posts/PostAuthor/PostAuthor';
@@ -14,9 +15,8 @@ import {
 } from '../../features/posts/postsApi';
 import PostTitle from '../../features/posts/PostTitle/PostTitle';
 import { getUsers, useGetUsersQuery } from '../../features/users/usersApi';
-import { NextPageWithLayout } from '../types';
 
-const PostPage: NextPageWithLayout = () => {
+const PostPage: AppProps['Component'] = () => {
   const router = useRouter();
   useGetUsersQuery();
   const { data } = useGetPostQuery(
@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
         store.dispatch(getUsers.initiate());
       }
 
-      await Promise.all(getRunningOperationPromises());
+      await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
       return {
         props: {},

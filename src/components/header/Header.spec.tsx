@@ -1,32 +1,31 @@
-/* eslint-disable global-require */
-import { screen } from '@testing-library/react';
-import singletonRouter from 'next/router';
-import renderWithStore from '../../../tests/utils/renderWithStore';
+import { screen, waitFor } from '@testing-library/react';
+import routerMock from 'next/router';
+import { render } from '../../../tests/utils/customRender';
 import Header from './Header';
-
-jest.mock('next/router', () => require('next-router-mock'));
-jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
 describe('<Header />', () => {
   it('should render <header /> tag', () => {
-    renderWithStore(<Header />);
+    render(<Header />);
 
     expect(document.querySelector('header')).toBeInTheDocument();
   });
 
   it('should render logo', () => {
-    renderWithStore(<Header />);
+    render(<Header />);
 
     expect(screen.getByAltText('logo')).toBeInTheDocument();
   });
 
   it('should redirect to home page by click on logo', async () => {
-    const { user } = renderWithStore(<Header />);
+    routerMock.push('/some_page');
+
+    const { user } = render(<Header />);
 
     await user.click(screen.getByAltText('logo'));
-
-    expect(singletonRouter).toMatchObject({
-      pathname: '/',
+    await waitFor(() => {
+      expect(routerMock).toMatchObject({
+        pathname: '/',
+      });
     });
   });
 });

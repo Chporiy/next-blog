@@ -7,7 +7,7 @@ import PostForm from '../components/PostForm';
 import PostList from '../features/posts/PostsList/PostsList';
 import { getPosts, useGetPostsQuery } from '../features/posts/postsApi';
 import { getUsers } from '../features/users/usersApi';
-import { getRunningOperationPromises } from '../app/api/emptyApi';
+import { getRunningQueriesThunk } from '../app/api/emptyApi';
 
 const Index: AppProps['Component'] = () => {
   const { data: posts } = useGetPostsQuery();
@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps = wrapper.getServerSideProps(
     store.dispatch(getPosts.initiate());
     store.dispatch(getUsers.initiate());
 
-    await Promise.all(getRunningOperationPromises());
+    await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
     return {
       props: {},

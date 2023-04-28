@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react';
 import { Field, Form, Formik } from 'formik';
-import renderWithStore from '../../../../tests/utils/renderWithStore';
+import { render } from '../../../../tests/utils/customRender';
 import PasswordField from './PasswordField';
 
 describe('<PasswordField>', () => {
   it('should switch an input type', async () => {
-    const { user } = renderWithStore(
+    const { user } = render(
       <Formik initialValues={{ password: '' }} onSubmit={jest.fn()}>
         <Form>
           <Field component={PasswordField} name="password" label="password" />

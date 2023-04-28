@@ -1,16 +1,12 @@
 import { screen } from '@testing-library/react';
-import singletonRouter from 'next/router';
-import { getRunningOperationPromises } from '../../../src/app/api/emptyApi';
+import routerMock from 'next-router-mock';
 import { makeStore } from '../../../src/app/store';
 import { getPost } from '../../../src/features/posts/postsApi';
 import { getUsers } from '../../../src/features/users/usersApi';
 import PostPage from '../../../src/pages/posts/[id]';
 import getPostDate from '../../../src/utils/getPostDate/getPostDate';
 import { post, user } from '../../mocks/data';
-import renderWithStore from '../../utils/renderWithStore';
-
-// eslint-disable-next-line global-require
-jest.mock('next/router', () => require('next-router-mock'));
+import { render } from '../../utils/customRender';
 
 describe('Page Post', () => {
   const store = makeStore();
@@ -19,16 +15,14 @@ describe('Page Post', () => {
     store.dispatch(getPost.initiate('0'));
     store.dispatch(getUsers.initiate());
 
-    await Promise.all(getRunningOperationPromises());
-
-    singletonRouter.push({
+    routerMock.push({
       pathname: '/posts/[id]',
       query: { id: '0' },
     });
   });
 
   it('should render post page', () => {
-    renderWithStore(<PostPage />, { store });
+    render(<PostPage />, { store });
 
     expect(screen.getByText(post.title)).toBeInTheDocument();
     expect(screen.getByText(post.body)).toBeInTheDocument();

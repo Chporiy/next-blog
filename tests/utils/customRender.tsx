@@ -4,20 +4,23 @@ import { render, RenderOptions } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PropsWithChildren, ReactElement } from 'react';
 import { Provider } from 'react-redux';
+import { MemoryRouterProvider } from 'next-router-mock/MemoryRouterProvider';
 import { AppStore, makeStore } from '../../src/app/store';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   store?: AppStore;
 }
 
-const renderWithStore = (
+const customRender = (
   ui: ReactElement,
   { store = makeStore(), ...renderOptions }: ExtendedRenderOptions = {},
 ) => {
   const wrapper = ({ children }: PropsWithChildren) => (
-    <Provider store={store}>
-      <ChakraProvider>{children}</ChakraProvider>
-    </Provider>
+    <MemoryRouterProvider>
+      <Provider store={store}>
+        <ChakraProvider>{children}</ChakraProvider>
+      </Provider>
+    </MemoryRouterProvider>
   );
 
   return {
@@ -27,4 +30,5 @@ const renderWithStore = (
   };
 };
 
-export default renderWithStore;
+export * from '@testing-library/react';
+export { customRender as render };

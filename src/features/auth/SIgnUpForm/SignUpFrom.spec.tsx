@@ -1,12 +1,8 @@
-/* eslint-disable global-require */
 import { screen, waitFor } from '@testing-library/react';
-import singletonRouter from 'next/router';
-import renderWithStore from '../../../../tests/utils/renderWithStore';
+import routerMock from 'next-router-mock';
+import { render } from '../../../../tests/utils/customRender';
 import { user as mockUser } from '../../../../tests/mocks/data';
 import SignUpForm from './SignUpForm';
-
-jest.mock('next/router', () => require('next-router-mock'));
-jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
 describe('<SignUpForm />', () => {
   const emailPlaceholder = 'Enter your email';
@@ -14,20 +10,20 @@ describe('<SignUpForm />', () => {
   const fullNamePlaceholder = 'Enter your full name';
 
   it('should render form', () => {
-    renderWithStore(<SignUpForm />);
+    render(<SignUpForm />);
 
     expect(document.querySelector('form')).toBeInTheDocument();
   });
 
   describe('email field', () => {
     it('should contain a placeholder', () => {
-      renderWithStore(<SignUpForm />);
+      render(<SignUpForm />);
 
       expect(screen.getByPlaceholderText(emailPlaceholder)).toBeInTheDocument();
     });
 
     it('should contain an error if it`s empty', async () => {
-      const { user } = renderWithStore(<SignUpForm />);
+      const { user } = render(<SignUpForm />);
 
       await user.type(screen.getByPlaceholderText(emailPlaceholder), ' ');
       await user.click(document.body);
@@ -36,7 +32,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should contain an error if a value is invalid', async () => {
-      const { user } = renderWithStore(<SignUpForm />);
+      const { user } = render(<SignUpForm />);
 
       await user.type(screen.getByPlaceholderText(emailPlaceholder), '123');
       await user.click(document.body);
@@ -47,7 +43,7 @@ describe('<SignUpForm />', () => {
 
   describe('password field', () => {
     it('should contain a placeholder', () => {
-      renderWithStore(<SignUpForm />);
+      render(<SignUpForm />);
 
       expect(
         screen.getByPlaceholderText(passwordPlaceholder),
@@ -55,7 +51,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should contain an error if it`s empty', async () => {
-      const { user } = renderWithStore(<SignUpForm />);
+      const { user } = render(<SignUpForm />);
 
       await user.type(screen.getByPlaceholderText(passwordPlaceholder), ' ');
       await user.click(document.body);
@@ -64,7 +60,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should contain an error if a value is invalid', async () => {
-      const { user } = renderWithStore(<SignUpForm />);
+      const { user } = render(<SignUpForm />);
 
       await user.type(screen.getByPlaceholderText(passwordPlaceholder), '123');
       await user.click(document.body);
@@ -79,7 +75,7 @@ describe('<SignUpForm />', () => {
 
   describe('full name field', () => {
     it('should contain a placeholder', () => {
-      renderWithStore(<SignUpForm />);
+      render(<SignUpForm />);
 
       expect(
         screen.getByPlaceholderText(fullNamePlaceholder),
@@ -87,7 +83,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should contain an error if it`s empty', async () => {
-      const { user } = renderWithStore(<SignUpForm />);
+      const { user } = render(<SignUpForm />);
 
       await user.type(screen.getByPlaceholderText(fullNamePlaceholder), ' ');
       await user.click(document.body);
@@ -96,7 +92,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should contain an error if a value is invalid', async () => {
-      const { user } = renderWithStore(<SignUpForm />);
+      const { user } = render(<SignUpForm />);
 
       await user.type(screen.getByPlaceholderText(fullNamePlaceholder), '123');
       await user.click(document.body);
@@ -111,7 +107,7 @@ describe('<SignUpForm />', () => {
 
   describe('submitting', () => {
     it('should disable a submitting button if a form is submitting', async () => {
-      const { user } = renderWithStore(<SignUpForm />);
+      const { user } = render(<SignUpForm />);
       const button = screen.getByRole('button', { name: 'Continue' });
 
       await user.click(button);
@@ -120,7 +116,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should show a submitting status', async () => {
-      const { user } = renderWithStore(<SignUpForm />);
+      const { user } = render(<SignUpForm />);
       const button = screen.getByRole('button', { name: 'Continue' });
 
       await user.click(button);
@@ -129,7 +125,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should discard values from fields after succesfull submitting', async () => {
-      const { user } = renderWithStore(<SignUpForm />);
+      const { user } = render(<SignUpForm />);
       const button = screen.getByRole('button', { name: 'Continue' });
       const emailField = screen.getByPlaceholderText(emailPlaceholder);
       const passwordField = screen.getByPlaceholderText(passwordPlaceholder);
@@ -148,12 +144,12 @@ describe('<SignUpForm />', () => {
     });
 
     it('should redirect to home page', async () => {
-      const { user } = renderWithStore(<SignUpForm />);
+      const { user } = render(<SignUpForm />);
       const button = screen.getByRole('button', { name: 'Continue' });
 
       await user.click(button);
       await waitFor(() => {
-        expect(singletonRouter).toMatchObject({
+        expect(routerMock).toMatchObject({
           pathname: '/',
         });
       });

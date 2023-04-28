@@ -1,13 +1,9 @@
 import nextJest from 'next/jest';
-import type { InitialOptionsTsJest } from 'ts-jest/dist/types';
+import type { JestConfigWithTsJest } from 'ts-jest/dist/types';
 
-const createJestConfig = nextJest({ dir: './' });
-const customJestConfig: InitialOptionsTsJest = {
-  preset: 'ts-jest',
+const createJestConfig = nextJest();
+const customJestConfig: JestConfigWithTsJest = {
   setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
-  transform: {
-    '.+\\.(css|styl|less|sass|scss)$': 'jest-css-modules-transform',
-  },
   testEnvironment: 'jsdom',
   globals: {
     'ts-jest': {

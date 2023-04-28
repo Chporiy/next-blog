@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 import { user } from '../../../../tests/mocks/data';
-import renderWithStore from '../../../../tests/utils/renderWithStore';
-import { getRunningOperationPromises } from '../../../app/api/emptyApi';
+import { render } from '../../../../tests/utils/customRender';
 import { makeStore } from '../../../app/store';
 import getPostDate from '../../../utils/getPostDate/getPostDate';
 import { getUsers } from '../../users/usersApi';
@@ -13,13 +12,11 @@ describe('<PostAuthor />', () => {
 
   beforeEach(async () => {
     store.dispatch(getUsers.initiate());
-
-    await Promise.all(getRunningOperationPromises());
   });
 
   describe('User is defined', () => {
     beforeEach(() => {
-      renderWithStore(<PostAuthor userId={user.id} date={date} />, {
+      render(<PostAuthor userId={user.id} date={date} />, {
         store,
       });
     });
@@ -39,7 +36,7 @@ describe('<PostAuthor />', () => {
 
   describe('User isn`t defined', () => {
     beforeEach(() => {
-      renderWithStore(<PostAuthor userId={-1} date={date} />, { store });
+      render(<PostAuthor userId={-1} date={date} />, { store });
     });
 
     it('should return "User not found"', () => {
