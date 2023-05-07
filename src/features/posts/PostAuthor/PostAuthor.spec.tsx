@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { user } from '../../../../tests/mocks/data';
 import { render } from '../../../../tests/utils/customRender';
 import { makeStore } from '../../../app/store';
@@ -21,16 +21,22 @@ describe('<PostAuthor />', () => {
       });
     });
 
-    it('should render user first and last name', () => {
-      expect(screen.getByText(user.fullName)).toBeInTheDocument();
+    it('should render user first and last name', async () => {
+      await waitFor(() => {
+        expect(screen.getByText(user.fullName)).toBeInTheDocument();
+      });
     });
 
     it('should render user avatar', async () => {
-      expect(screen.getByRole('img')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByRole('img')).toBeInTheDocument();
+      });
     });
 
-    it('should render publication date', () => {
-      expect(screen.getByText(getPostDate(date))).toBeInTheDocument();
+    it('should render publication date', async () => {
+      await waitFor(() => {
+        expect(screen.getByText(getPostDate(date))).toBeInTheDocument();
+      });
     });
   });
 

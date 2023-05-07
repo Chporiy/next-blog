@@ -1,5 +1,6 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import routerMock from 'next-router-mock';
+import { getRunningQueriesThunk } from '../../../src/app/api/emptyApi';
 import { makeStore } from '../../../src/app/store';
 import { getPost } from '../../../src/features/posts/postsApi';
 import { getUsers } from '../../../src/features/users/usersApi';
@@ -12,22 +13,26 @@ describe('Page Post', () => {
   const store = makeStore();
 
   beforeEach(async () => {
-    store.dispatch(getPost.initiate('0'));
-    store.dispatch(getUsers.initiate());
-
     routerMock.push({
       pathname: '/posts/[id]',
       query: { id: '0' },
     });
+
+    store.dispatch(getPost.initiate('0'));
+    store.dispatch(getUsers.initiate());
+
+    await Promise.all(store.dispatch(getRunningQueriesThunk()));
   });
 
-  it('should render post page', () => {
+  it('should render post page', async () => {
     render(<PostPage />, { store });
 
-    expect(screen.getByText(post.title)).toBeInTheDocument();
-    expect(screen.getByText(post.body)).toBeInTheDocument();
-    expect(screen.getByAltText(post.title)).toBeInTheDocument();
-    expect(screen.getByText(user.fullName)).toBeInTheDocument();
-    expect(screen.getByText(getPostDate(post.date))).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(post.title)).toBeInTheDocument();
+      expect(screen.getByText(post.body)).toBeInTheDocument();
+      expect(screen.getByAltText(post.title)).toBeInTheDocument();
+      expect(screen.getByText(user.fullName)).toBeInTheDocument();
+      expect(screen.getByText(getPostDate(post.date))).toBeInTheDocument();
+    });
   });
 });

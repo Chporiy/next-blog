@@ -11,10 +11,6 @@ import emptyApi from './src/app/api/emptyApi';
 loadEnvConfig(process.cwd());
 
 jest.mock('next/router', () => require('next-router-mock'));
-// jest.mock('next/dist/shared/lib/router-context', () => {
-//   const RouterContext = createContext(memoryRouter);
-//   return { RouterContext };
-// });
 
 const store = makeStore();
 const server = setupServer(...handlers());
