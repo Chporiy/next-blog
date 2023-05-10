@@ -12,9 +12,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   return (
     <SessionProvider session={session}>
       <ChakraProvider theme={theme}>
-        <Provider store={store}>
-          {getLayout(<Component {...props.pageProps} />)}
-        </Provider>
+        <Provider store={store}>{getLayout(<Component {...props} />)}</Provider>
       </ChakraProvider>
     </SessionProvider>
   );

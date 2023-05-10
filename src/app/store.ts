@@ -5,17 +5,24 @@ import {
 } from 'next-redux-cookie-wrapper';
 import { createWrapper } from 'next-redux-wrapper';
 import emptyApi from './api/emptyApi';
+import authSlice from '../features/auth/authSlice';
 
 export const makeStore = () =>
   configureStore({
     reducer: {
+      authSlice,
       [emptyApi.reducerPath]: emptyApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware()
         .prepend(
           nextReduxCookieMiddleware({
-            subtrees: [''],
+            subtrees: [
+              {
+                subtree: 'authSlice.accessToken',
+                deserializationFunction: (string) => string,
+              },
+            ],
           }),
         )
         .concat(emptyApi.middleware),

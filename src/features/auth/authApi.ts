@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import emptyApi from '../../app/api/emptyApi';
 import { SignUpRequest, SignUpResponse } from './types';
 
@@ -10,6 +11,11 @@ const authApi = emptyApi.injectEndpoints({
         method: 'POST',
         body: data,
       }),
+      async onQueryStarted(arg, api) {
+        const { data } = await api.queryFulfilled;
+
+        Cookies.set('authSlice.accessToken', data.accessToken);
+      },
     }),
   }),
 });

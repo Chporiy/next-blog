@@ -1,11 +1,11 @@
 import { Box, Divider, Flex, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
-import SignUpForm from '../../features/auth/SignUpForm/SignUpForm';
+import { AppProps } from 'next/app';
 import Layout from '../../components/Layout';
-import { NextPageWithLayout } from '../types';
+import SignUpForm from '../../features/auth/SignUpForm/SignUpForm';
 import NextLink from '../../components/links/NextLink';
 
-const SignUp: NextPageWithLayout = () => (
+const SignUp: AppProps['Component'] = () => (
   <Flex
     mx="auto"
     p="12"

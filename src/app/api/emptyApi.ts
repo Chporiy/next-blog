@@ -5,6 +5,7 @@ const emptyApi = createApi({
   tagTypes: ['Post'],
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_URL,
+    credentials: 'include',
   }),
   // eslint-disable-next-line consistent-return
   extractRehydrationInfo: (action, { reducerPath }) => {

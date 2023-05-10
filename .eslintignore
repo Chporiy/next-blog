@@ -12,3 +12,5 @@ coverage
 **/out/*
 next-env.d.ts
 next.config.ts
+# don't lint public folder
+public/
