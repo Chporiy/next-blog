@@ -1,5 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import routerMock from 'next-router-mock';
+import { UserEvent } from '@testing-library/user-event/dist/types/setup/setup';
 import { render } from '../../../../tests/utils/customRender';
 import { user as mockUser } from '../../../../tests/mocks/data';
 import SignUpForm from './SignUpForm';
@@ -8,6 +9,10 @@ describe('<SignUpForm />', () => {
   const emailPlaceholder = 'Enter your email';
   const passwordPlaceholder = 'Enter your password';
   const fullNamePlaceholder = 'Enter your full name';
+
+  beforeEach(() => {
+    routerMock.push('/auth/signUp');
+  });
 
   it('should render form', () => {
     render(<SignUpForm />);
@@ -105,11 +110,22 @@ describe('<SignUpForm />', () => {
     });
   });
 
-  describe.skip('submitting', () => {
+  describe('submitting', () => {
+    const fillFields = async (user: UserEvent) => {
+      const emailField = screen.getByPlaceholderText(emailPlaceholder);
+      const passwordField = screen.getByPlaceholderText(passwordPlaceholder);
+      const fullNameField = screen.getByPlaceholderText(fullNamePlaceholder);
+
+      await user.type(emailField, mockUser.email);
+      await user.type(passwordField, 'Qwerty123!');
+      await user.type(fullNameField, mockUser.fullName);
+    };
+
     it('should disable a submitting button if a form is submitting', async () => {
       const { user } = render(<SignUpForm />);
       const button = screen.getByRole('button', { name: 'Continue' });
 
+      await fillFields(user);
       await user.click(button);
 
       expect(button).toHaveAttribute('disabled');
@@ -119,6 +135,7 @@ describe('<SignUpForm />', () => {
       const { user } = render(<SignUpForm />);
       const button = screen.getByRole('button', { name: 'Continue' });
 
+      await fillFields(user);
       await user.click(button);
 
       expect(screen.getByText('Submitting')).toBeInTheDocument();
@@ -131,9 +148,7 @@ describe('<SignUpForm />', () => {
       const passwordField = screen.getByPlaceholderText(passwordPlaceholder);
       const fullNameField = screen.getByPlaceholderText(fullNamePlaceholder);
 
-      await user.type(emailField, mockUser.email);
-      await user.type(passwordField, 'Qwerty123!');
-      await user.type(fullNameField, mockUser.fullName);
+      await fillFields(user);
       await user.click(button);
 
       await waitFor(() => {
@@ -147,6 +162,7 @@ describe('<SignUpForm />', () => {
       const { user } = render(<SignUpForm />);
       const button = screen.getByRole('button', { name: 'Continue' });
 
+      await fillFields(user);
       await user.click(button);
       await waitFor(() => {
         expect(routerMock).toMatchObject({
