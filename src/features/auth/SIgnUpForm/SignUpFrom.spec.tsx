@@ -131,16 +131,6 @@ describe('<SignUpForm />', () => {
       expect(button).toHaveAttribute('disabled');
     });
 
-    it('should show a submitting status', async () => {
-      const { user } = render(<SignUpForm />);
-      const button = screen.getByRole('button', { name: 'Continue' });
-
-      await fillFields(user);
-      await user.click(button);
-
-      expect(screen.getByText('Submitting')).toBeInTheDocument();
-    });
-
     it('should discard values from fields after succesfull submitting', async () => {
       const { user } = render(<SignUpForm />);
       const button = screen.getByRole('button', { name: 'Continue' });

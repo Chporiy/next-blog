@@ -9,6 +9,7 @@ import TextField from '../../../components/fields/TextField/TextField';
 import PasswordField from '../../../components/fields/PasswordField/PasswordField';
 import { useSignUpMutation } from '../authApi';
 import fullName from '../../../utils/validation/fullName/fullName';
+import CredentialFields from '../CredentialFields/CredentialFields';
 
 const validationSchema = object().shape({
   email,
@@ -32,13 +33,10 @@ const SignUpForm = () => {
         password: '',
         fullName: '',
       }}
-      onSubmit={async (value, { setFieldValue }) => {
+      onSubmit={async (value, { resetForm }) => {
         await signUp(value).unwrap();
 
-        setFieldValue('email', '', false);
-        setFieldValue('password', '', false);
-        setFieldValue('fullName', '', false);
-
+        resetForm();
         router.push('/');
       }}
     >
@@ -52,29 +50,12 @@ const SignUpForm = () => {
               placeholder="Enter your full name"
             />
           </Box>
-          <Box mb="4">
-            <Field
-              component={TextField}
-              name="email"
-              label="Email"
-              placeholder="Enter your email"
-            />
-          </Box>
-          <Box mb="4">
-            <Field
-              component={PasswordField}
-              name="password"
-              label="Password"
-              placeholder="Enter your password"
-            />
-          </Box>
+          <CredentialFields />
           <Button
             type="submit"
             w="full"
             colorScheme="teal"
-            loadingText="Submitting"
             isDisabled={isSubmitting}
-            isLoading={isSubmitting}
           >
             Continue
           </Button>
