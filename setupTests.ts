@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import 'whatwg-fetch';
 import { loadEnvConfig } from '@next/env';
 import { setupServer } from 'msw/node';
-import handlers from './tests/mocks/handlers';
+import handlers from './tests/mocks/handlers/handlers';
 import { makeStore } from './src/app/store';
 import emptyApi from './src/app/api/emptyApi';
 

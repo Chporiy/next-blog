@@ -6,8 +6,9 @@ import { getPost } from '../../../src/features/posts/postsApi';
 import { getUsers } from '../../../src/features/users/usersApi';
 import PostPage from '../../../src/pages/posts/[id]';
 import getPostDate from '../../../src/utils/getPostDate/getPostDate';
-import { post, user } from '../../mocks/data';
 import { render } from '../../utils/customRender';
+import { postMock } from '../../mocks/data/postMocks';
+import { userMock } from '../../mocks/data/userMocks';
 
 describe('Page Post', () => {
   const store = makeStore();
@@ -28,11 +29,11 @@ describe('Page Post', () => {
     render(<PostPage />, { store });
 
     await waitFor(() => {
-      expect(screen.getByText(post.title)).toBeInTheDocument();
-      expect(screen.getByText(post.body)).toBeInTheDocument();
-      expect(screen.getByAltText(post.title)).toBeInTheDocument();
-      expect(screen.getByText(user.fullName)).toBeInTheDocument();
-      expect(screen.getByText(getPostDate(post.date))).toBeInTheDocument();
+      expect(screen.getByText(postMock.title)).toBeInTheDocument();
+      expect(screen.getByText(postMock.body)).toBeInTheDocument();
+      expect(screen.getByAltText(postMock.title)).toBeInTheDocument();
+      expect(screen.getByText(userMock.fullName)).toBeInTheDocument();
+      expect(screen.getByText(getPostDate(postMock.date))).toBeInTheDocument();
     });
   });
 });
