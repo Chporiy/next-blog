@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 import { AppProps } from 'next/app';
 import { wrapper } from '../app/store';
-import Layout from '../components/Layout';
+import Layout from '../components/layout/Layout';
 import PostForm from '../components/PostForm';
 import PostList from '../features/posts/PostsList/PostsList';
 import { getPosts, useGetPostsQuery } from '../features/posts/postsApi';

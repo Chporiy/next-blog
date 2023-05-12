@@ -1,7 +1,7 @@
 import { Box, Divider, Flex, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
 import { AppProps } from 'next/app';
-import Layout from '../../components/Layout';
+import Layout from '../../components/layout/Layout';
 import NextLink from '../../components/links/NextLink';
 import SignInForm from '../../features/auth/SignInForm/SignInForm';
 import ROUTES from '../../utils/routes/routes';

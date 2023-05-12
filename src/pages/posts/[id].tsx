@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { getRunningQueriesThunk } from '../../app/api/emptyApi';
 import { makeStore, wrapper } from '../../app/store';
-import Layout from '../../components/Layout';
+import Layout from '../../components/layout/Layout';
 import PostAuthor from '../../features/posts/PostAuthor/PostAuthor';
 import {
   getPost,
