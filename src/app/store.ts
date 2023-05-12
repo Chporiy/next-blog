@@ -21,6 +21,7 @@ export const makeStore = () =>
               {
                 subtree: 'authSlice.accessToken',
                 deserializationFunction: (string) => string,
+                serializationFunction: (string) => string as string,
               },
             ],
           }),
