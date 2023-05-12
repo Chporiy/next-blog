@@ -7,6 +7,7 @@ import email from '../../../utils/validation/email/email';
 import password from '../../../utils/validation/password/password';
 import { useSignInMutation } from '../authApi';
 import CredentialFields from '../CredentialFields/CredentialFields';
+import ROUTES from '../../../utils/routes/routes';
 
 const validationSchema = object().shape({
   email,
@@ -24,7 +25,7 @@ const SignInForm = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      router.push('/');
+      router.push(ROUTES.index);
     }
   }, [isSuccess, router]);
 

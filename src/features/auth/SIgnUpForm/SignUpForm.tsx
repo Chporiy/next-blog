@@ -9,6 +9,7 @@ import TextField from '../../../components/fields/TextField/TextField';
 import { useSignUpMutation } from '../authApi';
 import fullName from '../../../utils/validation/fullName/fullName';
 import CredentialFields from '../CredentialFields/CredentialFields';
+import ROUTES from '../../../utils/routes/routes';
 
 const validationSchema = object().shape({
   email,
@@ -26,7 +27,7 @@ const SignUpForm = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      router.push('/');
+      router.push(ROUTES.index);
     }
   }, [isSuccess, router]);
 

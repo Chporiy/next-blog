@@ -4,6 +4,7 @@ import { AppProps } from 'next/app';
 import Layout from '../../components/Layout';
 import NextLink from '../../components/links/NextLink';
 import SignInForm from '../../features/auth/SignInForm/SignInForm';
+import ROUTES from '../../utils/routes/routes';
 
 const SignIn: AppProps['Component'] = () => (
   <Flex
@@ -25,7 +26,10 @@ const SignIn: AppProps['Component'] = () => (
     <Divider mt="6" />
     <Text mt="4">
       Haven&apos;t an account?
-      <NextLink next={{ href: '/auth/signUp' }} chakra={{ color: 'teal.500' }}>
+      <NextLink
+        next={{ href: ROUTES.auth.signUp }}
+        chakra={{ color: 'teal.500' }}
+      >
         {' '}
         Sign up
       </NextLink>
