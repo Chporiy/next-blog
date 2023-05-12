@@ -12,6 +12,8 @@ describe('Page SignUp', () => {
 
   it('should have a link to signIn page', () => {
     render(<SignUp />);
+
+    expect(screen.getByText('Have an account?')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Sign in' })).toBeInTheDocument();
   });
 });

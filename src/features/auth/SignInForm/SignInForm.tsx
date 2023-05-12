@@ -1,27 +1,25 @@
-import React, { useEffect } from 'react';
-import { Formik, Form, Field } from 'formik';
+import React, { ReactNode, useEffect } from 'react';
+import { Formik, Form } from 'formik';
 import { object } from 'yup';
-import { Box, Button } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import email from '../../../utils/validation/email/email';
 import password from '../../../utils/validation/password/password';
-import TextField from '../../../components/fields/TextField/TextField';
-import { useSignUpMutation } from '../authApi';
-import fullName from '../../../utils/validation/fullName/fullName';
+import { useSignInMutation } from '../authApi';
 import CredentialFields from '../CredentialFields/CredentialFields';
 
 const validationSchema = object().shape({
   email,
   password,
-  fullName,
 });
 
 /**
- * A form for user registration by email and password
- * After succesful registration redirect to home page
+ * A form for user sign in by email and password
+ *
+ * @returns {ReactNode}
  */
-const SignUpForm = () => {
-  const [signUp, { isSuccess }] = useSignUpMutation();
+const SignInForm = () => {
+  const [signIn, { isSuccess }] = useSignInMutation();
   const router = useRouter();
 
   useEffect(() => {
@@ -36,24 +34,15 @@ const SignUpForm = () => {
       initialValues={{
         email: '',
         password: '',
-        fullName: '',
       }}
       onSubmit={async (value, { resetForm }) => {
-        await signUp(value).unwrap();
+        await signIn(value).unwrap();
 
         resetForm();
       }}
     >
       {({ isSubmitting }) => (
         <Form>
-          <Box mb="4">
-            <Field
-              component={TextField}
-              name="fullName"
-              label="Full name"
-              placeholder="Enter your full name"
-            />
-          </Box>
           <CredentialFields />
           <Button
             type="submit"
@@ -69,4 +58,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignInForm;

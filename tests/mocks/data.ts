@@ -1,4 +1,4 @@
-import { SignUpResponse } from '../../src/features/auth/types';
+import { SignInResponse, SignUpResponse } from '../../src/features/auth/types';
 import { Post } from '../../src/features/posts/types';
 import { User } from '../../src/features/users/types';
 
@@ -20,8 +20,10 @@ export const post: Post = {
 
 export const signUpResponse: SignUpResponse = {
   accessToken: 'token',
-  user: {
-    email: 'xxx@xx.xx',
-    id: 0,
-  },
+  user,
+};
+
+export const signInResponse: SignInResponse = {
+  accessToken: 'token',
+  user,
 };
