@@ -1,5 +1,4 @@
 import { rest } from 'msw';
-import { userMock } from '../data/userMocks';
 import { accessToken } from '../data/tokens';
 
 const authApiHandlers = [
@@ -7,7 +6,6 @@ const authApiHandlers = [
     res(
       ctx.json({
         accessToken,
-        user: userMock,
       }),
     ),
   ),
@@ -15,7 +13,6 @@ const authApiHandlers = [
     res(
       ctx.json({
         accessToken,
-        user: userMock,
       }),
     ),
   ),

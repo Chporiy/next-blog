@@ -2,10 +2,10 @@ import { AnyAction, PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import authApi from './authApi';
 import { SignUpResponse } from './types';
+import type { AppState } from '../../app/store';
 
 const initialState = {
   accessToken: '',
-  user: null,
 };
 
 const authSlice = createSlice({
@@ -23,10 +23,18 @@ const authSlice = createSlice({
       authApi.endpoints.signUp.matchFulfilled,
       (state, { payload }: PayloadAction<SignUpResponse>) => {
         state.accessToken = payload.accessToken;
-        state.user = payload.user;
+      },
+    );
+    builder.addMatcher(
+      authApi.endpoints.signIn.matchFulfilled,
+      (state, { payload }: PayloadAction<SignUpResponse>) => {
+        state.accessToken = payload.accessToken;
       },
     );
   },
 });
+
+export const selectAccessToken = (state: AppState) =>
+  state.authSlice.accessToken;
 
 export default authSlice.reducer;

@@ -4,3 +4,7 @@ export type User = {
   avatar: string;
   email: string;
 };
+
+export interface GetUserByIdRequest {
+  id: User['id'];
+}
