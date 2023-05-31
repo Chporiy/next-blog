@@ -2,6 +2,8 @@ import { screen, waitFor } from '@testing-library/react';
 import routerMock from 'next/router';
 import { render } from '../../../../tests/utils/customRender';
 import Header from './Header';
+import { userMock } from '../../../../tests/mocks/data/userMocks';
+import signInForTest from '../../../../tests/utils/signInForTest/signInForTest';
 
 describe('<Header />', () => {
   it('should render <header /> tag', () => {
@@ -30,27 +32,21 @@ describe('<Header />', () => {
       });
     });
   });
+  it('should render <SignInButton /> instead of <UserPanel /> if user is not authenticated', () => {
+    render(<Header />);
 
-  describe('Sign in', () => {
-    it('should render "Sign in" link', () => {
-      render(<Header />);
+    const signInButton = screen.getByRole('link', { name: 'Sign in' });
 
-      const signInLink = screen.getByRole('link', { name: 'Sign in' });
+    expect(signInButton).toBeInTheDocument();
+  });
 
-      expect(signInLink).toBeInTheDocument();
-    });
+  it('should render <UserPanel /> instead of <SignInButton /> if user is authenticated', async () => {
+    const { store } = render(<Header />);
 
-    it('should navigate to the /auth/signIn page by click on "Sign in" link', async () => {
-      const { user } = render(<Header />);
+    await signInForTest(store);
 
-      const signInLink = screen.getByRole('link', { name: 'Sign in' });
+    const authenticatedUser = await screen.findByText(userMock.email);
 
-      await user.click(signInLink);
-      await waitFor(() => {
-        expect(routerMock).toMatchObject({
-          pathname: '/auth/signIn',
-        });
-      });
-    });
+    expect(authenticatedUser).toBeInTheDocument();
   });
 });
