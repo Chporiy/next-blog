@@ -16,4 +16,23 @@ describe('<SignOutButton />', () => {
       });
     });
   });
+
+  it('should clear RTK Query api state', async () => {
+    const { user, store } = render(<SignInButton />);
+    const button = screen.getByRole('button', { name: 'Sign out' });
+
+    await signInForTest(store);
+    await user.click(button);
+
+    await waitFor(() => {
+      expect(store.getState()).toMatchObject({
+        api: {
+          queries: {},
+          mutations: {},
+          provided: {},
+          subscriptions: {},
+        },
+      });
+    });
+  });
 });
