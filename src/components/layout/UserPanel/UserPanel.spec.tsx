@@ -1,11 +1,4 @@
-import { PropsWithChildren } from 'react';
-import { Provider } from 'react-redux';
-import {
-  act,
-  render,
-  renderHook,
-  screen,
-} from '../../../../tests/utils/customRender';
+import { render, screen } from '../../../../tests/utils/customRender';
 import UserPanel from './UserPanel';
 import { userMock } from '../../../../tests/mocks/data/userMocks';
 import signInForTest from '../../../../tests/utils/signInForTest/signInForTest';
