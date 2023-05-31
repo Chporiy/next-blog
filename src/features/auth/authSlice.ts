@@ -12,7 +12,7 @@ const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {
-    set: () => {},
+    signOut: () => initialState,
   },
   extraReducers(builder) {
     builder.addCase(HYDRATE, (state, action: AnyAction) => ({
@@ -36,5 +36,7 @@ const authSlice = createSlice({
 
 export const selectAccessToken = (state: AppState) =>
   state.authSlice.accessToken;
+
+export const { signOut } = authSlice.actions;
 
 export default authSlice.reducer;
