@@ -1,22 +1,17 @@
 import { Post } from './types';
 import emptyApi from '../../app/api/emptyApi';
+import apiCacher from '../../utils/rtkQueryCacheUtils/apiCacher';
 
 const postsApi = emptyApi.injectEndpoints({
   overrideExisting: true,
   endpoints: (buidler) => ({
     getPosts: buidler.query<Post[], void>({
       query: () => '/posts',
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.map(({ id }) => ({ id, type: 'Post' as const })),
-              { type: 'Post', id: 'LIST' },
-            ]
-          : [{ type: 'Post', id: 'LIST' }],
+      providesTags: apiCacher.providesTagsWithList(['Post']),
     }),
     getPost: buidler.query<Post, string>({
       query: (id) => `/posts/${id}`,
-      providesTags: (result, error, id) => [{ id, type: 'Post' }],
+      providesTags: apiCacher.providesTagsWithList(['Post']),
     }),
     addPost: buidler.mutation<Response, Omit<Post, 'id'>>({
       query: (post) => ({
@@ -24,7 +19,7 @@ const postsApi = emptyApi.injectEndpoints({
         method: 'POST',
         body: post,
       }),
-      invalidatesTags: [{ type: 'Post', id: 'LIST' }],
+      invalidatesTags: apiCacher.invalidatesTagsWithList(['Post']),
     }),
   }),
 });
