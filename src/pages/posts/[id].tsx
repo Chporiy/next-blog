@@ -19,9 +19,11 @@ import { getUsers, useGetUsersQuery } from '../../features/users/usersApi';
 const PostPage: AppProps['Component'] = () => {
   const router = useRouter();
   useGetUsersQuery();
-  const { data } = useGetPostQuery(
+  const { data, isSuccess } = useGetPostQuery(
     typeof router.query.id === 'string' ? router.query.id : skipToken,
   );
+
+  if (!isSuccess) return null;
 
   return (
     <Flex direction="column" border="1px solid black" borderRadius="lg">
