@@ -25,4 +25,16 @@ describe('<UserPanel />', () => {
 
     expect(signOutButton).toBeInTheDocument();
   });
+
+  it('should render <CreatePostButton />', async () => {
+    const { store } = render(<UserPanel />);
+
+    await signInForTest(store);
+
+    const createPostButton = await screen.findByRole('button', {
+      name: 'Create Post',
+    });
+
+    expect(createPostButton).toBeInTheDocument();
+  });
 });
