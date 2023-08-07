@@ -15,6 +15,7 @@ import {
 } from '../../features/posts/postsApi';
 import PostTitle from '../../features/posts/PostTitle/PostTitle';
 import { getUsers, useGetUsersQuery } from '../../features/users/usersApi';
+import PostImage from '../../features/posts/PostImage/PostImage';
 
 const PostPage: AppProps['Component'] = () => {
   const router = useRouter();
@@ -27,13 +28,7 @@ const PostPage: AppProps['Component'] = () => {
 
   return (
     <Flex direction="column" border="1px solid black" borderRadius="lg">
-      <Img
-        src={data.preview}
-        alt={data.title}
-        height="350px"
-        objectFit="cover"
-        borderTopRadius="lg"
-      />
+      <PostImage src={data.preview} alt={data.title} />
       <Box p="8">
         <PostAuthor userId={data.userId} date={data.date} />
         <Box mt="3">
