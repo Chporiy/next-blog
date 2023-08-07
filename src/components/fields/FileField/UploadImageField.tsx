@@ -12,48 +12,52 @@ import convertFileImageToBase64 from '../../../utils/convertFileImageToBase64/co
 const UploadImageField = (props: BaseFieldProps) => {
   const {
     field: { name },
+    form: { setFieldValue },
   } = props;
   const inputFile = useRef<HTMLInputElement>(null);
   const fileInputName = `file-input-for-${name}`;
   const [selectedFileName, setSelectedFileName] = useState('');
-  const [fileAsBase64Format, setFileAsBase64Format] = useState('');
 
   const onClick = useCallback(() => {
     if (inputFile.current) {
       inputFile.current.click();
     }
   }, []);
-  const onChange = useCallback(async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.currentTarget.files[0];
-    const convertedFile = await convertFileImageToBase64(file);
+  const onChange = useCallback(
+    async (event: ChangeEvent<HTMLInputElement>) => {
+      const file = event.currentTarget.files[0];
+      const convertedFile = await convertFileImageToBase64(file);
 
-    setSelectedFileName(file.name);
-    setFileAsBase64Format(convertedFile);
-  }, []);
+      setSelectedFileName(file.name);
+      setFieldValue(name, convertedFile);
+    },
+    [name, setFieldValue],
+  );
 
   return (
-    <BaseField {...props}>
-      {(inputProps) => (
-        <>
-          <Stack direction="row" align="center">
-            <Button colorScheme="teal" onClick={onClick}>
-              Select an image
-            </Button>
-            <Text>{selectedFileName}</Text>
-          </Stack>
-          <Input
-            {...inputProps}
-            hidden
-            ref={inputFile}
-            name={fileInputName}
-            type="file"
-            accept="image/*"
-            onChange={onChange}
-          />
-          <Input hidden readOnly name={name} value={fileAsBase64Format} />
-        </>
-      )}
-    </BaseField>
+    <>
+      <Input
+        hidden
+        ref={inputFile}
+        name={fileInputName}
+        type="file"
+        accept="image/*"
+        onChange={onChange}
+      />
+      <BaseField {...props}>
+        {(inputProps) => (
+          <>
+            <Stack direction="row" align="center">
+              <Button colorScheme="teal" onClick={onClick}>
+                Select an image
+              </Button>
+              <Text>{selectedFileName}</Text>
+            </Stack>
+            <Input {...inputProps} hidden readOnly />
+          </>
+        )}
+      </BaseField>
+    </>
   );
 };
 
