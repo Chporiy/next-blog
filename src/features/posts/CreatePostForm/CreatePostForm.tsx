@@ -7,6 +7,7 @@ import { CreatePostRequest } from '../types';
 import TextareaField from '../../../components/fields/TextareaField/TextareaField';
 import useUser from '../../../hooks/useUser/useUser';
 import UploadImageField from '../../../components/fields/FileField/UploadImageField';
+import PostImage from '../PostImage/PostImage';
 
 const VALIDATION_SCHEMA: SchemaOf<Pick<CreatePostRequest, 'title' | 'body'>> =
   object({
@@ -53,7 +54,7 @@ const CreatePostForm = () => {
       validationSchema={VALIDATION_SCHEMA}
       onSubmit={onSubmit}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, values }) => (
         <Form>
           <Box mb="4">
             <Field
@@ -61,6 +62,11 @@ const CreatePostForm = () => {
               name="preview"
               label="Preview"
             />
+            {values.preview && (
+              <Box mt="4">
+                <PostImage src={values.preview} alt="Post image" />
+              </Box>
+            )}
           </Box>
           <Box mb="4">
             <Field

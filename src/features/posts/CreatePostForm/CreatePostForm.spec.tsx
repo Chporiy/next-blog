@@ -2,6 +2,7 @@ import { UserEvent } from '@testing-library/user-event/dist/types/setup/setup';
 import { render, screen, waitFor } from '../../../../tests/utils/customRender';
 import CreatePostForm from './CreatePostForm';
 import signInForTest from '../../../../tests/utils/signInForTest/signInForTest';
+import convertFileImageToBase64 from '../../../utils/convertFileImageToBase64/convertFileImageToBase64';
 
 describe('<CreatePostForm />', () => {
   const getTitleField = () => screen.getByRole('textbox', { name: 'Title' });
@@ -11,6 +12,13 @@ describe('<CreatePostForm />', () => {
   const getConvertedPreviewField = () =>
     document.querySelector('input[name=preview]') as HTMLInputElement;
   const getSubmitButton = () => screen.getByRole('button', { name: 'Create' });
+
+  const file = new File(['some image content'], 'image.png', {
+    type: 'image/png',
+  });
+  const uploadFile = async (user: UserEvent) => {
+    await user.upload(getUploadPreviewField(), file);
+  };
 
   it('should contain fields', () => {
     render(<CreatePostForm />);
@@ -72,17 +80,32 @@ describe('<CreatePostForm />', () => {
 
       expect(error).toBeInTheDocument();
     });
+
+    it('should not show a preview image if image is not selected', async () => {
+      render(<CreatePostForm />);
+
+      const image = screen.queryByRole('img');
+
+      expect(image).toBeNull();
+    });
+
+    it('should show a preview image if image has been selected', async () => {
+      const { user } = render(<CreatePostForm />);
+      const fileAsBase64Format = await convertFileImageToBase64(file);
+
+      await uploadFile(user);
+
+      const image = await screen.findByRole('img');
+
+      expect(image).toHaveAttribute('src', fileAsBase64Format);
+    });
   });
 
   describe('submitting', () => {
-    const file = new File(['some image content'], 'image.png', {
-      type: 'image/png',
-    });
-
     const fillForm = async (user: UserEvent) => {
       await user.type(getTitleField(), 'test title');
       await user.type(getBodyField(), 'test body');
-      await user.upload(getUploadPreviewField(), file);
+      await uploadFile(user);
     };
 
     it('should disable a submitting button if a form is submitting', async () => {
