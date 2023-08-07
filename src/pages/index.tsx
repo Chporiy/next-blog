@@ -1,15 +1,32 @@
 import { GetStaticProps } from 'next';
-import { ReactElement } from 'react';
+import { ReactElement, useMemo } from 'react';
 import { AppProps } from 'next/app';
+import { createSelector } from '@reduxjs/toolkit';
 import { wrapper } from '../app/store';
 import Layout from '../components/layout/Layout';
 import PostList from '../features/posts/PostsList/PostsList';
 import { getPosts, useGetPostsQuery } from '../features/posts/postsApi';
 import { getUsers } from '../features/users/usersApi';
 import { getRunningQueriesThunk } from '../app/api/emptyApi';
+import { Post } from '../features/posts/types';
 
 const Index: AppProps['Component'] = () => {
-  const { data: posts } = useGetPostsQuery();
+  const sortPostsByDate = useMemo(() => {
+    const emptyArray = [];
+
+    return createSelector(
+      (result) => result.data,
+      (data: Post[]) =>
+        [...data]?.sort((a, b) => (a.date > b.date ? -1 : 1)) ?? emptyArray,
+    );
+  }, []);
+
+  const { data: posts } = useGetPostsQuery(undefined, {
+    selectFromResult: (result) => ({
+      ...result,
+      data: sortPostsByDate(result),
+    }),
+  });
 
   return <div>{posts && <PostList posts={posts} />}</div>;
 };
