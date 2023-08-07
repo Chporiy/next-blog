@@ -1,6 +1,6 @@
 import { Field, Form, Formik, FormikConfig } from 'formik';
 import { SchemaOf, object, string } from 'yup';
-import { useCallback } from 'react';
+import { ReactNode, useCallback } from 'react';
 import { Box, Button } from '@chakra-ui/react';
 import { useCreatePostMutation } from '../postsApi';
 import { CreatePostRequest } from '../types';
