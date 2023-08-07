@@ -1,19 +1,26 @@
-import { Post } from './types';
+import {
+  CreatePostRequest,
+  CreatePostResponse,
+  GetPostRequest,
+  GetPostResponse,
+  GetPostsRequest,
+  GetPostsResponse,
+} from './types';
 import emptyApi from '../../app/api/emptyApi';
 import apiCacher from '../../utils/rtkQueryCacheUtils/apiCacher';
 
 const postsApi = emptyApi.injectEndpoints({
   overrideExisting: true,
   endpoints: (buidler) => ({
-    getPosts: buidler.query<Post[], void>({
+    getPosts: buidler.query<GetPostsResponse, GetPostsRequest>({
       query: () => '/posts',
       providesTags: apiCacher.providesTagsWithList(['Post']),
     }),
-    getPost: buidler.query<Post, string>({
+    getPost: buidler.query<GetPostResponse, GetPostRequest>({
       query: (id) => `/posts/${id}`,
       providesTags: apiCacher.providesTagsWithList(['Post']),
     }),
-    addPost: buidler.mutation<Response, Omit<Post, 'id'>>({
+    createPost: buidler.mutation<CreatePostResponse, CreatePostRequest>({
       query: (post) => ({
         url: '/posts',
         method: 'POST',
@@ -24,7 +31,7 @@ const postsApi = emptyApi.injectEndpoints({
   }),
 });
 
-export const { useGetPostsQuery, useGetPostQuery, useAddPostMutation } =
+export const { useGetPostsQuery, useGetPostQuery, useCreatePostMutation } =
   postsApi;
 export const { getPosts, getPost } = postsApi.endpoints;
 export default postsApi;
