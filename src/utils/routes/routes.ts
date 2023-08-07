@@ -2,7 +2,7 @@ const ROUTES = {
   index: '/',
   posts: {
     id: '/posts',
-    new: '/posts/new',
+    create: '/posts/create',
   },
   auth: {
     signUp: '/auth/signUp',

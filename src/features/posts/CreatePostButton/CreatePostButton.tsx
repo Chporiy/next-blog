@@ -3,7 +3,7 @@ import NextLink from '../../../components/links/NextLink';
 import ROUTES from '../../../utils/routes/routes';
 
 const CreatePostButton = () => (
-  <NextLink next={{ href: ROUTES.posts.new }}>
+  <NextLink next={{ href: ROUTES.posts.create }}>
     <Button variant="outline" colorScheme="teal">
       Create Post
     </Button>
