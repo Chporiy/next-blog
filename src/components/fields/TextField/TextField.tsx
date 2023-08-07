@@ -8,14 +8,8 @@ import BaseField, { BaseFieldProps } from '../BaseField/BaseField';
  *
  * @param {BaseFieldProps} props
  */
-const TextField = (props: BaseFieldProps) => {
-  const { field, placeholder } = props;
-
-  return (
-    <BaseField {...props}>
-      <Input {...field} placeholder={placeholder} />
-    </BaseField>
-  );
-};
+const TextField = (props: BaseFieldProps) => (
+  <BaseField {...props}>{(inputProps) => <Input {...inputProps} />}</BaseField>
+);
 
 export default TextField;

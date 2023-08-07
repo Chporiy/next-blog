@@ -4,10 +4,13 @@ import {
   FormErrorMessage,
   FormLabel,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { FieldProps, getIn } from 'formik';
 
-export type BaseFieldProps = FieldProps & FormControlProps;
+export interface BaseFieldProps
+  extends Omit<FieldProps & FormControlProps, 'children'> {
+  children: (args: { [k in string]: unknown }) => ReactNode;
+}
 
 /**
  * A chakra-ui form control with FormLabel and ErrorMessage
@@ -22,6 +25,7 @@ const BaseField = (props: BaseFieldProps) => {
     form: { errors, touched, isSubmitting },
     label,
     children,
+    ...rest
   } = props;
   const error = getIn(errors, field.name);
   const touch = getIn(touched, field.name);
@@ -32,7 +36,7 @@ const BaseField = (props: BaseFieldProps) => {
       isDisabled={isDisabled ?? isSubmitting}
     >
       <FormLabel>{label}</FormLabel>
-      {children}
+      {children({ ...field, ...rest })}
       <FormErrorMessage>{error}</FormErrorMessage>
     </FormControl>
   );
