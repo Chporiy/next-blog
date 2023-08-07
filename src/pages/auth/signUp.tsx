@@ -1,24 +1,14 @@
-import { Box, Divider, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Divider, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
 import { AppProps } from 'next/app';
 import Layout from '../../components/layout/Layout';
 import SignUpForm from '../../features/auth/SignUpForm/SignUpForm';
 import NextLink from '../../components/links/NextLink';
 import ROUTES from '../../utils/routes/routes';
+import ContentWrapper from '../../components/layout/ContentWrapper/ContentWrapper';
 
 const SignUp: AppProps['Component'] = () => (
-  <Flex
-    mx="auto"
-    p="12"
-    maxW="2xl"
-    direction="column"
-    align="center"
-    justify="center"
-    bg="white"
-    borderRadius="md"
-    shadow="xs"
-    flex="1 auto"
-  >
+  <ContentWrapper maxWidth="2xl">
     <Heading>Welcome to Next blog</Heading>
     <Box mt="6" w="full">
       <SignUpForm />
@@ -34,7 +24,7 @@ const SignUp: AppProps['Component'] = () => (
         Sign in
       </NextLink>
     </Text>
-  </Flex>
+  </ContentWrapper>
 );
 
 SignUp.getLayout = (page) => <Layout>{page}</Layout>;
