@@ -1,5 +1,5 @@
 import { Button, Input, Stack, Text } from '@chakra-ui/react';
-import { useCallback, ChangeEvent, useState, useRef } from 'react';
+import { useCallback, ChangeEvent, useState, useRef, useEffect } from 'react';
 import BaseField, { BaseFieldProps } from '../BaseField/BaseField';
 import convertFileImageToBase64 from '../../../utils/convertFileImageToBase64/convertFileImageToBase64';
 
@@ -11,7 +11,7 @@ import convertFileImageToBase64 from '../../../utils/convertFileImageToBase64/co
  */
 const UploadImageField = (props: BaseFieldProps) => {
   const {
-    field: { name },
+    field: { name, value },
     form: { setFieldValue },
   } = props;
   const inputFile = useRef<HTMLInputElement>(null);
@@ -33,6 +33,12 @@ const UploadImageField = (props: BaseFieldProps) => {
     },
     [name, setFieldValue],
   );
+
+  useEffect(() => {
+    if (value === '') {
+      setSelectedFileName('');
+    }
+  }, [value, setSelectedFileName]);
 
   return (
     <>

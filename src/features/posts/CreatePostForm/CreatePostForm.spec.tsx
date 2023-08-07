@@ -13,6 +13,7 @@ describe('<CreatePostForm />', () => {
     document.querySelector('input[name=preview]') as HTMLInputElement;
   const getSubmitButton = () => screen.getByRole('button', { name: 'Create' });
 
+  const imageName = 'image.png';
   const file = new File(['some image content'], 'image.png', {
     type: 'image/png',
   });
@@ -135,6 +136,7 @@ describe('<CreatePostForm />', () => {
         expect(getTitleField()).toHaveValue('');
         expect(getBodyField()).toHaveValue('');
         expect(getConvertedPreviewField()).toHaveValue('');
+        expect(screen.queryByText(imageName)).toBeNull();
       });
     });
   });
