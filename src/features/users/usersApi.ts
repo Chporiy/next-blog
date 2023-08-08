@@ -29,6 +29,6 @@ export const {
   useGetUserQuery,
   useGetUserPostsQuery,
 } = usersApi;
-export const { getUsers, getUser } = usersApi.endpoints;
+export const { getUsers, getUser, getUserPosts } = usersApi.endpoints;
 
 export default usersApi;

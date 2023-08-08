@@ -16,6 +16,9 @@ const emptyApi = createApi({
   endpoints: () => ({}),
 });
 
-export const { getRunningMutationsThunk, getRunningQueriesThunk } =
-  emptyApi.util;
+export const {
+  getRunningMutationsThunk,
+  getRunningQueriesThunk,
+  resetApiState,
+} = emptyApi.util;
 export default emptyApi;
