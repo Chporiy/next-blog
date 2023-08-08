@@ -20,8 +20,9 @@ import PostImage from '../../features/posts/PostImage/PostImage';
 const PostPage: AppProps['Component'] = () => {
   const router = useRouter();
   useGetUsersQuery();
+
   const { data, isSuccess } = useGetPostQuery(
-    typeof router.query.id === 'string' ? router.query.id : skipToken,
+    typeof router.query.id === 'string' ? Number(router.query.id) : skipToken,
   );
 
   if (!isSuccess) return null;
@@ -52,7 +53,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
   (store) =>
     async ({ params }) => {
       if (typeof params.id === 'string') {
-        store.dispatch(getPost.initiate(params.id));
+        store.dispatch(getPost.initiate(Number(params.id)));
         store.dispatch(getUsers.initiate());
       }
 
