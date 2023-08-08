@@ -1,12 +1,21 @@
 /* eslint-disable import/prefer-default-export */
 import { Post } from '../../../src/features/posts/types';
-import { userMock } from './userMocks';
+import { userMock0, userMock1 } from './userMocks';
 
-export const postMock: Post = {
+export const postMock0: Post = {
   id: 0,
-  userId: userMock.id,
-  title: 'title',
-  body: 'body',
+  userId: userMock0.id,
+  title: 'title 0',
+  body: 'body 0',
+  date: '2022-01-29T00:00:00.000Z',
+  preview: 'https://loremflickr.com/640/480/food',
+};
+
+export const postMock1: Post = {
+  id: 1,
+  userId: userMock1.id,
+  title: 'title 1',
+  body: 'body 1',
   date: '2022-01-29T00:00:00.000Z',
   preview: 'https://loremflickr.com/640/480/food',
 };

@@ -3,7 +3,7 @@ import routerMock from 'next-router-mock';
 import { UserEvent } from '@testing-library/user-event/dist/types/setup/setup';
 import { render } from '../../../../tests/utils/customRender';
 import SignInForm from './SignInForm';
-import { userMock } from '../../../../tests/mocks/data/userMocks';
+import { userMock0 } from '../../../../tests/mocks/data/userMocks';
 
 describe('<SignInForm />', () => {
   const emailPlaceholder = 'Enter your email';
@@ -82,7 +82,7 @@ describe('<SignInForm />', () => {
       const emailField = screen.getByPlaceholderText(emailPlaceholder);
       const passwordField = screen.getByPlaceholderText(passwordPlaceholder);
 
-      await user.type(emailField, userMock.email);
+      await user.type(emailField, userMock0.email);
       await user.type(passwordField, 'Qwerty123!');
     };
 

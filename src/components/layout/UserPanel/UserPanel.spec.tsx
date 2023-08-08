@@ -1,6 +1,6 @@
 import { render, screen } from '../../../../tests/utils/customRender';
 import UserPanel from './UserPanel';
-import { userMock } from '../../../../tests/mocks/data/userMocks';
+import { userMock0 } from '../../../../tests/mocks/data/userMocks';
 import signInForTest from '../../../../tests/utils/signInForTest/signInForTest';
 
 describe('<UserPanel />', () => {
@@ -9,7 +9,7 @@ describe('<UserPanel />', () => {
 
     await signInForTest(store);
 
-    const authenticatedUser = await screen.findByText(userMock.email);
+    const authenticatedUser = await screen.findByText(userMock0.email);
 
     expect(authenticatedUser).toBeInTheDocument();
   });

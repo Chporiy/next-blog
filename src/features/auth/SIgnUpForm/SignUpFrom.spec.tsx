@@ -3,7 +3,7 @@ import routerMock from 'next-router-mock';
 import { UserEvent } from '@testing-library/user-event/dist/types/setup/setup';
 import { render } from '../../../../tests/utils/customRender';
 import SignUpForm from './SignUpForm';
-import { userMock } from '../../../../tests/mocks/data/userMocks';
+import { userMock0 } from '../../../../tests/mocks/data/userMocks';
 
 describe('<SignUpForm />', () => {
   const emailPlaceholder = 'Enter your email';
@@ -116,9 +116,9 @@ describe('<SignUpForm />', () => {
       const passwordField = screen.getByPlaceholderText(passwordPlaceholder);
       const fullNameField = screen.getByPlaceholderText(fullNamePlaceholder);
 
-      await user.type(emailField, userMock.email);
+      await user.type(emailField, userMock0.email);
       await user.type(passwordField, 'Qwerty123!');
-      await user.type(fullNameField, userMock.fullName);
+      await user.type(fullNameField, userMock0.fullName);
     };
 
     it('should disable a submitting button if a form is submitting', async () => {

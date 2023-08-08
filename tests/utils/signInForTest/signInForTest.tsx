@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { AppStore } from '../../../src/app/store';
 import { useSignInMutation } from '../../../src/features/auth/authApi';
-import { userMock } from '../../mocks/data/userMocks';
+import { userMock0 } from '../../mocks/data/userMocks';
 import createReduxProdiverWrapper from '../createReduxProdiverWrapper/createReduxProdiverWrapper';
 
 /**
@@ -19,7 +19,7 @@ const signInForTest = async (store: AppStore) => {
     wrapper: createReduxProdiverWrapper(store),
   });
 
-  await act(() => signIn({ email: userMock.email, password: 'password' }));
+  await act(() => signIn({ email: userMock0.email, password: 'password' }));
 };
 
 export default signInForTest;

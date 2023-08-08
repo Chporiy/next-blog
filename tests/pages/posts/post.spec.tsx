@@ -7,8 +7,8 @@ import { getUsers } from '../../../src/features/users/usersApi';
 import PostPage from '../../../src/pages/posts/[id]';
 import getPostDate from '../../../src/utils/getPostDate/getPostDate';
 import { render } from '../../utils/customRender';
-import { postMock } from '../../mocks/data/postMocks';
-import { userMock } from '../../mocks/data/userMocks';
+import { postMock0 } from '../../mocks/data/postMocks';
+import { userMock0 } from '../../mocks/data/userMocks';
 
 describe('Page Post', () => {
   const store = makeStore();
@@ -19,7 +19,7 @@ describe('Page Post', () => {
       query: { id: '0' },
     });
 
-    store.dispatch(getPost.initiate('0'));
+    store.dispatch(getPost.initiate(0));
     store.dispatch(getUsers.initiate());
 
     await Promise.all(store.dispatch(getRunningQueriesThunk()));
@@ -29,11 +29,11 @@ describe('Page Post', () => {
     render(<PostPage />, { store });
 
     await waitFor(() => {
-      expect(screen.getByText(postMock.title)).toBeInTheDocument();
-      expect(screen.getByText(postMock.body)).toBeInTheDocument();
-      expect(screen.getByAltText(postMock.title)).toBeInTheDocument();
-      expect(screen.getByText(userMock.fullName)).toBeInTheDocument();
-      expect(screen.getByText(getPostDate(postMock.date))).toBeInTheDocument();
+      expect(screen.getByText(postMock0.title)).toBeInTheDocument();
+      expect(screen.getByText(postMock0.body)).toBeInTheDocument();
+      expect(screen.getByAltText(postMock0.title)).toBeInTheDocument();
+      expect(screen.getByText(userMock0.fullName)).toBeInTheDocument();
+      expect(screen.getByText(getPostDate(postMock0.date))).toBeInTheDocument();
     });
   });
 });

@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import routerMock from 'next/router';
 import { render } from '../../../../tests/utils/customRender';
 import Header from './Header';
-import { userMock } from '../../../../tests/mocks/data/userMocks';
+import { userMock0 } from '../../../../tests/mocks/data/userMocks';
 import signInForTest from '../../../../tests/utils/signInForTest/signInForTest';
 
 describe('<Header />', () => {
@@ -45,7 +45,7 @@ describe('<Header />', () => {
 
     await signInForTest(store);
 
-    const authenticatedUser = await screen.findByText(userMock.email);
+    const authenticatedUser = await screen.findByText(userMock0.email);
 
     expect(authenticatedUser).toBeInTheDocument();
   });

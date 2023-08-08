@@ -1,7 +1,7 @@
 import { renderHook, screen, waitFor } from '@testing-library/react';
 import useUser from './useUser';
 import { makeStore } from '../../app/store';
-import { userMock } from '../../../tests/mocks/data/userMocks';
+import { userMock0 } from '../../../tests/mocks/data/userMocks';
 import signInForTest from '../../../tests/utils/signInForTest/signInForTest';
 import createReduxProdiverWrapper from '../../../tests/utils/createReduxProdiverWrapper/createReduxProdiverWrapper';
 import { render } from '../../../tests/utils/customRender';
@@ -26,7 +26,7 @@ describe('useUser()', () => {
     });
 
     await waitFor(() => {
-      expect(result.current).toEqual(userMock);
+      expect(result.current).toEqual(userMock0);
     });
   });
 
@@ -42,7 +42,7 @@ describe('useUser()', () => {
     });
 
     await waitFor(() => {
-      expect(result.current).toEqual(userMock);
+      expect(result.current).toEqual(userMock0);
     });
     await user.click(signOutButton);
 

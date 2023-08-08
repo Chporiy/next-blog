@@ -4,7 +4,7 @@ import { makeStore } from '../../../app/store';
 import getPostDate from '../../../utils/getPostDate/getPostDate';
 import { getUsers } from '../../users/usersApi';
 import PostAuthor from './PostAuthor';
-import { userMock } from '../../../../tests/mocks/data/userMocks';
+import { userMock0 } from '../../../../tests/mocks/data/userMocks';
 
 describe('<PostAuthor />', () => {
   const date = '2022-01-29T06:12:12.829Z';
@@ -16,14 +16,14 @@ describe('<PostAuthor />', () => {
 
   describe('User is defined', () => {
     beforeEach(() => {
-      render(<PostAuthor userId={userMock.id} date={date} />, {
+      render(<PostAuthor userId={userMock0.id} date={date} />, {
         store,
       });
     });
 
     it('should render user first and last name', async () => {
       await waitFor(() => {
-        expect(screen.getByText(userMock.fullName)).toBeInTheDocument();
+        expect(screen.getByText(userMock0.fullName)).toBeInTheDocument();
       });
     });
 
