@@ -1,3 +1,4 @@
+import routerMock from 'next-router-mock';
 import { render, screen } from '../../../../tests/utils/customRender';
 import UserPanel from './UserPanel';
 import { userMock0 } from '../../../../tests/mocks/data/userMocks';
@@ -36,5 +37,19 @@ describe('<UserPanel />', () => {
     });
 
     expect(createPostButton).toBeInTheDocument();
+  });
+
+  it('should navigate to user page by click on email', async () => {
+    const { user, store } = render(<UserPanel />);
+
+    await signInForTest(store);
+
+    const authenticatedUser = await screen.findByText(userMock0.email);
+
+    await user.click(authenticatedUser);
+
+    expect(routerMock).toMatchObject({
+      pathname: `/users/${userMock0.id}`,
+    });
   });
 });

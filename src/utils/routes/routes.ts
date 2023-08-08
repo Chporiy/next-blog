@@ -8,6 +8,9 @@ const ROUTES = {
     signUp: '/auth/signUp',
     signIn: '/auth/signIn',
   },
+  users: {
+    id: '/users',
+  },
 };
 
 export default ROUTES;
