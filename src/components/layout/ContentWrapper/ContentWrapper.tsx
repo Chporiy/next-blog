@@ -1,13 +1,13 @@
-import { Flex, LayoutProps } from '@chakra-ui/react';
+import { Flex, FlexProps } from '@chakra-ui/react';
 import React, { PropsWithChildren } from 'react';
 
-type Props = Pick<LayoutProps, 'maxWidth'>;
-
-const ContentWrapper = ({ maxWidth, children }: PropsWithChildren<Props>) => (
+const ContentWrapper = ({
+  children,
+  ...rest
+}: PropsWithChildren<FlexProps>) => (
   <Flex
-    maxWidth={maxWidth}
+    {...rest}
     mx="auto"
-    p="12"
     direction="column"
     align="center"
     justify="center"
@@ -15,6 +15,7 @@ const ContentWrapper = ({ maxWidth, children }: PropsWithChildren<Props>) => (
     borderRadius="md"
     shadow="xs"
     flex="1 auto"
+    overflow="hidden"
   >
     {children}
   </Flex>

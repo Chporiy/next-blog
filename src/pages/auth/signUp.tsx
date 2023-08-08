@@ -8,7 +8,7 @@ import ROUTES from '../../utils/routes/routes';
 import ContentWrapper from '../../components/layout/ContentWrapper/ContentWrapper';
 
 const SignUp: AppProps['Component'] = () => (
-  <ContentWrapper maxWidth="2xl">
+  <ContentWrapper maxWidth="2xl" p="12">
     <Heading>Welcome to Next blog</Heading>
     <Box mt="6" w="full">
       <SignUpForm />

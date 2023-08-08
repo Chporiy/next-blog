@@ -5,7 +5,7 @@ import CreatePostForm from '../../features/posts/CreatePostForm/CreatePostForm';
 import ContentWrapper from '../../components/layout/ContentWrapper/ContentWrapper';
 
 const CreatePost: AppProps['Component'] = () => (
-  <ContentWrapper>
+  <ContentWrapper p="12">
     <Heading>Create your post</Heading>
     <Box mt="6" w="full">
       <CreatePostForm />
