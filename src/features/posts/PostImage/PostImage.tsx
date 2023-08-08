@@ -6,13 +6,7 @@ interface Props {
 }
 
 const PostImage = ({ src, alt }: Props) => (
-  <Img
-    src={src}
-    alt={alt}
-    height="350px"
-    objectFit="cover"
-    borderTopRadius="lg"
-  />
+  <Img src={src} alt={alt} height="350px" width="full" objectFit="cover" />
 );
 
 export default PostImage;

@@ -1,4 +1,4 @@
-import { Box, Flex, Img, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { skipToken } from '@reduxjs/toolkit/dist/query';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { AppProps } from 'next/app';
@@ -16,6 +16,7 @@ import {
 import PostTitle from '../../features/posts/PostTitle/PostTitle';
 import { getUsers, useGetUsersQuery } from '../../features/users/usersApi';
 import PostImage from '../../features/posts/PostImage/PostImage';
+import ContentWrapper from '../../components/layout/ContentWrapper/ContentWrapper';
 
 const PostPage: AppProps['Component'] = () => {
   const router = useRouter();
@@ -28,9 +29,9 @@ const PostPage: AppProps['Component'] = () => {
   if (!isSuccess) return null;
 
   return (
-    <Flex direction="column" border="1px solid black" borderRadius="lg">
+    <ContentWrapper pb="8">
       <PostImage src={data.preview} alt={data.title} />
-      <Box p="8">
+      <Box mt={8} px="12">
         <PostAuthor userId={data.userId} date={data.date} />
         <Box mt="3">
           <PostTitle>{data.title}</PostTitle>
@@ -39,7 +40,7 @@ const PostPage: AppProps['Component'] = () => {
           <Text>{data.body}</Text>
         </Box>
       </Box>
-    </Flex>
+    </ContentWrapper>
   );
 };
 
