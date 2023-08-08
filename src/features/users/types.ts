@@ -1,3 +1,5 @@
+import { Post } from '../posts/types';
+
 export type User = {
   fullName: string;
   id: number;
@@ -10,3 +12,6 @@ export type GetUsersResponse = User[];
 
 export type GetUserRequest = User['id'];
 export type GetUserResponse = User;
+
+export type GetUserPostsRequest = User['id'];
+export type GetUserPostsResponse = Post[];

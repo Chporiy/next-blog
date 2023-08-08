@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { Post } from '../../../src/features/posts/types';
 import { userMock0, userMock1 } from './userMocks';
 
@@ -19,3 +18,5 @@ export const postMock1: Post = {
   date: '2022-01-29T00:00:00.000Z',
   preview: 'https://loremflickr.com/640/480/food',
 };
+
+export const allPostMocks = [postMock0, postMock1];

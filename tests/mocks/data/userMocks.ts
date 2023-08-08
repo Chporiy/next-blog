@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { User } from '../../../src/features/users/types';
 
 export const userMock0: User = {
@@ -14,3 +13,5 @@ export const userMock1: User = {
   email: 'JohnDoe@mail.com',
   avatar: 'https://loremflickr.com/640/480/fashion',
 };
+
+export const allUserMocks = [userMock0, userMock1];
