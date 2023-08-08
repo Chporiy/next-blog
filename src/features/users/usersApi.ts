@@ -1,19 +1,24 @@
 import emptyApi from '../../app/api/emptyApi';
-import { GetUserByIdRequest, User } from './types';
+import {
+  GetUserRequest,
+  GetUserResponse,
+  GetUsersRequest,
+  GetUsersResponse,
+} from './types';
 
 const usersApi = emptyApi.injectEndpoints({
   overrideExisting: true,
   endpoints: (buidler) => ({
-    getUsers: buidler.query<User[], void>({
+    getUsers: buidler.query<GetUsersResponse, GetUsersRequest>({
       query: () => '/users',
     }),
-    getUserById: buidler.query<User, GetUserByIdRequest>({
-      query: ({ id }) => `/users/${id}`,
+    getUser: buidler.query<GetUserResponse, GetUserRequest>({
+      query: (id) => `/users/${id}`,
     }),
   }),
 });
 
-export const { useGetUsersQuery, useLazyGetUserByIdQuery } = usersApi;
+export const { useGetUsersQuery, useLazyGetUserQuery } = usersApi;
 export const { getUsers } = usersApi.endpoints;
 
 export default usersApi;
