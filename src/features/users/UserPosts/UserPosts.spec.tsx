@@ -1,6 +1,6 @@
 import { userMock0 } from '../../../../tests/mocks/data/userMocks';
 import { render, screen } from '../../../../tests/utils/customRender';
-import getUserPostsForTest from '../../../../tests/utils/getUserPostsForTest/getUserPostsFortest';
+import getUserPostsForTest from '../../../../tests/utils/getUserPostsForTest/getUserPostsForTest';
 import UserPosts from './UserPosts';
 
 describe('<UserPosts />', () => {

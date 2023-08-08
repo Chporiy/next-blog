@@ -8,7 +8,7 @@ import {
   getRunningQueriesThunk,
   resetApiState,
 } from '../../../src/app/api/emptyApi';
-import getUserPostsForTest from '../../utils/getUserPostsForTest/getUserPostsFortest';
+import getUserPostsForTest from '../../utils/getUserPostsForTest/getUserPostsForTest';
 
 describe('Page User', () => {
   const store = makeStore();
