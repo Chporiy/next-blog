@@ -6,16 +6,14 @@ const ContentWrapper = ({
   ...rest
 }: PropsWithChildren<FlexProps>) => (
   <Flex
-    {...rest}
-    mx="auto"
     direction="column"
     align="center"
     justify="center"
     bg="white"
     borderRadius="md"
     shadow="xs"
-    flex="1 auto"
     overflow="hidden"
+    {...rest}
   >
     {children}
   </Flex>

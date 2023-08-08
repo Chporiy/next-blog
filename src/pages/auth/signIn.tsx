@@ -8,9 +8,9 @@ import ROUTES from '../../utils/routes/routes';
 import ContentWrapper from '../../components/layout/ContentWrapper/ContentWrapper';
 
 const SignIn: AppProps['Component'] = () => (
-  <ContentWrapper maxWidth="2xl" p="12">
+  <ContentWrapper p="12" maxWidth="2xl" mx="auto">
     <Heading>Sign in</Heading>
-    <Box mt="6" w="full">
+    <Box mt="6" mx="auto" w="full">
       <SignInForm />
     </Box>
     <Divider mt="6" />
