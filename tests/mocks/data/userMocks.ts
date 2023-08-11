@@ -1,4 +1,4 @@
-import { User } from '../../../src/features/users/types';
+import { User } from '~/entities/user';
 
 export const userMock0: User = {
   id: 0,

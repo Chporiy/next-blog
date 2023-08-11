@@ -4,20 +4,22 @@ import '@testing-library/jest-dom';
 import 'whatwg-fetch';
 import { loadEnvConfig } from '@next/env';
 import { setupServer } from 'msw/node';
-import handlers from './tests/mocks/handlers/handlers';
-import { makeStore } from './src/app/store';
-import emptyApi from './src/app/api/emptyApi';
+
+import { rootReducer } from './src/app';
+import { resetApiState } from './src/shared/api';
+import { makeStore } from './src/shared/lib';
+import { testMswHandlers } from './tests/mocks';
 
 loadEnvConfig(process.cwd());
 
 jest.mock('next/router', () => require('next-router-mock'));
 
-const store = makeStore();
-const server = setupServer(...handlers());
+const store = makeStore(rootReducer);
+const server = setupServer(...testMswHandlers());
 
 beforeAll(() => server.listen({ onUnhandledRequest: 'warn' }));
 afterEach(() => {
   server.resetHandlers();
-  store.dispatch(emptyApi.util.resetApiState());
+  store.dispatch(resetApiState());
 });
 afterAll(() => server.close());

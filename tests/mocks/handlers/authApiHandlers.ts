@@ -1,5 +1,6 @@
 import { rest } from 'msw';
-import { accessToken } from '../data/tokens';
+
+import { accessToken } from '../data';
 
 const authApiHandlers = [
   rest.post('/signup', (req, res, ctx) =>

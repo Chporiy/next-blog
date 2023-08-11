@@ -1,4 +1,5 @@
-import { Post } from '../../../src/features/posts/types';
+import { Post } from '~/entities/post';
+
 import { userMock0, userMock1 } from './userMocks';
 
 export const postMock0: Post = {

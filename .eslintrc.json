@@ -31,8 +31,8 @@
   "settings": {
     "import/resolver": { "typescript": {} },
     "boundaries/elements": [
+      { "type": "tests", "pattern": "tests/*" },
       { "type": "app", "pattern": "app/*" },
-      { "type": "processes", "pattern": "processes/*" },
       { "type": "pages", "pattern": "pages/*" },
       { "type": "widgets", "pattern": "widgets/*" },
       { "type": "features", "pattern": "features/*" },
@@ -66,7 +66,7 @@
         "alphabetize": { "order": "asc", "caseInsensitive": true },
         "newlines-between": "always",
         "pathGroups": [
-          { "group": "internal", "position": "after", "pattern": "~/processes/**" },
+          { "group": "internal", "position": "after", "pattern": "~/tests/**" },
           { "group": "internal", "position": "after", "pattern": "~/pages/**" },
           { "group": "internal", "position": "after", "pattern": "~/widgets/**" },
           { "group": "internal", "position": "after", "pattern": "~/features/**" },
@@ -82,14 +82,12 @@
       {
         "patterns": [
           { "message": "Private imports are prohibited, use public imports instead", "group": ["~/app/**"] },
-          { "message": "Private imports are prohibited, use public imports instead", "group": ["~/processes/*/**"] },
           { "message": "Private imports are prohibited, use public imports instead", "group": ["~/pages/*/**"] },
           { "message": "Private imports are prohibited, use public imports instead", "group": ["~/widgets/*/**"] },
           { "message": "Private imports are prohibited, use public imports instead", "group": ["~/features/*/**"] },
           { "message": "Private imports are prohibited, use public imports instead", "group": ["~/entities/*/**"] },
           { "message": "Private imports are prohibited, use public imports instead", "group": ["~/shared/*/*/**"] },
           { "message": "Prefer absolute imports instead of relatives (for root modules)", "group": ["../**/app"] },
-          { "message": "Prefer absolute imports instead of relatives (for root modules)", "group": ["../**/processes"] },
           { "message": "Prefer absolute imports instead of relatives (for root modules)", "group": ["../**/pages"] },
           { "message": "Prefer absolute imports instead of relatives (for root modules)", "group": ["../**/widgets"] },
           { "message": "Prefer absolute imports instead of relatives (for root modules)", "group": ["../**/features"] },
@@ -103,8 +101,8 @@
       {
         "default": "disallow",
         "rules": [
-          { "from": "app", "allow": ["processes", "pages", "widgets", "features", "entities", "shared"] },
-          { "from": "processes", "allow": ["pages", "widgets", "features", "entities", "shared"] },
+          { "from": "tests", "allow": ["tests", "app", "pages", "widgets", "features", "entities", "shared"] },
+          { "from": "app", "allow": ["pages", "widgets", "features", "entities", "shared"] },
           { "from": "pages", "allow": ["widgets", "features", "entities", "shared"] },
           { "from": "widgets", "allow": ["features", "entities", "shared"] },
           { "from": "features", "allow": ["entities", "shared"] },
@@ -112,7 +110,8 @@
           { "from": "shared", "allow": ["shared"] }
         ]
       }
-    ]
+    ],
+    "import/prefer-default-export": "off"
   },
   "overrides": [
     {

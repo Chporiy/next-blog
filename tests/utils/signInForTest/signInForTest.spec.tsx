@@ -1,10 +1,14 @@
-import { makeStore } from '../../../src/app/store';
-import { accessToken } from '../../mocks/data/tokens';
-import signInForTest from './signInForTest';
+import { rootReducer } from '~/app';
+
+import { accessToken } from '~/tests/mocks';
+
+import { makeStore } from '~/shared/lib';
+
+import { signInForTest } from './signInForTest';
 
 describe('signInForTest()', () => {
   it('should sign in by test user', async () => {
-    const store = makeStore();
+    const store = makeStore(rootReducer);
 
     await signInForTest(store);
 
