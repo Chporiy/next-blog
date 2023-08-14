@@ -5,8 +5,6 @@ interface Props {
   alt: string;
 }
 
-const PostImage = ({ src, alt }: Props) => (
+export const Image = ({ src, alt }: Props) => (
   <Img src={src} alt={alt} height="350px" width="full" objectFit="cover" />
 );
-
-export default PostImage;

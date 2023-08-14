@@ -4,7 +4,7 @@ import { nextReduxWrapper, rootReducer } from '~/app';
 
 import { UserPage } from '~/pages/user';
 
-import { getPostsByUser } from '~/entities/post';
+import { postApi } from '~/entities/post';
 import { getUsers } from '~/entities/user';
 
 import { getRunningQueriesThunk } from '~/shared/api';
@@ -16,7 +16,9 @@ export const getStaticProps: GetStaticProps = nextReduxWrapper.getStaticProps(
   (store) =>
     async ({ params }) => {
       if (typeof params.id === 'string') {
-        store.dispatch(getPostsByUser.initiate(Number(params.id)));
+        store.dispatch(
+          postApi.endpoints.getPostsByUser.initiate(Number(params.id)),
+        );
         store.dispatch(getUsers.initiate());
       }
 

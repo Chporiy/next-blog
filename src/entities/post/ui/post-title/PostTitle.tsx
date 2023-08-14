@@ -6,10 +6,11 @@ import React, { PropsWithChildren } from 'react';
  * Render title as <h2> with font-size
  *
  */
-const PostTitle = ({ children, ...boxProps }: PropsWithChildren<BoxProps>) => (
+export const Title = ({
+  children,
+  ...boxProps
+}: PropsWithChildren<BoxProps>) => (
   <Box {...boxProps}>
     <Heading fontSize="3xl">{children}</Heading>
   </Box>
 );
-
-export default PostTitle;

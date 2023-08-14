@@ -4,7 +4,7 @@ import { ReactElement } from 'react';
 import { Header } from '~/widgets/header';
 import { PostList } from '~/widgets/post';
 
-import { sortPostsByDescDate, useGetPostsQuery } from '~/entities/post';
+import { postModel, useGetPostsQuery } from '~/entities/post';
 
 import { Layout } from '~/shared/ui';
 
@@ -12,7 +12,7 @@ export const HomePage: AppProps['Component'] = () => {
   const { data: posts } = useGetPostsQuery(undefined, {
     selectFromResult: (result) => ({
       ...result,
-      data: sortPostsByDescDate(result),
+      data: postModel.selectors.sortPostsByDescDate(result),
     }),
   });
 

@@ -1,16 +1,16 @@
 import { render, screen } from '~/tests/utils';
 
-import PostTitle from './PostTitle';
+import { Title } from './PostTitle';
 
 describe('<PostTitle />', () => {
   it('should be in the document', () => {
-    render(<PostTitle>title</PostTitle>);
+    render(<Title>title</Title>);
 
     expect(screen.getByText(/title/)).toBeInTheDocument();
   });
 
   it('should be chakru-ui heading component', () => {
-    render(<PostTitle>title</PostTitle>);
+    render(<Title>title</Title>);
 
     const element = screen.getByText(/title/);
 

@@ -2,7 +2,7 @@ import routerMock from 'next-router-mock';
 
 import { render, screen } from '~/tests/utils';
 
-import CreatePostButton from './CreatePostButton';
+import { Button } from './CreatePostButton';
 
 describe('<CreatePostButton />', () => {
   const getButton = () =>
@@ -11,13 +11,13 @@ describe('<CreatePostButton />', () => {
     });
 
   it('should render button text', () => {
-    render(<CreatePostButton />);
+    render(<Button />);
 
     expect(getButton()).toBeInTheDocument();
   });
 
   it('should navigate to /posts/create by click on button', async () => {
-    const { user } = render(<CreatePostButton />);
+    const { user } = render(<Button />);
 
     await user.click(getButton());
 

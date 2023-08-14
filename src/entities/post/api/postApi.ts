@@ -11,7 +11,7 @@ import {
   GetPostsResponse,
 } from './types';
 
-const postsApi = baseApi.injectEndpoints({
+const postApi = baseApi.injectEndpoints({
   overrideExisting: true,
   endpoints: (buidler) => ({
     getPosts: buidler.query<GetPostsResponse, GetPostsRequest>({
@@ -44,5 +44,5 @@ export const {
   useGetPostQuery,
   useCreatePostMutation,
   useGetPostsByUserQuery,
-} = postsApi;
-export const { getPosts, getPost, getPostsByUser } = postsApi.endpoints;
+} = postApi;
+export { postApi };

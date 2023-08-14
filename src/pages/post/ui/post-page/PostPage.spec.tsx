@@ -5,7 +5,7 @@ import { rootReducer } from '~/app';
 import { postMock0, userMock0 } from '~/tests/mocks';
 import { render, screen, waitFor } from '~/tests/utils';
 
-import { getPost } from '~/entities/post';
+import { postApi } from '~/entities/post';
 import { getUsers } from '~/entities/user';
 
 import { getRunningQueriesThunk } from '~/shared/api';
@@ -22,7 +22,7 @@ describe('Page Post', () => {
       query: { id: '0' },
     });
 
-    store.dispatch(getPost.initiate(postMock0.id));
+    store.dispatch(postApi.endpoints.getPost.initiate(postMock0.id));
     store.dispatch(getUsers.initiate());
 
     await Promise.all(store.dispatch(getRunningQueriesThunk()));

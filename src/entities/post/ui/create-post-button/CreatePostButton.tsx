@@ -1,14 +1,12 @@
-import { Button } from '@chakra-ui/react';
+import { Button as ChakraButton } from '@chakra-ui/react';
 
 import { ROUTES } from '~/shared/config';
 import { NextLink } from '~/shared/ui';
 
-const CreatePostButton = () => (
+export const Button = () => (
   <NextLink next={{ href: ROUTES.posts.create }}>
-    <Button variant="outline" colorScheme="teal">
+    <ChakraButton variant="outline" colorScheme="teal">
       Create Post
-    </Button>
+    </ChakraButton>
   </NextLink>
 );
-
-export default CreatePostButton;
