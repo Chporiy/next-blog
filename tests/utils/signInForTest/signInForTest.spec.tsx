@@ -12,6 +12,6 @@ describe('signInForTest()', () => {
 
     await signInForTest(store);
 
-    expect(store.getState().authSlice.accessToken).toEqual(accessToken);
+    expect(store.getState().auth.accessToken).toEqual(accessToken);
   });
 });

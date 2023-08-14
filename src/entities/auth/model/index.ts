@@ -1,15 +1,16 @@
+/* eslint-disable no-param-reassign */
 import { AnyAction, PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
-import authApi from './authApi';
-import { SignUpResponse } from './types';
+import { authApi } from '../api/authApi';
+import { SignUpResponse } from '../api/types';
 
 const initialState = {
   accessToken: '',
 };
 
 const authSlice = createSlice({
-  name: 'authSlice',
+  name: 'auth',
   initialState,
   reducers: {
     signOut: () => initialState,
@@ -17,7 +18,7 @@ const authSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(HYDRATE, (state, action: AnyAction) => ({
       ...state,
-      ...action.payload.authSlice,
+      ...action.payload.auth,
     }));
     builder.addMatcher(
       authApi.endpoints.signUp.matchFulfilled,
@@ -34,6 +35,4 @@ const authSlice = createSlice({
   },
 });
 
-export const { signOut } = authSlice.actions;
-
-export default authSlice.reducer;
+export const { reducer, actions } = authSlice;

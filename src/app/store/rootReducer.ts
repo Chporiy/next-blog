@@ -1,10 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import { authSlice } from '~/entities/auth';
+import { authModel } from '~/entities/auth';
 
 import { baseApi } from '~/shared/api';
 
 export const rootReducer = combineReducers({
-  authSlice,
+  auth: authModel.reducer,
   [baseApi.reducerPath]: baseApi.reducer,
 });

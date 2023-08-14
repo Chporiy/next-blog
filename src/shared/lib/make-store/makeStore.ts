@@ -17,7 +17,7 @@ export const makeStore = (reducer: ConfigureStoreOptions['reducer']) =>
           nextReduxCookieMiddleware({
             subtrees: [
               {
-                subtree: 'authSlice.accessToken',
+                subtree: 'auth.accessToken',
                 deserializationFunction: (string) => string,
                 serializationFunction: (string) => string as string,
               },

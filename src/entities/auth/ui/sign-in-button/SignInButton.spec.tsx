@@ -2,7 +2,7 @@ import routerMock from 'next-router-mock';
 
 import { render, screen, waitFor } from '~/tests/utils';
 
-import SignInButton from './SignInButton';
+import { SignInButton } from './SignInButton';
 
 describe('<SignInButton />', () => {
   it('should navigate to the /auth/signIn page by click on the button', async () => {

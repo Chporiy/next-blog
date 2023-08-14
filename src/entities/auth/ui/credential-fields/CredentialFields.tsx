@@ -9,7 +9,7 @@ import { PasswordField, TextField } from '~/shared/ui';
  *
  * @returns {ReactNode}
  */
-const CredentialFields = () => (
+export const CredentialFields = () => (
   <>
     <Box mb="4">
       <Field
@@ -29,5 +29,3 @@ const CredentialFields = () => (
     </Box>
   </>
 );
-
-export default CredentialFields;

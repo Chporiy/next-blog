@@ -1,24 +1,24 @@
 import { render, screen, signInForTest, waitFor } from '~/tests/utils';
 
-import SignInButton from './SignOutButton';
+import { SignOutButton } from './SignOutButton';
 
 describe('<SignOutButton />', () => {
-  it('should clear authSlice by click on button', async () => {
-    const { user, store } = render(<SignInButton />);
+  it('should clear auth store by click on button', async () => {
+    const { user, store } = render(<SignOutButton />);
     const button = screen.getByRole('button', { name: 'Sign out' });
 
     await signInForTest(store);
     await user.click(button);
 
     await waitFor(() => {
-      expect(store.getState().authSlice).toEqual({
+      expect(store.getState().auth).toEqual({
         accessToken: '',
       });
     });
   });
 
   it('should clear RTK Query api state', async () => {
-    const { user, store } = render(<SignInButton />);
+    const { user, store } = render(<SignOutButton />);
     const button = screen.getByRole('button', { name: 'Sign out' });
 
     await signInForTest(store);

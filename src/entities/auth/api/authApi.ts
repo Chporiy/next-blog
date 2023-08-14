@@ -21,7 +21,7 @@ const authApi = baseApi.injectEndpoints({
       async onQueryStarted(arg, api) {
         const { data } = await api.queryFulfilled;
 
-        Cookies.set('authSlice.accessToken', data.accessToken);
+        Cookies.set('auth.accessToken', data.accessToken);
       },
     }),
     signIn: builder.mutation<SignInResponse, SignInRequest>({
@@ -33,11 +33,11 @@ const authApi = baseApi.injectEndpoints({
       async onQueryStarted(arg, api) {
         const { data } = await api.queryFulfilled;
 
-        Cookies.set('authSlice.accessToken', data.accessToken);
+        Cookies.set('auth.accessToken', data.accessToken);
       },
     }),
   }),
 });
 
 export const { useSignUpMutation, useSignInMutation } = authApi;
-export default authApi;
+export { authApi };

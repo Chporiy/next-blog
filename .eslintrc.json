@@ -68,31 +68,86 @@
         "pathGroups": [
           { "group": "internal", "position": "after", "pattern": "~/tests/**" },
           { "group": "internal", "position": "after", "pattern": "~/pages/**" },
-          { "group": "internal", "position": "after", "pattern": "~/widgets/**" },
-          { "group": "internal", "position": "after", "pattern": "~/features/**" },
-          { "group": "internal", "position": "after", "pattern": "~/entities/**" },
+          {
+            "group": "internal",
+            "position": "after",
+            "pattern": "~/widgets/**"
+          },
+          {
+            "group": "internal",
+            "position": "after",
+            "pattern": "~/features/**"
+          },
+          {
+            "group": "internal",
+            "position": "after",
+            "pattern": "~/entities/**"
+          },
           { "group": "internal", "position": "after", "pattern": "~/shared/**" }
         ],
         "pathGroupsExcludedImportTypes": ["builtin"],
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"]
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ]
       }
     ],
     "no-restricted-imports": [
       "error",
       {
         "patterns": [
-          { "message": "Private imports are prohibited, use public imports instead", "group": ["~/app/**"] },
-          { "message": "Private imports are prohibited, use public imports instead", "group": ["~/pages/*/**"] },
-          { "message": "Private imports are prohibited, use public imports instead", "group": ["~/widgets/*/**"] },
-          { "message": "Private imports are prohibited, use public imports instead", "group": ["~/features/*/**"] },
-          { "message": "Private imports are prohibited, use public imports instead", "group": ["~/entities/*/**"] },
-          { "message": "Private imports are prohibited, use public imports instead", "group": ["~/shared/*/*/**"] },
-          { "message": "Prefer absolute imports instead of relatives (for root modules)", "group": ["../**/app"] },
-          { "message": "Prefer absolute imports instead of relatives (for root modules)", "group": ["../**/pages"] },
-          { "message": "Prefer absolute imports instead of relatives (for root modules)", "group": ["../**/widgets"] },
-          { "message": "Prefer absolute imports instead of relatives (for root modules)", "group": ["../**/features"] },
-          { "message": "Prefer absolute imports instead of relatives (for root modules)", "group": ["../**/entities"] },
-          { "message": "Prefer absolute imports instead of relatives (for root modules)", "group": ["../**/shared"] }
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["~/app/**"]
+          },
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["~/pages/*/**"]
+          },
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["~/widgets/*/**"]
+          },
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["~/features/*/**"]
+          },
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["~/entities/*/**"]
+          },
+          {
+            "message": "Private imports are prohibited, use public imports instead",
+            "group": ["~/shared/*/*/**"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/app"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/pages"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/widgets"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/features"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/entities"]
+          },
+          {
+            "message": "Prefer absolute imports instead of relatives (for root modules)",
+            "group": ["../**/shared"]
+          }
         ]
       }
     ],
@@ -101,9 +156,26 @@
       {
         "default": "disallow",
         "rules": [
-          { "from": "tests", "allow": ["tests", "app", "pages", "widgets", "features", "entities", "shared"] },
-          { "from": "app", "allow": ["pages", "widgets", "features", "entities", "shared"] },
-          { "from": "pages", "allow": ["widgets", "features", "entities", "shared"] },
+          {
+            "from": "tests",
+            "allow": [
+              "tests",
+              "app",
+              "pages",
+              "widgets",
+              "features",
+              "entities",
+              "shared"
+            ]
+          },
+          {
+            "from": "app",
+            "allow": ["pages", "widgets", "features", "entities", "shared"]
+          },
+          {
+            "from": "pages",
+            "allow": ["widgets", "features", "entities", "shared"]
+          },
           { "from": "widgets", "allow": ["features", "entities", "shared"] },
           { "from": "features", "allow": ["entities", "shared"] },
           { "from": "entities", "allow": ["shared"] },
@@ -115,8 +187,11 @@
   },
   "overrides": [
     {
-      "files": ["src/**/*Slice.ts", "**/*.spec.*"],
-      "rules": { "no-param-reassign": ["error", { "props": false }], "boundaries/element-types": "off" }
+      "files": ["**/*.spec.*"],
+      "rules": {
+        "no-param-reassign": ["error", { "props": false }],
+        "boundaries/element-types": "off"
+      }
     }
   ]
 }
