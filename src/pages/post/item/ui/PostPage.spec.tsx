@@ -11,7 +11,7 @@ import { userApi } from '~/entities/user';
 import { getRunningQueriesThunk } from '~/shared/api';
 import { convertDateToLocalDate, makeStore } from '~/shared/lib';
 
-import { PostPage } from './PostPage';
+import { Page } from './PostPage';
 
 describe('Page Post', () => {
   const store = makeStore(rootReducer);
@@ -29,7 +29,7 @@ describe('Page Post', () => {
   });
 
   it('should render post page', async () => {
-    render(<PostPage />, { store });
+    render(<Page />, { store });
 
     await waitFor(() => {
       expect(screen.getByText(postMock0.title)).toBeInTheDocument();

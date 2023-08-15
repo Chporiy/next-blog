@@ -7,7 +7,7 @@ import { CreatePostForm } from '~/features/post';
 
 import { ContentWrapper, Layout } from '~/shared/ui';
 
-export const CreatePostPage: AppProps['Component'] = () => (
+export const Page: AppProps['Component'] = () => (
   <ContentWrapper p="12">
     <Heading>Create your post</Heading>
     <Box mt="6" w="full">
@@ -16,6 +16,6 @@ export const CreatePostPage: AppProps['Component'] = () => (
   </ContentWrapper>
 );
 
-CreatePostPage.getLayout = (page) => (
+Page.getLayout = (page) => (
   <Layout slots={{ header: <Header /> }}>{page}</Layout>
 );

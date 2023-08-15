@@ -13,7 +13,7 @@ import { useGetUsersQuery } from '~/entities/user';
 
 import { ContentWrapper, Layout } from '~/shared/ui';
 
-export const PostPage: AppProps['Component'] = () => {
+export const Page: AppProps['Component'] = () => {
   const router = useRouter();
   useGetUsersQuery();
 
@@ -39,6 +39,6 @@ export const PostPage: AppProps['Component'] = () => {
   );
 };
 
-PostPage.getLayout = function getLayout(page) {
+Page.getLayout = function getLayout(page) {
   return <Layout slots={{ header: <Header /> }}>{page}</Layout>;
 };
