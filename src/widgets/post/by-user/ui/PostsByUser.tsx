@@ -1,6 +1,6 @@
 import { postModel, useGetPostsByUserQuery } from '~/entities/post';
 
-import { List } from '../../list';
+import { PostList } from '../../list';
 
 interface Props {
   userId: number;
@@ -16,5 +16,5 @@ export const PostsByUser = ({ userId }: Props) => {
 
   if (!isSuccess) return null;
 
-  return <List posts={posts} />;
+  return <PostList posts={posts} />;
 };
