@@ -3,7 +3,7 @@ import routerMock from 'next/router';
 import { userMock0 } from '~/tests/mocks';
 import { render, screen, signInForTest, waitFor } from '~/tests/utils';
 
-import Header from './Header';
+import { Header } from './Header';
 
 describe('<Header />', () => {
   it('should render <header /> tag', () => {
