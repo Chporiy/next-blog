@@ -5,7 +5,7 @@ import { nextReduxWrapper, rootReducer } from '~/app';
 import { UserPage } from '~/pages/user';
 
 import { postApi } from '~/entities/post';
-import { getUsers } from '~/entities/user';
+import { userApi } from '~/entities/user';
 
 import { getRunningQueriesThunk } from '~/shared/api';
 import { makeStore } from '~/shared/lib';
@@ -19,7 +19,7 @@ export const getStaticProps: GetStaticProps = nextReduxWrapper.getStaticProps(
         store.dispatch(
           postApi.endpoints.getPostsByUser.initiate(Number(params.id)),
         );
-        store.dispatch(getUsers.initiate());
+        store.dispatch(userApi.endpoints.getUsers.initiate());
       }
 
       await Promise.all(store.dispatch(getRunningQueriesThunk()));
@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps = nextReduxWrapper.getStaticProps(
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const store = makeStore(rootReducer);
-  const { data } = await store.dispatch(getUsers.initiate());
+  const { data } = await store.dispatch(userApi.endpoints.getUsers.initiate());
   const paths = data.map(({ id }) => ({
     params: {
       id: id.toString(),

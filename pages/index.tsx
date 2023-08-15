@@ -4,8 +4,8 @@ import { nextReduxWrapper } from '~/app';
 
 import { HomePage } from '~/pages/home';
 
-import { getPosts } from '~/entities/post';
-import { getUsers } from '~/entities/user';
+import { postApi } from '~/entities/post';
+import { userApi } from '~/entities/user';
 
 import { getRunningQueriesThunk } from '~/shared/api';
 
@@ -13,8 +13,8 @@ export default HomePage;
 
 export const getStaticProps: GetStaticProps =
   nextReduxWrapper.getServerSideProps((store) => async () => {
-    store.dispatch(getPosts.initiate());
-    store.dispatch(getUsers.initiate());
+    store.dispatch(postApi.endpoints.getPosts.initiate());
+    store.dispatch(userApi.endpoints.getUsers.initiate());
 
     await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
