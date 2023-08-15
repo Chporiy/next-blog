@@ -1,2 +1,7 @@
-export * from './selectors';
-export * from './types';
+import { sortPostsByDescDate } from './selectors';
+
+export type { Post } from './types';
+
+export const selectors = {
+  sortPostsByDescDate,
+};
