@@ -1,25 +1,20 @@
 import { Button } from '@chakra-ui/react';
-import { Formik, Form } from 'formik';
+import { Formik, Form as FormikForm } from 'formik';
 import { useRouter } from 'next/router';
 import { ReactNode, useEffect } from 'react';
-import { object } from 'yup';
 
 import { CredentialFields, useSignInMutation } from '~/entities/auth';
 
 import { ROUTES } from '~/shared/config';
-import { email, password } from '~/shared/lib';
 
-const validationSchema = object().shape({
-  email,
-  password,
-});
+import { initialValues, schema } from '../model';
 
 /**
  * A form for user sign in by email and password
  *
  * @returns {ReactNode}
  */
-const SignInForm = () => {
+export const Form = () => {
   const [signIn, { isSuccess }] = useSignInMutation();
   const router = useRouter();
 
@@ -31,11 +26,8 @@ const SignInForm = () => {
 
   return (
     <Formik
-      validationSchema={validationSchema}
-      initialValues={{
-        email: '',
-        password: '',
-      }}
+      validationSchema={schema}
+      initialValues={initialValues}
       onSubmit={async (value, { resetForm }) => {
         await signIn(value).unwrap();
 
@@ -43,7 +35,7 @@ const SignInForm = () => {
       }}
     >
       {({ isSubmitting }) => (
-        <Form>
+        <FormikForm>
           <CredentialFields />
           <Button
             type="submit"
@@ -53,10 +45,8 @@ const SignInForm = () => {
           >
             Continue
           </Button>
-        </Form>
+        </FormikForm>
       )}
     </Formik>
   );
 };
-
-export default SignInForm;

@@ -4,7 +4,7 @@ import routerMock from 'next-router-mock';
 import { userMock0 } from '~/tests/mocks';
 import { render, screen, waitFor } from '~/tests/utils';
 
-import SignUpForm from './SignUpForm';
+import { Form } from './SignUpForm';
 
 describe('<SignUpForm />', () => {
   const emailPlaceholder = 'Enter your email';
@@ -16,20 +16,20 @@ describe('<SignUpForm />', () => {
   });
 
   it('should render form', () => {
-    render(<SignUpForm />);
+    render(<Form />);
 
     expect(document.querySelector('form')).toBeInTheDocument();
   });
 
   describe('email field', () => {
     it('should contain a placeholder', () => {
-      render(<SignUpForm />);
+      render(<Form />);
 
       expect(screen.getByPlaceholderText(emailPlaceholder)).toBeInTheDocument();
     });
 
     it('should contain an error if it`s empty', async () => {
-      const { user } = render(<SignUpForm />);
+      const { user } = render(<Form />);
 
       await user.type(screen.getByPlaceholderText(emailPlaceholder), ' ');
       await user.click(document.body);
@@ -38,7 +38,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should contain an error if a value is invalid', async () => {
-      const { user } = render(<SignUpForm />);
+      const { user } = render(<Form />);
 
       await user.type(screen.getByPlaceholderText(emailPlaceholder), '123');
       await user.click(document.body);
@@ -49,7 +49,7 @@ describe('<SignUpForm />', () => {
 
   describe('password field', () => {
     it('should contain a placeholder', () => {
-      render(<SignUpForm />);
+      render(<Form />);
 
       expect(
         screen.getByPlaceholderText(passwordPlaceholder),
@@ -57,7 +57,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should contain an error if it`s empty', async () => {
-      const { user } = render(<SignUpForm />);
+      const { user } = render(<Form />);
 
       await user.type(screen.getByPlaceholderText(passwordPlaceholder), ' ');
       await user.click(document.body);
@@ -66,7 +66,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should contain an error if a value is invalid', async () => {
-      const { user } = render(<SignUpForm />);
+      const { user } = render(<Form />);
 
       await user.type(screen.getByPlaceholderText(passwordPlaceholder), '123');
       await user.click(document.body);
@@ -81,7 +81,7 @@ describe('<SignUpForm />', () => {
 
   describe('full name field', () => {
     it('should contain a placeholder', () => {
-      render(<SignUpForm />);
+      render(<Form />);
 
       expect(
         screen.getByPlaceholderText(fullNamePlaceholder),
@@ -89,7 +89,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should contain an error if it`s empty', async () => {
-      const { user } = render(<SignUpForm />);
+      const { user } = render(<Form />);
 
       await user.type(screen.getByPlaceholderText(fullNamePlaceholder), ' ');
       await user.click(document.body);
@@ -98,7 +98,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should contain an error if a value is invalid', async () => {
-      const { user } = render(<SignUpForm />);
+      const { user } = render(<Form />);
 
       await user.type(screen.getByPlaceholderText(fullNamePlaceholder), '123');
       await user.click(document.body);
@@ -123,7 +123,7 @@ describe('<SignUpForm />', () => {
     };
 
     it('should disable a submitting button if a form is submitting', async () => {
-      const { user } = render(<SignUpForm />);
+      const { user } = render(<Form />);
       const button = screen.getByRole('button', { name: 'Continue' });
 
       await fillFields(user);
@@ -133,7 +133,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should discard values from fields after succesfull submitting', async () => {
-      const { user } = render(<SignUpForm />);
+      const { user } = render(<Form />);
       const button = screen.getByRole('button', { name: 'Continue' });
       const emailField = screen.getByPlaceholderText(emailPlaceholder);
       const passwordField = screen.getByPlaceholderText(passwordPlaceholder);
@@ -150,7 +150,7 @@ describe('<SignUpForm />', () => {
     });
 
     it('should redirect to home page', async () => {
-      const { user } = render(<SignUpForm />);
+      const { user } = render(<Form />);
       const button = screen.getByRole('button', { name: 'Continue' });
 
       await fillFields(user);
