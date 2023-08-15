@@ -10,7 +10,7 @@ import { userApi } from '~/entities/user';
 import { getRunningQueriesThunk, resetApiState } from '~/shared/api';
 import { makeStore } from '~/shared/lib';
 
-import { UserPage } from './UserPage';
+import { Page } from './UserPage';
 
 describe('Page User', () => {
   const store = makeStore(rootReducer);
@@ -33,7 +33,7 @@ describe('Page User', () => {
   });
 
   it('should render an user image', () => {
-    render(<UserPage />, { store });
+    render(<Page />, { store });
 
     const image = screen.getByRole('img');
 
@@ -41,7 +41,7 @@ describe('Page User', () => {
   });
 
   it('should render an user full name', () => {
-    render(<UserPage />, { store });
+    render(<Page />, { store });
 
     const fullName = screen.getByText(userMock0.fullName);
 
@@ -49,7 +49,7 @@ describe('Page User', () => {
   });
 
   it('should render user posts', async () => {
-    render(<UserPage />, { store });
+    render(<Page />, { store });
 
     const userPosts = getUserPostsForTest(userMock0.id);
 
@@ -61,7 +61,7 @@ describe('Page User', () => {
   });
 
   it('should render an user published post amount', async () => {
-    render(<UserPage />, { store });
+    render(<Page />, { store });
 
     const userPosts = getUserPostsForTest(userMock0.id);
     const postAmount = userPosts.length;

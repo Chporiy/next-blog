@@ -10,7 +10,7 @@ import { UserAvatar, UserFullname, useGetUserQuery } from '~/entities/user';
 
 import { ContentWrapper, Layout } from '~/shared/ui';
 
-export const UserPage: AppProps['Component'] = () => {
+export const Page: AppProps['Component'] = () => {
   const router = useRouter();
 
   const { data: user, isSuccess } = useGetUserQuery(Number(router.query.id));
@@ -41,6 +41,6 @@ export const UserPage: AppProps['Component'] = () => {
   );
 };
 
-UserPage.getLayout = (page) => (
+Page.getLayout = (page) => (
   <Layout slots={{ header: <Header /> }}>{page}</Layout>
 );
