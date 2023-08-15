@@ -1,4 +1,4 @@
-const ROUTES = {
+export const ROUTES = {
   index: '/',
   posts: {
     id: '/post',
@@ -12,5 +12,3 @@ const ROUTES = {
     id: '/user',
   },
 };
-
-export default ROUTES;

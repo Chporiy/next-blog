@@ -61,11 +61,9 @@ const cacheByIdArgumentProperty =
   (result, error, args) =>
     types.map((type) => setEntityCache(type, args.id));
 
-const apiCacher = {
+export const apiCacher = {
   providesTagsWithList,
   invalidatesTagsWithList,
   cacheByIdArgument,
   cacheByIdArgumentProperty,
 };
-
-export default apiCacher;

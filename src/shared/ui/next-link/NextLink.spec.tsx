@@ -2,7 +2,7 @@ import routerMock from 'next/router';
 
 import { render, screen } from '~/tests/utils';
 
-import NextLink from './NextLink';
+import { NextLink } from './NextLink';
 
 describe('<NextLink />', () => {
   it('should be in document', () => {

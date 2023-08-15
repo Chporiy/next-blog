@@ -3,7 +3,7 @@ import { useCallback, ChangeEvent, useState, useRef, useEffect } from 'react';
 
 import { convertFileImageToBase64 } from '~/shared/lib';
 
-import BaseField, { BaseFieldProps } from '../BaseField/BaseField';
+import { BaseField, BaseFieldProps } from '../BaseField/BaseField';
 
 /**
  * A wrapper around <BaseField />
@@ -11,7 +11,7 @@ import BaseField, { BaseFieldProps } from '../BaseField/BaseField';
  *
  * @param {BaseFieldProps} props
  */
-const UploadImageField = (props: BaseFieldProps) => {
+export const UploadImageField = (props: BaseFieldProps) => {
   const {
     field: { name, value },
     form: { setFieldValue },
@@ -68,5 +68,3 @@ const UploadImageField = (props: BaseFieldProps) => {
     </>
   );
 };
-
-export default UploadImageField;

@@ -14,7 +14,11 @@ type Props = {
  *
  * @see {@link https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/402}
  */
-const NextLink = ({ children, next, chakra }: PropsWithChildren<Props>) => (
+export const NextLink = ({
+  children,
+  next,
+  chakra,
+}: PropsWithChildren<Props>) => (
   <Link {...next} passHref>
     <ChakraLink {...chakra}>{children}</ChakraLink>
   </Link>
@@ -23,5 +27,3 @@ const NextLink = ({ children, next, chakra }: PropsWithChildren<Props>) => (
 NextLink.defaultProps = {
   chakra: {},
 };
-
-export default NextLink;

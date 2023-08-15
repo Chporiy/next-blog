@@ -7,7 +7,7 @@ import { HomePage } from '~/pages/home';
 import { postApi } from '~/entities/post';
 import { userApi } from '~/entities/user';
 
-import { getRunningQueriesThunk } from '~/shared/api';
+import { baseApiUtil } from '~/shared/api';
 
 export default HomePage;
 
@@ -16,7 +16,7 @@ export const getStaticProps: GetStaticProps =
     store.dispatch(postApi.endpoints.getPosts.initiate());
     store.dispatch(userApi.endpoints.getUsers.initiate());
 
-    await Promise.all(store.dispatch(getRunningQueriesThunk()));
+    await Promise.all(store.dispatch(baseApiUtil.getRunningQueriesThunk()));
 
     return {
       props: {},

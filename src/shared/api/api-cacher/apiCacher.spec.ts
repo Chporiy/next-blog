@@ -1,4 +1,4 @@
-import apiCacher from './apiCacher';
+import { apiCacher } from './apiCacher';
 
 describe('apiCacher', () => {
   const type1 = 'Post';

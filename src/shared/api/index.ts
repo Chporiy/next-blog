@@ -1,14 +1,2 @@
-import apiCacher from './api-cacher/apiCacher';
-import baseApi, {
-  getRunningMutationsThunk,
-  getRunningQueriesThunk,
-  resetApiState,
-} from './baseApi';
-
-export {
-  baseApi,
-  apiCacher,
-  getRunningMutationsThunk,
-  getRunningQueriesThunk,
-  resetApiState,
-};
+export { baseApi, util as baseApiUtil } from './baseApi';
+export * from './api-cacher/apiCacher';

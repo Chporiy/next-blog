@@ -1,4 +1,4 @@
-import password from './password';
+import { password } from './password';
 
 describe('password validation schema', () => {
   const matchesErrorText =

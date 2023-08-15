@@ -7,7 +7,7 @@ import { UserPage } from '~/pages/user';
 import { postApi } from '~/entities/post';
 import { userApi } from '~/entities/user';
 
-import { getRunningQueriesThunk } from '~/shared/api';
+import { baseApiUtil } from '~/shared/api';
 import { makeStore } from '~/shared/lib';
 
 export default UserPage;
@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = nextReduxWrapper.getStaticProps(
         store.dispatch(userApi.endpoints.getUsers.initiate());
       }
 
-      await Promise.all(store.dispatch(getRunningQueriesThunk()));
+      await Promise.all(store.dispatch(baseApiUtil.getRunningQueriesThunk()));
 
       return {
         props: {},

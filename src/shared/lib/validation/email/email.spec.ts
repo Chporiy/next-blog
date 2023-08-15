@@ -1,4 +1,4 @@
-import email from './email';
+import { email } from './email';
 
 describe('email validation schema', () => {
   it('should validate right email', async () => {

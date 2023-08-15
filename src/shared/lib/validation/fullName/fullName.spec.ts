@@ -1,4 +1,4 @@
-import fullName from './fullName';
+import { fullName } from './fullName';
 
 describe('full name validation schema', () => {
   const matchesErrorText =

@@ -1,6 +1,6 @@
 const isFileImage = (file: File) => file.type.includes('image/');
 
-const convertFileImageToBase64 = (file: File): Promise<string> => {
+export const convertFileImageToBase64 = (file: File): Promise<string> => {
   if (!isFileImage(file)) {
     throw new Error('A file is not an image');
   }
@@ -13,5 +13,3 @@ const convertFileImageToBase64 = (file: File): Promise<string> => {
     reader.onerror = reject;
   });
 };
-
-export default convertFileImageToBase64;

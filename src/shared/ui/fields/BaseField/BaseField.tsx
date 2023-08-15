@@ -18,7 +18,7 @@ export interface BaseFieldProps
  *
  * @param {BaseFieldProps} props - Formik <Field /> props with Chakra-ui FormControlProps
  */
-const BaseField = (props: BaseFieldProps) => {
+export const BaseField = (props: BaseFieldProps) => {
   const {
     field,
     isDisabled,
@@ -41,5 +41,3 @@ const BaseField = (props: BaseFieldProps) => {
     </FormControl>
   );
 };
-
-export default BaseField;

@@ -1,7 +1,7 @@
 import { Flex, FlexProps } from '@chakra-ui/react';
 import React, { PropsWithChildren } from 'react';
 
-const ContentWrapper = ({
+export const ContentWrapper = ({
   children,
   ...rest
 }: PropsWithChildren<FlexProps>) => (
@@ -18,5 +18,3 @@ const ContentWrapper = ({
     {children}
   </Flex>
 );
-
-export default ContentWrapper;

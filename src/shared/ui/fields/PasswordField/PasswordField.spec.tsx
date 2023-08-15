@@ -2,7 +2,7 @@ import { Field, Form, Formik } from 'formik';
 
 import { render, screen } from '~/tests/utils';
 
-import PasswordField from './PasswordField';
+import { PasswordField } from './PasswordField';
 
 describe('<PasswordField>', () => {
   it('should switch an input type', async () => {

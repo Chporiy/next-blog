@@ -8,7 +8,7 @@ import { render, screen, waitFor } from '~/tests/utils';
 import { postApi } from '~/entities/post';
 import { userApi } from '~/entities/user';
 
-import { getRunningQueriesThunk } from '~/shared/api';
+import { baseApiUtil } from '~/shared/api';
 import { convertDateToLocalDate, makeStore } from '~/shared/lib';
 
 import { Page } from './PostPage';
@@ -25,7 +25,7 @@ describe('Page Post', () => {
     store.dispatch(postApi.endpoints.getPost.initiate(postMock0.id));
     store.dispatch(userApi.endpoints.getUsers.initiate());
 
-    await Promise.all(store.dispatch(getRunningQueriesThunk()));
+    await Promise.all(store.dispatch(baseApiUtil.getRunningQueriesThunk()));
   });
 
   it('should render post page', async () => {

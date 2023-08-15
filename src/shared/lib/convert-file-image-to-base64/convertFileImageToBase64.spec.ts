@@ -1,6 +1,6 @@
 import { waitFor } from '~/tests/utils';
 
-import convertFileImageToBase64 from './convertFileImageToBase64';
+import { convertFileImageToBase64 } from './convertFileImageToBase64';
 
 describe('convertFileImageToBase64()', () => {
   const fileContent = ['file content'];

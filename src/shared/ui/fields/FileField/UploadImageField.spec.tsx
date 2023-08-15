@@ -5,7 +5,7 @@ import { render, screen, waitFor } from '~/tests/utils';
 
 import { convertFileImageToBase64 } from '~/shared/lib';
 
-import UploadImageField from './UploadImageField';
+import { UploadImageField } from './UploadImageField';
 
 describe('<UploadImageField />', () => {
   const FormWithUploadImageField = () => (

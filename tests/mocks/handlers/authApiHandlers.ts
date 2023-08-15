@@ -2,7 +2,7 @@ import { rest } from 'msw';
 
 import { accessToken } from '../data';
 
-const authApiHandlers = [
+export const authApiHandlers = [
   rest.post('/signup', (req, res, ctx) =>
     res(
       ctx.json({
@@ -18,5 +18,3 @@ const authApiHandlers = [
     ),
   ),
 ];
-
-export default authApiHandlers;

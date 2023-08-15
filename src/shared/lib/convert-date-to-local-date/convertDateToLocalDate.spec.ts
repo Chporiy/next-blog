@@ -1,4 +1,4 @@
-import convertDateToLocalDate from './convertDateToLocalDate';
+import { convertDateToLocalDate } from './convertDateToLocalDate';
 
 describe('convertDateToLocalDate()', () => {
   it('should return day month and year of date', () => {

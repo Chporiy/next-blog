@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-import baseApi from '~/shared/api/baseApi';
+import { baseApi } from '~/shared/api';
 
 import {
   SignInRequest,

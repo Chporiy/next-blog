@@ -1,7 +1,7 @@
 import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
-import BaseField, { BaseFieldProps } from '../BaseField/BaseField';
+import { BaseField, BaseFieldProps } from '../BaseField/BaseField';
 
 /**
  * A wrapper around <BaseField />
@@ -10,7 +10,7 @@ import BaseField, { BaseFieldProps } from '../BaseField/BaseField';
  *
  * @param {BaseFieldProps} props
  */
-const PasswordField = (props: BaseFieldProps) => {
+export const PasswordField = (props: BaseFieldProps) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -28,5 +28,3 @@ const PasswordField = (props: BaseFieldProps) => {
     </BaseField>
   );
 };
-
-export default PasswordField;

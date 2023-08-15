@@ -1,6 +1,6 @@
 import { theme as defaultTheme } from '@chakra-ui/react';
 
-import theme from './theme';
+import { theme } from './theme';
 
 describe('theme', () => {
   it('should override global styles', () => {

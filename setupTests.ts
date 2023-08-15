@@ -5,8 +5,9 @@ import 'whatwg-fetch';
 import { loadEnvConfig } from '@next/env';
 import { setupServer } from 'msw/node';
 
+import { baseApiUtil } from '~/shared/api';
+
 import { rootReducer } from './src/app';
-import { resetApiState } from './src/shared/api';
 import { makeStore } from './src/shared/lib';
 import { testMswHandlers } from './tests/mocks';
 
@@ -20,6 +21,6 @@ const server = setupServer(...testMswHandlers());
 beforeAll(() => server.listen({ onUnhandledRequest: 'warn' }));
 afterEach(() => {
   server.resetHandlers();
-  store.dispatch(resetApiState());
+  store.dispatch(baseApiUtil.resetApiState());
 });
 afterAll(() => server.close());

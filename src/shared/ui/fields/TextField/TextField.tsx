@@ -1,7 +1,7 @@
 import { Input } from '@chakra-ui/react';
 import React from 'react';
 
-import BaseField, { BaseFieldProps } from '../BaseField/BaseField';
+import { BaseField, BaseFieldProps } from '../BaseField/BaseField';
 
 /**
  * A wrapper around <BaseField />
@@ -9,8 +9,6 @@ import BaseField, { BaseFieldProps } from '../BaseField/BaseField';
  *
  * @param {BaseFieldProps} props
  */
-const TextField = (props: BaseFieldProps) => (
+export const TextField = (props: BaseFieldProps) => (
   <BaseField {...props}>{(inputProps) => <Input {...inputProps} />}</BaseField>
 );
-
-export default TextField;

@@ -7,7 +7,7 @@ import { act, getUserPostsForTest, render, screen } from '~/tests/utils';
 
 import { userApi } from '~/entities/user';
 
-import { getRunningQueriesThunk, resetApiState } from '~/shared/api';
+import { baseApiUtil } from '~/shared/api';
 import { makeStore } from '~/shared/lib';
 
 import { Page } from './UserPage';
@@ -23,12 +23,12 @@ describe('Page User', () => {
 
     store.dispatch(userApi.endpoints.getUser.initiate(userMock0.id));
 
-    await Promise.all(store.dispatch(getRunningQueriesThunk()));
+    await Promise.all(store.dispatch(baseApiUtil.getRunningQueriesThunk()));
   });
 
   afterEach(() => {
     act(() => {
-      store.dispatch(resetApiState());
+      store.dispatch(baseApiUtil.resetApiState());
     });
   });
 

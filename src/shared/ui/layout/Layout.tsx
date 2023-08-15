@@ -8,7 +8,10 @@ type Props = {
   };
 };
 
-const Layout = ({ children, slots: { header } }: PropsWithChildren<Props>) => (
+export const Layout = ({
+  children,
+  slots: { header },
+}: PropsWithChildren<Props>) => (
   <>
     <Head>
       <title>Next blog</title>
@@ -19,5 +22,3 @@ const Layout = ({ children, slots: { header } }: PropsWithChildren<Props>) => (
     </Container>
   </>
 );
-
-export default Layout;
