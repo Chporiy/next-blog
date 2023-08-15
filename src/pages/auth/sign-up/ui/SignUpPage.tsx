@@ -9,7 +9,7 @@ import { SignUpForm } from '~/features/auth';
 import { ROUTES } from '~/shared/config';
 import { ContentWrapper, Layout, NextLink } from '~/shared/ui';
 
-export const SignUpPage: AppProps['Component'] = () => (
+export const Page: AppProps['Component'] = () => (
   <ContentWrapper p="12" maxWidth="2xl" mx="auto">
     <Heading>Welcome to Next blog</Heading>
     <Box mt="6" w="full">
@@ -29,6 +29,6 @@ export const SignUpPage: AppProps['Component'] = () => (
   </ContentWrapper>
 );
 
-SignUpPage.getLayout = (page) => (
+Page.getLayout = (page) => (
   <Layout slots={{ header: <Header /> }}>{page}</Layout>
 );

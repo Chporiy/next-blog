@@ -9,7 +9,7 @@ import { SignInForm } from '~/features/auth';
 import { ROUTES } from '~/shared/config';
 import { ContentWrapper, Layout, NextLink } from '~/shared/ui';
 
-export const SignInPage: AppProps['Component'] = () => (
+export const Page: AppProps['Component'] = () => (
   <ContentWrapper p="12" maxWidth="2xl" mx="auto">
     <Heading>Sign in</Heading>
     <Box mt="6" mx="auto" w="full">
@@ -29,6 +29,6 @@ export const SignInPage: AppProps['Component'] = () => (
   </ContentWrapper>
 );
 
-SignInPage.getLayout = (page) => (
+Page.getLayout = (page) => (
   <Layout slots={{ header: <Header /> }}>{page}</Layout>
 );
