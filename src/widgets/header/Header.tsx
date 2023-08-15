@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { SignInButton } from '~/entities/auth';
-import { useUser } from '~/entities/user';
+import { userModel } from '~/entities/user';
 
 import { ROUTES } from '~/shared/config';
 import { NextLink } from '~/shared/ui';
@@ -12,7 +12,7 @@ import logo from '../../../public/images/logo.png';
 import { UserPanel } from '../user';
 
 const Header = () => {
-  const user = useUser();
+  const user = userModel.selectors.useUser();
 
   return (
     <Box

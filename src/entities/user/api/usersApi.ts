@@ -7,7 +7,7 @@ import {
   GetUsersResponse,
 } from './types';
 
-const usersApi = baseApi.injectEndpoints({
+const userApi = baseApi.injectEndpoints({
   overrideExisting: true,
   endpoints: (buidler) => ({
     getUsers: buidler.query<GetUsersResponse, GetUsersRequest>({
@@ -20,7 +20,5 @@ const usersApi = baseApi.injectEndpoints({
 });
 
 export const { useGetUsersQuery, useLazyGetUserQuery, useGetUserQuery } =
-  usersApi;
-export const { getUsers, getUser } = usersApi.endpoints;
-
-export default usersApi;
+  userApi;
+export { userApi };

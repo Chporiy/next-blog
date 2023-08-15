@@ -14,7 +14,7 @@ import { SignOutButton } from '~/entities/auth';
 
 import { makeStore } from '~/shared/lib';
 
-import useUser from './useUser';
+import { useUser } from './useUser';
 
 describe('useUser()', () => {
   it('should return undefined if the user isn`t defined', () => {

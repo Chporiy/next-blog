@@ -2,13 +2,13 @@ import { HStack, Text } from '@chakra-ui/react';
 
 import { SignOutButton } from '~/entities/auth';
 import { CreatePostButton } from '~/entities/post';
-import { useUser } from '~/entities/user';
+import { userModel } from '~/entities/user';
 
 import { ROUTES } from '~/shared/config';
 import { NextLink } from '~/shared/ui';
 
 const UserPanel = () => {
-  const user = useUser();
+  const user = userModel.selectors.useUser();
 
   if (!user) return null;
 

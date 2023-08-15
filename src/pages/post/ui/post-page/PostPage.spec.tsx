@@ -6,7 +6,7 @@ import { postMock0, userMock0 } from '~/tests/mocks';
 import { render, screen, waitFor } from '~/tests/utils';
 
 import { postApi } from '~/entities/post';
-import { getUsers } from '~/entities/user';
+import { userApi } from '~/entities/user';
 
 import { getRunningQueriesThunk } from '~/shared/api';
 import { convertDateToLocalDate, makeStore } from '~/shared/lib';
@@ -23,7 +23,7 @@ describe('Page Post', () => {
     });
 
     store.dispatch(postApi.endpoints.getPost.initiate(postMock0.id));
-    store.dispatch(getUsers.initiate());
+    store.dispatch(userApi.endpoints.getUsers.initiate());
 
     await Promise.all(store.dispatch(getRunningQueriesThunk()));
   });

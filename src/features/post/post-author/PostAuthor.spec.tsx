@@ -3,7 +3,7 @@ import { rootReducer } from '~/app';
 import { userMock0 } from '~/tests/mocks';
 import { render, screen, waitFor } from '~/tests/utils';
 
-import { getUsers } from '~/entities/user';
+import { userApi } from '~/entities/user';
 
 import { convertDateToLocalDate, makeStore } from '~/shared/lib';
 
@@ -14,7 +14,7 @@ describe('<PostAuthor />', () => {
   const store = makeStore(rootReducer);
 
   beforeEach(async () => {
-    store.dispatch(getUsers.initiate());
+    store.dispatch(userApi.endpoints.getUsers.initiate());
   });
 
   describe('User is defined', () => {

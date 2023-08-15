@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 
 import { useAppSelector } from '~/shared/lib';
 
-import { useLazyGetUserQuery } from '../../api/usersApi';
-import { selectAccessToken } from '../../model/selectors';
+import { useLazyGetUserQuery } from '../../../api/usersApi';
+import { selectAccessToken } from '../selectors';
 
-const useUser = () => {
+export const useUser = () => {
   const [decodedToken, setDecodedToken] = useState<JwtPayload | null>(null);
   const [getUser, { data: user }] = useLazyGetUserQuery();
   const accessToken = useAppSelector(selectAccessToken);
@@ -25,5 +25,3 @@ const useUser = () => {
 
   return user;
 };
-
-export default useUser;

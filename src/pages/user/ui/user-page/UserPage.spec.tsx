@@ -5,7 +5,7 @@ import { rootReducer } from '~/app';
 import { userMock0 } from '~/tests/mocks';
 import { act, getUserPostsForTest, render, screen } from '~/tests/utils';
 
-import { getUser } from '~/entities/user';
+import { userApi } from '~/entities/user';
 
 import { getRunningQueriesThunk, resetApiState } from '~/shared/api';
 import { makeStore } from '~/shared/lib';
@@ -21,7 +21,7 @@ describe('Page User', () => {
       query: { id: userMock0.id.toString() },
     });
 
-    store.dispatch(getUser.initiate(userMock0.id));
+    store.dispatch(userApi.endpoints.getUser.initiate(userMock0.id));
 
     await Promise.all(store.dispatch(getRunningQueriesThunk()));
   });

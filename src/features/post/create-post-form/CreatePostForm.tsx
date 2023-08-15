@@ -8,7 +8,7 @@ import {
   PostImage,
   useCreatePostMutation,
 } from '~/entities/post';
-import { useUser } from '~/entities/user';
+import { userModel } from '~/entities/user';
 
 import { TextareaField, UploadImageField } from '~/shared/ui';
 
@@ -32,7 +32,7 @@ const INITIAL_VALUES = {
  */
 const CreatePostForm = () => {
   const [createPost] = useCreatePostMutation();
-  const user = useUser();
+  const user = userModel.selectors.useUser();
 
   const onSubmit: FormikConfig<typeof INITIAL_VALUES>['onSubmit'] = useCallback(
     async (values, { resetForm }) => {
