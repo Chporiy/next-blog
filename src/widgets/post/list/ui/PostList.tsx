@@ -1,4 +1,4 @@
-import { List, ListItem } from '@chakra-ui/react';
+import { List as ChakraList, ListItem } from '@chakra-ui/react';
 import React from 'react';
 
 import { PostPreview } from '~/features/post';
@@ -9,14 +9,12 @@ type Props = {
   posts: Post[];
 };
 
-const PostList = ({ posts }: Props) => (
-  <List spacing={4}>
+export const List = ({ posts }: Props) => (
+  <ChakraList spacing={4}>
     {posts.map((post) => (
       <ListItem key={post.id}>
         <PostPreview post={post} />
       </ListItem>
     ))}
-  </List>
+  </ChakraList>
 );
-
-export default PostList;

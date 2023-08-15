@@ -1,12 +1,12 @@
 import { postModel, useGetPostsByUserQuery } from '~/entities/post';
 
-import PostList from '../post-list/PostList';
+import { List } from '../../list';
 
 interface Props {
   userId: number;
 }
 
-const PostsByUser = ({ userId }: Props) => {
+export const PostsByUser = ({ userId }: Props) => {
   const { data: posts, isSuccess } = useGetPostsByUserQuery(userId, {
     selectFromResult: (result) => ({
       ...result,
@@ -16,6 +16,5 @@ const PostsByUser = ({ userId }: Props) => {
 
   if (!isSuccess) return null;
 
-  return <PostList posts={posts} />;
+  return <List posts={posts} />;
 };
-export default PostsByUser;

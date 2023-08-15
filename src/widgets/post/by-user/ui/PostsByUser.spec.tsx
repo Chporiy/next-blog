@@ -1,7 +1,7 @@
 import { userMock0 } from '~/tests/mocks';
 import { getUserPostsForTest, render, screen } from '~/tests/utils';
 
-import PostsByUser from './PostsByUser';
+import { PostsByUser } from './PostsByUser';
 
 describe('<PostsByUser />', () => {
   it('should render posts by an user', () => {

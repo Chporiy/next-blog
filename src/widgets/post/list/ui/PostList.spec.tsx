@@ -2,7 +2,7 @@ import { render, screen } from '~/tests/utils';
 
 import { Post } from '~/entities/post';
 
-import PostsList from './PostList';
+import { List } from './PostList';
 
 describe('<PostsList />', () => {
   const posts: Post[] = [
@@ -25,7 +25,7 @@ describe('<PostsList />', () => {
   ];
 
   it('should render list component', () => {
-    render(<PostsList posts={posts} />);
+    render(<List posts={posts} />);
 
     expect(document.querySelector('ul')).toBeInTheDocument();
     posts.forEach((post) => {
