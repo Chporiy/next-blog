@@ -7,7 +7,7 @@ import { userApi } from '~/entities/user';
 
 import { convertDateToLocalDate, makeStore } from '~/shared/lib';
 
-import PostAuthor from './PostAuthor';
+import { Author } from './PostAuthor';
 
 describe('<PostAuthor />', () => {
   const date = '2022-01-29T06:12:12.829Z';
@@ -19,7 +19,7 @@ describe('<PostAuthor />', () => {
 
   describe('User is defined', () => {
     beforeEach(() => {
-      render(<PostAuthor userId={userMock0.id} date={date} />, {
+      render(<Author userId={userMock0.id} date={date} />, {
         store,
       });
     });
@@ -47,7 +47,7 @@ describe('<PostAuthor />', () => {
 
   describe('User isn`t defined', () => {
     beforeEach(() => {
-      render(<PostAuthor userId={-1} date={date} />, { store });
+      render(<Author userId={-1} date={date} />, { store });
     });
 
     it('should return "User not found"', () => {

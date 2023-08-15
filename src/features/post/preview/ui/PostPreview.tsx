@@ -5,13 +5,13 @@ import { Post, PostTitle } from '~/entities/post';
 import { ROUTES } from '~/shared/config';
 import { ContentWrapper, NextLink } from '~/shared/ui';
 
-import PostAuthor from '../PostAuthor';
+import { PostAuthor } from '../../author';
 
 type Props = {
   post: Post;
 };
 
-const PostPreview = ({ post }: Props) => (
+export const Preview = ({ post }: Props) => (
   <ContentWrapper p="4" alignItems="flex-start">
     <PostAuthor userId={post.userId} date={post.date} />
     <NextLink next={{ href: `${ROUTES.posts.id}/${post.id}` }}>
@@ -19,5 +19,3 @@ const PostPreview = ({ post }: Props) => (
     </NextLink>
   </ContentWrapper>
 );
-
-export default PostPreview;

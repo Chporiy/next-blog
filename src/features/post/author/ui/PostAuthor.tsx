@@ -13,7 +13,7 @@ type Props = Pick<Post, 'date' | 'userId'>;
  * Render user, avatar and post date if user is defined
  * Render error text and 'no user' avatar if iser is`nt defined
  */
-const PostAuthor = ({ userId, date }: Props) => {
+export const Author = ({ userId, date }: Props) => {
   const { data: user } = useGetUserQuery(userId);
 
   return user ? (
@@ -33,5 +33,3 @@ const PostAuthor = ({ userId, date }: Props) => {
     </Flex>
   );
 };
-
-export default PostAuthor;

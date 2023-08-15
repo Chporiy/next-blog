@@ -4,7 +4,7 @@ import { render, screen, signInForTest, waitFor } from '~/tests/utils';
 
 import { convertFileImageToBase64 } from '~/shared/lib';
 
-import CreatePostForm from './CreatePostForm';
+import { Form } from './CreatePostForm';
 
 describe('<CreatePostForm />', () => {
   const getTitleField = () => screen.getByRole('textbox', { name: 'Title' });
@@ -24,7 +24,7 @@ describe('<CreatePostForm />', () => {
   };
 
   it('should contain fields', () => {
-    render(<CreatePostForm />);
+    render(<Form />);
 
     expect(getTitleField()).toBeInTheDocument();
     expect(getBodyField()).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe('<CreatePostForm />', () => {
 
   describe('title field', () => {
     it('should contain a placeholder', () => {
-      render(<CreatePostForm />);
+      render(<Form />);
 
       const titleField = screen.getByPlaceholderText('New post title here...');
 
@@ -41,7 +41,7 @@ describe('<CreatePostForm />', () => {
     });
 
     it('should show an error if field is empty', async () => {
-      const { user } = render(<CreatePostForm />);
+      const { user } = render(<Form />);
 
       await user.click(getSubmitButton());
 
@@ -53,7 +53,7 @@ describe('<CreatePostForm />', () => {
 
   describe('body field', () => {
     it('should contain a placeholder', () => {
-      render(<CreatePostForm />);
+      render(<Form />);
 
       const bodyField = screen.getByPlaceholderText(
         'Write your post content here...',
@@ -63,7 +63,7 @@ describe('<CreatePostForm />', () => {
     });
 
     it('should show an error if field is empty', async () => {
-      const { user } = render(<CreatePostForm />);
+      const { user } = render(<Form />);
 
       await user.click(getSubmitButton());
 
@@ -75,7 +75,7 @@ describe('<CreatePostForm />', () => {
 
   describe('preview field', () => {
     it('should show an error if field is empty', async () => {
-      const { user } = render(<CreatePostForm />);
+      const { user } = render(<Form />);
 
       await user.click(getSubmitButton());
 
@@ -85,7 +85,7 @@ describe('<CreatePostForm />', () => {
     });
 
     it('should not show a preview image if image is not selected', async () => {
-      render(<CreatePostForm />);
+      render(<Form />);
 
       const image = screen.queryByRole('img');
 
@@ -93,7 +93,7 @@ describe('<CreatePostForm />', () => {
     });
 
     it('should show a preview image if image has been selected', async () => {
-      const { user } = render(<CreatePostForm />);
+      const { user } = render(<Form />);
       const fileAsBase64Format = await convertFileImageToBase64(file);
 
       await uploadFile(user);
@@ -112,7 +112,7 @@ describe('<CreatePostForm />', () => {
     };
 
     it('should disable a submitting button if a form is submitting', async () => {
-      const { user, store } = render(<CreatePostForm />);
+      const { user, store } = render(<Form />);
 
       await signInForTest(store);
 
@@ -125,7 +125,7 @@ describe('<CreatePostForm />', () => {
     });
 
     it('should reset form after successful request', async () => {
-      const { user, store } = render(<CreatePostForm />);
+      const { user, store } = render(<Form />);
 
       await signInForTest(store);
 
