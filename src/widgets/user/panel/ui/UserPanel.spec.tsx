@@ -3,7 +3,7 @@ import routerMock from 'next-router-mock';
 import { userMock0 } from '~/tests/mocks';
 import { render, screen, signInForTest } from '~/tests/utils';
 
-import UserPanel from './UserPanel';
+import { UserPanel } from './UserPanel';
 
 describe('<UserPanel />', () => {
   it('should render the authenticated user email', async () => {

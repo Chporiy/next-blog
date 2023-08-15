@@ -1,7 +1,7 @@
 import { userMock0 } from '~/tests/mocks';
 import { getUserPostsForTest, render, screen } from '~/tests/utils';
 
-import UserActivityInfo from './UserActivityInfo';
+import { UserActivityInfo } from './UserActivityInfo';
 
 describe('<UserActivityInfo />', () => {
   it('should render a published post amount', async () => {

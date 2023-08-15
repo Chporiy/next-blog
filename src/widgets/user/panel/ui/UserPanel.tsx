@@ -7,7 +7,7 @@ import { userModel } from '~/entities/user';
 import { ROUTES } from '~/shared/config';
 import { NextLink } from '~/shared/ui';
 
-const UserPanel = () => {
+export const UserPanel = () => {
   const user = userModel.selectors.useUser();
 
   if (!user) return null;
@@ -22,5 +22,3 @@ const UserPanel = () => {
     </HStack>
   );
 };
-
-export default UserPanel;
