@@ -16,7 +16,7 @@ import { schema, initialValues } from '../model';
  */
 export const Form = () => {
   const [createPost] = useCreatePostMutation();
-  const user = userModel.selectors.useUser();
+  const user = userModel.selectors.useCurrentUser();
 
   const onSubmit: FormikConfig<typeof initialValues>['onSubmit'] = useCallback(
     async (values, { resetForm }) => {

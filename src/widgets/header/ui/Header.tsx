@@ -13,7 +13,7 @@ import { NextLink } from '~/shared/ui';
 import logo from '../../../../public/images/logo.png';
 
 export const Header = () => {
-  const user = userModel.selectors.useUser();
+  const user = userModel.selectors.useCurrentUser();
 
   return (
     <Box

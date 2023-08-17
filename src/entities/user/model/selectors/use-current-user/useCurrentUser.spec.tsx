@@ -14,11 +14,11 @@ import { SignOutButton } from '~/entities/auth';
 
 import { makeStore } from '~/shared/lib';
 
-import { useUser } from './useUser';
+import { useCurrentUser } from './useCurrentUser';
 
-describe('useUser()', () => {
+describe('useCurrentUser()', () => {
   it('should return undefined if the user isn`t defined', () => {
-    const { result } = renderHook(() => useUser(), {
+    const { result } = renderHook(() => useCurrentUser(), {
       wrapper: createReduxProdiverWrapper(makeStore(rootReducer)),
     });
 
@@ -30,7 +30,7 @@ describe('useUser()', () => {
 
     await signInForTest(store);
 
-    const { result } = renderHook(() => useUser(), {
+    const { result } = renderHook(() => useCurrentUser(), {
       wrapper: createReduxProdiverWrapper(store),
     });
 
@@ -46,7 +46,7 @@ describe('useUser()', () => {
 
     await signInForTest(store);
 
-    const { result } = renderHook(() => useUser(), {
+    const { result } = renderHook(() => useCurrentUser(), {
       wrapper: createReduxProdiverWrapper(store),
     });
 

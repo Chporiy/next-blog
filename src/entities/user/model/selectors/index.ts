@@ -1,7 +1,7 @@
 import { selectAccessToken } from './selectors';
-import { useUser } from './use-user/useUser';
+import { useCurrentUser } from './use-current-user/useCurrentUser';
 
 export const selectors = {
   selectAccessToken,
-  useUser,
+  useCurrentUser,
 };

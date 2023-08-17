@@ -8,7 +8,7 @@ import { ROUTES } from '~/shared/config';
 import { NextLink } from '~/shared/ui';
 
 export const UserPanel = () => {
-  const user = userModel.selectors.useUser();
+  const user = userModel.selectors.useCurrentUser();
 
   if (!user) return null;
 
