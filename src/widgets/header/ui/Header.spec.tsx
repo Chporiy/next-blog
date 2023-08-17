@@ -32,7 +32,7 @@ describe('<Header />', () => {
       });
     });
   });
-  it('should render <SignInButton /> instead of <UserPanel /> if user is not authenticated', () => {
+  it('should render <NoUserPanel />  if current user is not defined', () => {
     render(<Header />);
 
     const signInButton = screen.getByRole('link', { name: 'Sign in' });
@@ -40,7 +40,7 @@ describe('<Header />', () => {
     expect(signInButton).toBeInTheDocument();
   });
 
-  it('should render <UserPanel /> instead of <SignInButton /> if user is authenticated', async () => {
+  it('should render <UserPanel /> if user is defined', async () => {
     const { store } = render(<Header />);
 
     await signInForTest(store);

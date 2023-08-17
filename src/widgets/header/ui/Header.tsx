@@ -2,16 +2,15 @@ import { Box, Container, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
 
-import { UserPanel } from '~/widgets/user';
-
-import { SignInButton } from '~/features/auth';
-
 import { userModel } from '~/entities/user';
 
 import { ROUTES } from '~/shared/config';
 import { NextLink } from '~/shared/ui';
 
 import logo from '../../../../public/images/logo.png';
+
+import { UserPanel } from './current-user-panel/UserPanel';
+import { NoUserPanel } from './no-user-panel/NoUserPanel';
 
 export const Header = () => {
   const user = userModel.selectors.useCurrentUser();
@@ -34,7 +33,7 @@ export const Header = () => {
           <NextLink next={{ href: ROUTES.index }}>
             <Image src={logo} alt="logo" />
           </NextLink>
-          {user ? <UserPanel /> : <SignInButton />}
+          {user ? <UserPanel /> : <NoUserPanel />}
         </Flex>
       </Container>
     </Box>
