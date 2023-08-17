@@ -7,7 +7,7 @@ import { userModel } from '~/entities/user';
 
 import { TextareaField, UploadImageField } from '~/shared/ui';
 
-import { schema, initialValues } from '../model';
+import { schema, initialValues } from '../../model';
 
 /**
  * A form for create post
