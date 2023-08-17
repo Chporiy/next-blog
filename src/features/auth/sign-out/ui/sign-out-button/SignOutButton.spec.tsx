@@ -1,10 +1,10 @@
 import { render, screen, signInForTest, waitFor } from '~/tests/utils';
 
-import { SignOutButton } from './SignOutButton';
+import { Button } from './SignOutButton';
 
 describe('<SignOutButton />', () => {
   it('should clear auth store by click on button', async () => {
-    const { user, store } = render(<SignOutButton />);
+    const { user, store } = render(<Button />);
     const button = screen.getByRole('button', { name: 'Sign out' });
 
     await signInForTest(store);
@@ -18,7 +18,7 @@ describe('<SignOutButton />', () => {
   });
 
   it('should clear RTK Query api state', async () => {
-    const { user, store } = render(<SignOutButton />);
+    const { user, store } = render(<Button />);
     const button = screen.getByRole('button', { name: 'Sign out' });
 
     await signInForTest(store);

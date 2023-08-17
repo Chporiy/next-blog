@@ -4,7 +4,8 @@ import React from 'react';
 
 import { UserPanel } from '~/widgets/user';
 
-import { SignInButton } from '~/entities/auth';
+import { SignInButton } from '~/features/auth';
+
 import { userModel } from '~/entities/user';
 
 import { ROUTES } from '~/shared/config';

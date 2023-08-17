@@ -1,6 +1,7 @@
 import { HStack, Text } from '@chakra-ui/react';
 
-import { SignOutButton } from '~/entities/auth';
+import { SignOutButton } from '~/features/auth';
+
 import { CreatePostButton } from '~/entities/post';
 import { userModel } from '~/entities/user';
 

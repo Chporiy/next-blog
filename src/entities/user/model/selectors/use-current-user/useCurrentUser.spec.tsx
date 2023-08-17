@@ -10,7 +10,7 @@ import {
   waitFor,
 } from '~/tests/utils';
 
-import { SignOutButton } from '~/entities/auth';
+import { SignOutButton } from '~/features/auth';
 
 import { makeStore } from '~/shared/lib';
 
