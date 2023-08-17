@@ -1,10 +1,10 @@
 import { Avatar, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 
-import { Post } from '~/entities/post';
 import { UserAvatar, UserFullname, useGetUserQuery } from '~/entities/user';
 
 import { convertDateToLocalDate } from '~/shared/lib';
+import { Post } from '~/shared/model';
 
 type Props = Pick<Post, 'date' | 'userId'>;
 

@@ -1,4 +1,4 @@
-import { User } from '~/entities/user';
+import { User } from '~/shared/model';
 
 import { allPostMocks } from '../../mocks/data/postMocks';
 

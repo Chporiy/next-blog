@@ -1,4 +1,4 @@
-import { User } from '~/entities/user';
+import { User } from '~/shared/model';
 
 export const userMock0: User = {
   id: 0,

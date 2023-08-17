@@ -1,4 +1,4 @@
-import { User } from '../model/types';
+import { User } from '~/shared/model';
 
 export type GetUsersRequest = void;
 export type GetUsersResponse = User[];

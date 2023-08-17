@@ -1,7 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react';
 
 import { PostIcon, useGetPostsByUserQuery } from '~/entities/post';
-import { User } from '~/entities/user';
+
+import { User } from '~/shared/model';
 
 import { getPostAmount } from '../lib';
 

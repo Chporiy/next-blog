@@ -1,4 +1,4 @@
-import { Post } from '~/entities/post';
+import { Post } from '~/shared/model';
 
 import { userMock0, userMock1 } from './userMocks';
 

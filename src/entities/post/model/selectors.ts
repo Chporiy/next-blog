@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { Post } from './types';
+import { Post } from '~/shared/model';
 
 const emptyArray = [];
 

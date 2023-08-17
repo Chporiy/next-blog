@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Post, PostTitle } from '~/entities/post';
+import { PostTitle } from '~/entities/post';
 
 import { ROUTES } from '~/shared/config';
+import { Post } from '~/shared/model';
 import { ContentWrapper, NextLink } from '~/shared/ui';
 
 import { PostAuthor } from '../../author';

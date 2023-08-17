@@ -1,9 +1,8 @@
 import { Text, TextProps } from '@chakra-ui/react';
 
 import { ROUTES } from '~/shared/config';
+import { User } from '~/shared/model';
 import { NextLink } from '~/shared/ui';
-
-import { User } from '../../model/types';
 
 interface Props extends TextProps {
   user: User;

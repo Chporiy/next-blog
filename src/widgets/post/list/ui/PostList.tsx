@@ -3,7 +3,7 @@ import React from 'react';
 
 import { PostPreview } from '~/features/post';
 
-import { Post } from '~/entities/post';
+import { Post } from '~/shared/model';
 
 type Props = {
   posts: Post[];

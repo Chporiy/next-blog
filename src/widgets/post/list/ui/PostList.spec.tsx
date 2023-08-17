@@ -1,6 +1,6 @@
 import { render, screen } from '~/tests/utils';
 
-import { Post } from '~/entities/post';
+import { Post } from '~/shared/model';
 
 import { PostList } from './PostList';
 

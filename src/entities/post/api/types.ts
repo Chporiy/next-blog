@@ -1,4 +1,4 @@
-import { Post } from '../model/types';
+import { Post } from '../model';
 
 export type GetPostsRequest = void;
 export type GetPostsResponse = Post[];
