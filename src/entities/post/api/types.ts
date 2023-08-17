@@ -1,4 +1,4 @@
-import { Post } from '../model';
+import { Post } from '~/shared/model';
 
 export type GetPostsRequest = void;
 export type GetPostsResponse = Post[];
