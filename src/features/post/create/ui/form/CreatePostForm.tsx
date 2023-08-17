@@ -1,6 +1,6 @@
 import { Box, Button } from '@chakra-ui/react';
 import { Field, Form as FormikForm, Formik, FormikConfig } from 'formik';
-import { ReactNode, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { PostImage, useCreatePostMutation } from '~/entities/post';
 import { userModel } from '~/entities/user';
@@ -12,7 +12,7 @@ import { schema, initialValues } from '../../model';
 /**
  * A form for create post
  *
- * @returns {ReactNode}
+ * @returns {import('react').ReactNode}
  */
 export const Form = () => {
   const [createPost] = useCreatePostMutation();

@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react';
 import { Formik, Form as FormikForm } from 'formik';
 import { useRouter } from 'next/router';
-import { ReactNode, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { CredentialFields, useSignInMutation } from '~/entities/auth';
 
@@ -12,7 +12,7 @@ import { initialValues, schema } from '../../model';
 /**
  * A form for user sign in by email and password
  *
- * @returns {ReactNode}
+ * @returns {import('react').ReactNode}
  */
 export const Form = () => {
   const [signIn, { isSuccess }] = useSignInMutation();

@@ -1,13 +1,12 @@
 import { Box } from '@chakra-ui/react';
 import { Field } from 'formik';
-import { ReactNode } from 'react';
 
 import { PasswordField, TextField } from '~/shared/ui';
 
 /**
  * Component contains email and password credential fields
  *
- * @returns {ReactNode}
+ * @returns {import('react').ReactNode}
  */
 export const CredentialFields = () => (
   <>
