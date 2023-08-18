@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { HYDRATE } from 'next-redux-wrapper';
 
 const baseApi = createApi({
-  tagTypes: ['Post'],
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_URL,
     credentials: 'include',

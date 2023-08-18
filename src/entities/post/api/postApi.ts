@@ -1,4 +1,4 @@
-import { apiCacher, baseApi } from '~/shared/api';
+import { baseApi } from '~/shared/api';
 
 import {
   CreatePostRequest,
@@ -11,12 +11,11 @@ import {
   GetPostsResponse,
 } from './types';
 
-const postApi = baseApi.injectEndpoints({
+const api = baseApi.injectEndpoints({
   overrideExisting: true,
   endpoints: (buidler) => ({
     getPosts: buidler.query<GetPostsResponse, GetPostsRequest>({
       query: () => '/posts',
-      providesTags: apiCacher.providesTagsWithList(['Post']),
     }),
     getPostsByUser: buidler.query<
       GetPostsByUserResponse,
@@ -26,7 +25,6 @@ const postApi = baseApi.injectEndpoints({
     }),
     getPost: buidler.query<GetPostResponse, GetPostRequest>({
       query: (id) => `/posts/${id}`,
-      providesTags: apiCacher.providesTagsWithList(['Post']),
     }),
     createPost: buidler.mutation<CreatePostResponse, CreatePostRequest>({
       query: (post) => ({
@@ -34,15 +32,8 @@ const postApi = baseApi.injectEndpoints({
         method: 'POST',
         body: post,
       }),
-      invalidatesTags: apiCacher.invalidatesTagsWithList(['Post']),
     }),
   }),
 });
 
-export const {
-  useGetPostsQuery,
-  useGetPostQuery,
-  useCreatePostMutation,
-  useGetPostsByUserQuery,
-} = postApi;
-export { postApi };
+export { api };

@@ -1,4 +1,4 @@
-export * from './postApi';
+export * from './enhancedPostApi';
 export type {
   CreatePostRequest,
   GetPostRequest,
