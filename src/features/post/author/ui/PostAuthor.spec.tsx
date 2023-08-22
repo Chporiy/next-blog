@@ -1,11 +1,12 @@
 import { rootReducer } from '~/app';
 
-import { userMock0 } from '~/tests/mocks';
+import { postMock0, userMock0 } from '~/tests/mocks';
 import { render, screen, waitFor } from '~/tests/utils';
 
 import { userApi } from '~/entities/user';
 
 import { convertDateToLocalDate, makeStore } from '~/shared/lib';
+import { Post } from '~/shared/model';
 
 import { Author } from './PostAuthor';
 
@@ -19,7 +20,7 @@ describe('<PostAuthor />', () => {
 
   describe('User is defined', () => {
     beforeEach(() => {
-      render(<Author userId={userMock0.id} date={date} />, {
+      render(<Author post={postMock0} />, {
         store,
       });
     });
@@ -47,7 +48,12 @@ describe('<PostAuthor />', () => {
 
   describe('User isn`t defined', () => {
     beforeEach(() => {
-      render(<Author userId={-1} date={date} />, { store });
+      const postWithoutUser: Post = {
+        ...postMock0,
+        userId: -1,
+      };
+
+      render(<Author post={postWithoutUser} />, { store });
     });
 
     it('should return "User not found"', () => {

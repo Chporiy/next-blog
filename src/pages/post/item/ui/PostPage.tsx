@@ -27,7 +27,7 @@ export const Page: AppProps['Component'] = () => {
     <ContentWrapper pb="8">
       <PostImage src={data.preview} alt={data.title} />
       <Box mt={8} px="12">
-        <PostAuthor userId={data.userId} date={data.date} />
+        <PostAuthor post={data} />
         <Box mt="3">
           <PostTitle>{data.title}</PostTitle>
         </Box>

@@ -14,7 +14,7 @@ type Props = {
 
 export const Preview = ({ post }: Props) => (
   <ContentWrapper p="4" alignItems="flex-start">
-    <PostAuthor userId={post.userId} date={post.date} />
+    <PostAuthor post={post} />
     <NextLink next={{ href: `${ROUTES.posts.id}/${post.id}` }}>
       <PostTitle marginTop="3">{post.title}</PostTitle>
     </NextLink>
