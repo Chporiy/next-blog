@@ -1,21 +1,25 @@
-type TagType = 'Post' | 'User';
+type TagType = 'Post' | 'User' | 'Comment';
 type CacheItem<Type, ID> = { type: Type; id: ID };
 type CacheList<Type, ID> = (CacheItem<Type, 'LIST'> | CacheItem<Type, ID>)[];
 
 /**
  * Inner function returned by `providesList` to be passed to the `provides` property of a query
  */
-type InnerProvidesList<Type> = <Result extends { id: unknown }>(
+type InnerProvidesList<Type extends TagType> = <Result extends { id: unknown }>(
   results: Result | Result[] | undefined,
 ) => CacheList<Type, Result['id']>;
 
-type InnerCacheByArgument<Type> = <ID, Result = undefined, Error = undefined>(
+type InnerCacheByArgument<Type extends TagType> = <
+  ID,
+  Result = undefined,
+  Error = undefined,
+>(
   result: Result,
   error: Error,
   id: ID,
 ) => readonly CacheItem<Type, ID>[];
 
-type InnerCacheByArgumentProperty<Type> = <
+type InnerCacheByArgumentProperty<Type extends TagType> = <
   Arguments extends { id: unknown },
   Result = undefined,
   Error = undefined,
