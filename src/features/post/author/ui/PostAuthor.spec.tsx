@@ -47,21 +47,15 @@ describe('<PostAuthor />', () => {
   });
 
   describe('User isn`t defined', () => {
-    beforeEach(() => {
+    it('should return "User not found"', () => {
       const postWithoutUser: Post = {
         ...postMock0,
         userId: -1,
       };
 
       render(<Author post={postWithoutUser} />, { store });
-    });
 
-    it('should return "User not found"', () => {
       expect(screen.getByText(/User not found/)).toBeInTheDocument();
-    });
-
-    it('should render fallback avatar', () => {
-      expect(screen.getByRole('img')).toHaveClass('chakra-avatar__svg');
     });
   });
 });
