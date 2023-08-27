@@ -1,15 +1,15 @@
 import { rootReducer } from '~/app';
 
-import { postMock0, userMock0 } from '~/tests/mocks';
+import { commentMock0, userMock0 } from '~/tests/mocks';
 import { render, screen, waitFor } from '~/tests/utils';
 
 import { userApi } from '~/entities/user';
 
-import { convertDateToLocalDate, makeStore } from '~/shared/lib';
+import { convertDateToLocalString, makeStore } from '~/shared/lib';
 
-import { Author } from './PostAuthor';
+import { Author } from './CommentAuthor';
 
-describe('<PostAuthor />', () => {
+describe('<CommentAuthor />', () => {
   const store = makeStore(rootReducer);
 
   beforeEach(async () => {
@@ -17,7 +17,7 @@ describe('<PostAuthor />', () => {
   });
 
   it('should render user first and last name', async () => {
-    render(<Author post={postMock0} />, {
+    render(<Author comment={commentMock0} />, {
       store,
     });
 
@@ -27,13 +27,13 @@ describe('<PostAuthor />', () => {
   });
 
   it('should render publication date', async () => {
-    render(<Author post={postMock0} />, {
+    render(<Author comment={commentMock0} />, {
       store,
     });
 
     await waitFor(() => {
       expect(
-        screen.getByText(convertDateToLocalDate(postMock0.date)),
+        screen.getByText(convertDateToLocalString(commentMock0.date)),
       ).toBeInTheDocument();
     });
   });

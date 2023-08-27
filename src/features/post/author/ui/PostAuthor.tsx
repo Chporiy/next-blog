@@ -11,6 +11,9 @@ type Props = {
 
 /**
  * A component for display post author
+ * @param {Props} props
+ * @param {Post} props.post
+ * @returns {ReactElement}
  */
 export const Author = ({ post }: Props) => (
   <EntityAuthor id={post.userId} slots={{ date: <PostDate post={post} /> }} />
