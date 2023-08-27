@@ -1,4 +1,5 @@
 export * from './convert-date-to-local-date/convertDateToLocalDate';
+export * from './convert-date-to-local-string/convertDateToLocalString';
 export * from './convert-file-image-to-base64/convertFileImageToBase64';
 export { makeStore } from './make-store/makeStore';
 export * from './redux-hooks/reduxHooks';
