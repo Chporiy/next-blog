@@ -4,6 +4,7 @@ import { rootReducer } from '~/app';
 
 import { postMock0, userMock0 } from '~/tests/mocks';
 import { render, screen, waitFor } from '~/tests/utils';
+import { getCommentsByPostForTest } from '~/tests/utils/get-comments-by-post-for-test/getCommentsByPostForTest';
 
 import { postApi } from '~/entities/post';
 import { userApi } from '~/entities/user';
@@ -19,7 +20,7 @@ describe('Page Post', () => {
   beforeEach(async () => {
     routerMock.push({
       pathname: '/posts/[id]',
-      query: { id: '0' },
+      query: { id: postMock0.id.toString() },
     });
 
     store.dispatch(postApi.endpoints.getPost.initiate(postMock0.id));
@@ -39,6 +40,20 @@ describe('Page Post', () => {
       expect(
         screen.getByText(convertDateToLocalDate(postMock0.date)),
       ).toBeInTheDocument();
+    });
+  });
+
+  it('should render post comments', async () => {
+    render(<Page />, { store });
+
+    const commentByPost = getCommentsByPostForTest(postMock0.id);
+
+    await waitFor(() => {
+      commentByPost.forEach((comment) => {
+        const element = screen.getByText(comment.body);
+
+        expect(element).toBeInTheDocument();
+      });
     });
   });
 });
