@@ -1,6 +1,6 @@
 import { postModel, useGetPostsByUserQuery } from '~/entities/post';
 
-import { PostList } from '../../list';
+import { PostList } from '../../base';
 
 interface Props {
   userId: number;

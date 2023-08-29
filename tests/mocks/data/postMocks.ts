@@ -16,7 +16,7 @@ export const postMock1: Post = {
   userId: userMock1.id,
   title: 'post title 1',
   body: 'post body 1',
-  date: '2022-01-29T00:00:00.000Z',
+  date: '2022-01-30T00:00:00.000Z',
   preview: 'https://loremflickr.com/640/480/food',
 };
 

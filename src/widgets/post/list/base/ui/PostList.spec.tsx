@@ -4,7 +4,7 @@ import { Post } from '~/shared/model';
 
 import { PostList } from './PostList';
 
-describe('<PostsList />', () => {
+describe('<PostList />', () => {
   const posts: Post[] = [
     {
       id: 1,
