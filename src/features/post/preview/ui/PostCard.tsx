@@ -12,7 +12,7 @@ type Props = {
   post: Post;
 };
 
-export const Preview = ({ post }: Props) => (
+export const Card = ({ post }: Props) => (
   <ContentWrapper p="4" alignItems="flex-start">
     <PostAuthor post={post} />
     <NextLink next={{ href: `${ROUTES.posts.id}/${post.id}` }}>

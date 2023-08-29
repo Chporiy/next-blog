@@ -1,1 +1,1 @@
-export { Preview as PostPreview } from './PostPreview';
+export { Card as PostCard } from './PostCard';
