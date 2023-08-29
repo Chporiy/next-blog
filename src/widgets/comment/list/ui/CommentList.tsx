@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const List = ({ comments }: Props) => (
-  <ChakraList spacing={2}>
+  <ChakraList spacing={4}>
     {comments.map((comment) => (
       <ListItem key={comment.id}>
         <CommentCard comment={comment} />

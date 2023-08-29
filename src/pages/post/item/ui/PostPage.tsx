@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Divider, Flex, Heading, Text } from '@chakra-ui/react';
 import { skipToken } from '@reduxjs/toolkit/dist/query';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
@@ -29,9 +29,9 @@ export const Page: AppProps['Component'] = () => {
 
   return (
     <ContentWrapper pb="8">
-      <Box pb="8">
-        <PostImage src={post.preview} alt={post.title} />
-        <Box mt="8" px="12">
+      <PostImage src={post.preview} alt={post.title} />
+      <Flex pt="8" direction="column" gap="6">
+        <Box px="12">
           <PostAuthor post={post} />
           <Box mt="3">
             <PostTitle>{post.title}</PostTitle>
@@ -40,8 +40,16 @@ export const Page: AppProps['Component'] = () => {
             <Text>{post.body}</Text>
           </Box>
         </Box>
-      </Box>
-      {isCommentsSuccessfulLoaded && <CommentList comments={comments} />}
+        <Divider />
+        <Box px="12">
+          <Heading as="h2" fontSize="2xl">
+            Comments
+          </Heading>
+          <Box mt="6">
+            {isCommentsSuccessfulLoaded && <CommentList comments={comments} />}
+          </Box>
+        </Box>
+      </Flex>
     </ContentWrapper>
   );
 };

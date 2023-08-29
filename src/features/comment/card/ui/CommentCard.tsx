@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const Card = ({ comment }: Props) => (
-  <ContentWrapper align="start">
+  <ContentWrapper align="start" p="4">
     <CommentAuthor comment={comment} />
     <Text mt="3">{comment.body}</Text>
   </ContentWrapper>

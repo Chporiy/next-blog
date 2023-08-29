@@ -56,4 +56,12 @@ describe('Page Post', () => {
       });
     });
   });
+
+  it('should render a titie for comment list', () => {
+    render(<Page />, { store });
+
+    const title = screen.getByText('Comments');
+
+    expect(title).toBeInTheDocument();
+  });
 });
