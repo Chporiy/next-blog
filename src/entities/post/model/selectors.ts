@@ -1,13 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
 
+import { sortByDescDate } from '~/shared/lib';
 import { Post } from '~/shared/model';
 
-const emptyArray = [];
+const emptyArray: Post[] = [];
 
 export const sortPostsByDescDate = createSelector(
   (result) => result.data,
-  (data: Post[]) =>
-    data
-      ? [...data].sort((a, b) => -1 * a.date.localeCompare(b.date))
-      : emptyArray,
+  (data: Post[]) => (data ? sortByDescDate([...data]) : emptyArray),
 );

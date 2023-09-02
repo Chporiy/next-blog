@@ -4,6 +4,7 @@ export * from './convert-file-image-to-base64/convertFileImageToBase64';
 export { makeStore } from './make-store/makeStore';
 export * from './redux-hooks/reduxHooks';
 export * from './validation';
+export * from './sort-by-desc-date/sortByDescDate';
 
 export type {
   AppStore,
