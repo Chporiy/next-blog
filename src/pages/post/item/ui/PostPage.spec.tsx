@@ -46,10 +46,10 @@ describe('Page Post', () => {
   it('should render post comments', async () => {
     render(<Page />, { store });
 
-    const commentByPost = getCommentsByPostForTest(postMock0.id);
+    const commentsByPost = getCommentsByPostForTest(postMock0.id);
 
     await waitFor(() => {
-      commentByPost.forEach((comment) => {
+      commentsByPost.forEach((comment) => {
         const element = screen.getByText(comment.body);
 
         expect(element).toBeInTheDocument();
