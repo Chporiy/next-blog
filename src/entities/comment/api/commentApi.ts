@@ -1,6 +1,8 @@
 import { baseApi } from '~/shared/api';
 
 import {
+  CreateCommentRequest,
+  CreateCommentResponse,
   GetCommentsByPostRequest,
   GetCommentsByPostResponse,
   GetCommentsByUserRequest,
@@ -21,6 +23,16 @@ const api = baseApi.injectEndpoints({
       GetCommentsByUserRequest
     >({
       query: (id) => `/comments?userId=${id}`,
+    }),
+    createComment: builder.mutation<
+      CreateCommentResponse,
+      CreateCommentRequest
+    >({
+      query: (comment) => ({
+        url: '/comments',
+        method: 'POST',
+        body: comment,
+      }),
     }),
   }),
 });

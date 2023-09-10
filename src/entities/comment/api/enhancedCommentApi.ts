@@ -6,14 +6,20 @@ const commentApi = api.enhanceEndpoints({
   addTagTypes: ['Comment'],
   endpoints: {
     getCommentsByPost: {
-      providesTags: apiCacher.cacheByIdArgument(['Comment']),
+      providesTags: apiCacher.providesTagsWithList(['Comment']),
     },
     getCommentsByUser: {
-      providesTags: apiCacher.cacheByIdArgument(['Comment']),
+      providesTags: apiCacher.providesTagsWithList(['Comment']),
+    },
+    createComment: {
+      invalidatesTags: apiCacher.invalidatesTagsWithList(['Comment']),
     },
   },
 });
 
-export const { useGetCommentsByPostQuery, useGetCommentsByUserQuery } =
-  commentApi;
+export const {
+  useGetCommentsByPostQuery,
+  useGetCommentsByUserQuery,
+  useCreateCommentMutation,
+} = commentApi;
 export { commentApi };

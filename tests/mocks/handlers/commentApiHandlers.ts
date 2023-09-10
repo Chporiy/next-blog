@@ -21,4 +21,12 @@ export const commentApiHandlers = [
 
     return res(ctx.json(allCommentMocks));
   }),
+  rest.post('/comments', async (req, res, ctx) => {
+    const comment = {
+      ...(await req.json()),
+      id: 2,
+    };
+
+    return res(ctx.json(comment));
+  }),
 ];

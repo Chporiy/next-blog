@@ -64,4 +64,16 @@ describe('Page Post', () => {
 
     expect(title).toBeInTheDocument();
   });
+
+  it('should render create comment form', () => {
+    render(<Page />, { store });
+
+    const form = document.querySelector('form');
+    const formBodyPlaceholder = screen.getByPlaceholderText(
+      'Add to the discussion',
+    );
+
+    expect(form).toBeInTheDocument();
+    expect(formBodyPlaceholder).toBeInTheDocument();
+  });
 });
