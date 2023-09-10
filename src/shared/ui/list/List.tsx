@@ -2,7 +2,7 @@ import { List as ChakraList, ListItem } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 
 interface Item {
-  id: number;
+  id: string;
 }
 
 interface Props<T extends Item> {

@@ -1,9 +1,11 @@
 import { postModel, useGetPostsByUserQuery } from '~/entities/post';
 
+import { User } from '~/shared/model';
+
 import { PostList } from '../../base';
 
 interface Props {
-  userId: number;
+  userId: User['id'];
 }
 
 export const PostsByUser = ({ userId }: Props) => {

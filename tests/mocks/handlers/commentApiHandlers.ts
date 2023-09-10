@@ -10,13 +10,13 @@ export const commentApiHandlers = [
     const postId = req.url.searchParams.get('postId');
 
     if (postId) {
-      return res(ctx.json(getCommentsByPostForTest(Number(postId))));
+      return res(ctx.json(getCommentsByPostForTest(postId)));
     }
 
     const userId = req.url.searchParams.get('userId');
 
     if (userId) {
-      return res(ctx.json(getCommentsByUserForTest(Number(userId))));
+      return res(ctx.json(getCommentsByUserForTest(userId)));
     }
 
     return res(ctx.json(allCommentMocks));

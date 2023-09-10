@@ -16,7 +16,7 @@ import { ContentWrapper, Layout } from '~/shared/ui';
 
 export const Page: AppProps['Component'] = () => {
   const router = useRouter();
-  const postId = Number(router.query.id);
+  const postId = String(router.query.id);
   const { data: post, isSuccess } = useGetPostQuery(postId);
 
   useGetUsersQuery();

@@ -19,7 +19,7 @@ export const useCurrentUser = () => {
 
   useEffect(() => {
     if (decodedToken) {
-      getUser(Number(decodedToken.sub));
+      getUser(decodedToken.sub);
     }
   }, [getUser, decodedToken]);
 

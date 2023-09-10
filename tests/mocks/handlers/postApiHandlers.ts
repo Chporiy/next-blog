@@ -8,7 +8,7 @@ export const postApiHandlers = [
     const userId = req.url.searchParams.get('userId');
 
     if (userId) {
-      return res(ctx.json(getUserPostsForTest(Number(userId))));
+      return res(ctx.json(getUserPostsForTest(userId)));
     }
 
     return res(ctx.json(allPostMocks));
