@@ -10,6 +10,7 @@ import { CreateCommentForm } from '~/features/comment';
 import { PostAuthor } from '~/features/post';
 
 import { PostImage, PostTitle, useGetPostQuery } from '~/entities/post';
+import { userModel } from '~/entities/user';
 
 import { ContentWrapper, Layout } from '~/shared/ui';
 
@@ -17,6 +18,7 @@ export const Page: AppProps['Component'] = () => {
   const router = useRouter();
   const postId = String(router.query.id);
   const { data: post, isSuccess } = useGetPostQuery(postId);
+  const user = userModel.selectors.useCurrentUser();
 
   if (!isSuccess) return null;
 
@@ -39,7 +41,7 @@ export const Page: AppProps['Component'] = () => {
             Comments
           </Heading>
           <Flex mt="6" direction="column" gap="6">
-            <CreateCommentForm postId={postId} />
+            {user && <CreateCommentForm postId={postId} />}
             <CommentsByPost postId={postId} />
           </Flex>
         </Box>

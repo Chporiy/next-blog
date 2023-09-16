@@ -3,7 +3,7 @@ import routerMock from 'next-router-mock';
 import { rootReducer } from '~/app';
 
 import { postMock0, userMock0 } from '~/tests/mocks';
-import { render, screen, waitFor } from '~/tests/utils';
+import { render, screen, signInForTest, waitFor } from '~/tests/utils';
 import { getPrimaryCommentsByPostForTest } from '~/tests/utils/get-primary-comments-by-post-for-test/getPrimaryCommentsByPostForTest';
 
 import { postApi } from '~/entities/post';
@@ -65,15 +65,18 @@ describe('Page Post', () => {
     expect(title).toBeInTheDocument();
   });
 
-  it('should render create comment form', () => {
+  it('should render create comment form if user is signed in', async () => {
     render(<Page />, { store });
 
-    const form = document.querySelector('form');
-    const formBodyPlaceholder = screen.getByPlaceholderText(
-      'Add to the discussion',
-    );
+    await signInForTest(store);
+    await waitFor(() => {
+      const form = document.querySelector('form');
+      const formBodyPlaceholder = screen.getByPlaceholderText(
+        'Add to the discussion',
+      );
 
-    expect(form).toBeInTheDocument();
-    expect(formBodyPlaceholder).toBeInTheDocument();
+      expect(form).toBeInTheDocument();
+      expect(formBodyPlaceholder).toBeInTheDocument();
+    });
   });
 });
