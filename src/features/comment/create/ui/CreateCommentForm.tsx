@@ -26,8 +26,10 @@ export const Form = ({ postId }: Props) => {
       const comment: CreateCommentRequest = {
         ...values,
         postId,
+        commentId: '',
         date: new Date().toISOString(),
         userId: user.id,
+        childrenCommentsAmount: 0,
       };
 
       const result = await create(comment).unwrap();
