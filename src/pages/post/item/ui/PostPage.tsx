@@ -10,7 +10,6 @@ import { CreateCommentForm } from '~/features/comment';
 import { PostAuthor } from '~/features/post';
 
 import { PostImage, PostTitle, useGetPostQuery } from '~/entities/post';
-import { useGetUsersQuery } from '~/entities/user';
 
 import { ContentWrapper, Layout } from '~/shared/ui';
 
@@ -18,8 +17,6 @@ export const Page: AppProps['Component'] = () => {
   const router = useRouter();
   const postId = String(router.query.id);
   const { data: post, isSuccess } = useGetPostQuery(postId);
-
-  useGetUsersQuery();
 
   if (!isSuccess) return null;
 
