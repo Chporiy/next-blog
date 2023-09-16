@@ -23,5 +23,7 @@ export const List = ({ commentId }: Props) => {
     return null;
   }
 
-  return <BaseCommentList comments={comments} />;
+  return (
+    <BaseCommentList comments={comments} slots={{ innerCommentsList: List }} />
+  );
 };
