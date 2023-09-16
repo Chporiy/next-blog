@@ -1,26 +1,38 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
+import { CommentIcon, useGetCommentsByUserQuery } from '~/entities/comment';
 import { PostIcon, useGetPostsByUserQuery } from '~/entities/post';
 
 import { User } from '~/shared/model';
 
-import { getPostAmount } from '../lib';
+import { getEntitiesAmount } from '../lib';
+
+import { Activity } from './activity/Activity';
 
 interface Props {
   userId: User['id'];
 }
 
 export const UserActivityInfo = ({ userId }: Props) => {
-  const { data: posts, isSuccess } = useGetPostsByUserQuery(userId);
-
-  if (!isSuccess) return null;
-
-  const postAmount = getPostAmount(posts);
+  const { data: posts, isSuccess: isPostsSuccess } =
+    useGetPostsByUserQuery(userId);
+  const { data: comments, isSuccess: isCommentsSuccess } =
+    useGetCommentsByUserQuery(userId);
 
   return (
-    <Flex alignItems="center" gap="2">
-      <PostIcon />
-      <Text>{postAmount} published posts</Text>
+    <Flex direction="column" gap="2">
+      {isPostsSuccess && (
+        <Activity
+          icon={<PostIcon />}
+          text={`${getEntitiesAmount(posts)} published posts`}
+        />
+      )}
+      {isCommentsSuccess && (
+        <Activity
+          icon={<CommentIcon />}
+          text={`${getEntitiesAmount(comments)} published comments`}
+        />
+      )}
     </Flex>
   );
 };

@@ -1,1 +1,1 @@
-export * from './getPostAmount';
+export * from './getEntitiesAmount';

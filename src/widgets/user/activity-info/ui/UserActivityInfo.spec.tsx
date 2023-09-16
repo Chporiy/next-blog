@@ -1,5 +1,6 @@
 import { userMock0 } from '~/tests/mocks';
 import { getUserPostsForTest, render, screen } from '~/tests/utils';
+import { getCommentsByUserForTest } from '~/tests/utils/get-comments-by-user-for-test/getPrimaryCommentsByUserForTest';
 
 import { UserActivityInfo } from './UserActivityInfo';
 
@@ -15,5 +16,18 @@ describe('<UserActivityInfo />', () => {
     );
 
     expect(publishedPosts).toBeInTheDocument();
+  });
+
+  it('should render a published comment amount', async () => {
+    render(<UserActivityInfo userId={userMock0.id} />);
+
+    const userComments = getCommentsByUserForTest(userMock0.id);
+    const commentsAmount = userComments.length;
+
+    const publishedComments = await screen.findByText(
+      `${commentsAmount} published comments`,
+    );
+
+    expect(publishedComments).toBeInTheDocument();
   });
 });
