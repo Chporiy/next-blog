@@ -22,7 +22,10 @@ export const Card = ({
       <Text mt="3">{comment.body}</Text>
     </ContentWrapper>
     <Box mt="4" pl="4">
-      <slots.commentsList commentId={comment.id} />
+      <slots.commentsList
+        commentId={comment.id}
+        childrenCommentsAmount={comment.childrenCommentsAmount}
+      />
     </Box>
   </>
 );
