@@ -1,5 +1,5 @@
 import { commentMock0, userMock0 } from '~/tests/mocks';
-import { render, screen } from '~/tests/utils';
+import { render, screen, signInForTest } from '~/tests/utils';
 import { getCommentsByCommentsForTest } from '~/tests/utils/get-comments-by-comments-for-test/getCommentsByCommentsForTest';
 
 import { List } from '~/shared/ui';
@@ -7,6 +7,10 @@ import { List } from '~/shared/ui';
 import { Card } from './CommentCard';
 
 describe('<CommentCard>', () => {
+  const getReplyButton = async () =>
+    screen.findByRole('button', { name: 'Reply' });
+  const getCancelButton = () => screen.getByRole('button', { name: 'Cancel' });
+
   it('should render a comment author', async () => {
     render(<Card comment={commentMock0} />);
 
@@ -42,5 +46,47 @@ describe('<CommentCard>', () => {
 
       expect(innerCommentBody).toBeInTheDocument();
     });
+  });
+
+  it('should render a reply button if user is signed in', async () => {
+    const { store } = render(<Card comment={commentMock0} />);
+
+    await signInForTest(store);
+
+    const button = await getReplyButton();
+
+    expect(button).toBeInTheDocument();
+  });
+
+  it('should render the create comment form by click on the reply button', async () => {
+    const { store, user } = render(<Card comment={commentMock0} />);
+
+    await signInForTest(store);
+
+    const button = await getReplyButton();
+
+    await user.click(button);
+
+    const form = document.querySelector('form');
+    const formBodyPlaceholder = screen.getByPlaceholderText('Reply...');
+
+    expect(form).toBeInTheDocument();
+    expect(formBodyPlaceholder).toBeInTheDocument();
+  });
+
+  it('should close the create comment form by click on the cancel button', async () => {
+    const { store, user } = render(<Card comment={commentMock0} />);
+
+    await signInForTest(store);
+
+    await user.click(await getReplyButton());
+
+    const form = document.querySelector('form');
+
+    expect(form).toBeInTheDocument();
+
+    await user.click(getCancelButton());
+
+    expect(form).not.toBeInTheDocument();
   });
 });

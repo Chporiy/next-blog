@@ -1,5 +1,3 @@
-import { skipToken } from '@reduxjs/toolkit/dist/query';
-
 import { commentModel, useGetCommentsByCommentQuery } from '~/entities/comment';
 
 import { Comment } from '~/shared/model';
@@ -8,12 +6,11 @@ import { BaseCommentList } from '../../base';
 
 interface Props {
   commentId: Comment['id'];
-  childrenCommentsAmount: Comment['childrenCommentsAmount'];
 }
 
-export const List = ({ commentId, childrenCommentsAmount }: Props) => {
+export const List = ({ commentId }: Props) => {
   const { data: comments, isSuccess } = useGetCommentsByCommentQuery(
-    childrenCommentsAmount !== 0 ? commentId : skipToken,
+    commentId,
     {
       selectFromResult: (result) => ({
         ...result,
