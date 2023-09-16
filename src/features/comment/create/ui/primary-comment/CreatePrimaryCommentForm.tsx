@@ -11,7 +11,7 @@ import { userModel } from '~/entities/user';
 import { Post } from '~/shared/model';
 import { TextareaField } from '~/shared/ui';
 
-import { initialValues, schema } from '../model';
+import { initialValues, schema } from '../../model';
 
 interface Props {
   postId: Post['id'];

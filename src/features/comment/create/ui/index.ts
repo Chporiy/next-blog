@@ -1,1 +1,1 @@
-export { Form as CreateCommentForm } from './CreateCommentForm';
+export { Form as CreatePrimaryCommentForm } from './primary-comment/CreatePrimaryCommentForm';

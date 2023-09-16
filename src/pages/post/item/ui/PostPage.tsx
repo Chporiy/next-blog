@@ -6,7 +6,7 @@ import React from 'react';
 import { CommentsByPost } from '~/widgets/comment';
 import { Header } from '~/widgets/header';
 
-import { CreateCommentForm } from '~/features/comment';
+import { CreatePrimaryCommentForm } from '~/features/comment';
 import { PostAuthor } from '~/features/post';
 
 import { PostImage, PostTitle, useGetPostQuery } from '~/entities/post';
@@ -41,7 +41,7 @@ export const Page: AppProps['Component'] = () => {
             Comments
           </Heading>
           <Flex mt="6" direction="column" gap="6">
-            {user && <CreateCommentForm postId={postId} />}
+            {user && <CreatePrimaryCommentForm postId={postId} />}
             <CommentsByPost postId={postId} />
           </Flex>
         </Box>

@@ -3,9 +3,9 @@ import { UserEvent } from '@testing-library/user-event/dist/types/setup/setup';
 import { commentMock0, postMock0 } from '~/tests/mocks';
 import { render, screen, signInForTest, waitFor } from '~/tests/utils';
 
-import { Form } from './CreateCommentForm';
+import { Form } from './CreatePrimaryCommentForm';
 
-describe('<CreateCommentForm />', () => {
+describe('<CreatePrimaryCommentForm />', () => {
   const getBodyField = () => screen.getByRole('textbox', { name: 'Content' });
   const getSubmitButton = () => screen.getByRole('button', { name: 'Submit' });
 
