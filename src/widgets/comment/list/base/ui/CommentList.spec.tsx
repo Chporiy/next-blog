@@ -1,15 +1,13 @@
-import { commentMock0, commentMock1 } from '~/tests/mocks';
+import { allCommentMocks } from '~/tests/mocks';
 import { render, screen } from '~/tests/utils';
 
 import { List } from './CommentList';
 
 describe('<CommentList />', () => {
-  it('should render  comments list', () => {
-    const comments = [commentMock0, commentMock1];
+  it('should render comments list', () => {
+    render(<List comments={allCommentMocks} />);
 
-    render(<List comments={comments} />);
-
-    comments.forEach((comment) => {
+    allCommentMocks.forEach((comment) => {
       const element = screen.getByText(comment.body);
 
       expect(element).toBeInTheDocument();
