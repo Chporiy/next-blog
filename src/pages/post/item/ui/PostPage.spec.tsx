@@ -4,7 +4,7 @@ import { rootReducer } from '~/app';
 
 import { postMock0, userMock0 } from '~/tests/mocks';
 import { render, screen, waitFor } from '~/tests/utils';
-import { getCommentsByPostForTest } from '~/tests/utils/get-comments-by-post-for-test/getCommentsByPostForTest';
+import { getPrimaryCommentsByPostForTest } from '~/tests/utils/get-primary-comments-by-post-for-test/getPrimaryCommentsByPostForTest';
 
 import { postApi } from '~/entities/post';
 import { userApi } from '~/entities/user';
@@ -46,7 +46,7 @@ describe('Page Post', () => {
   it('should render post comments', async () => {
     render(<Page />, { store });
 
-    const commentsByPost = getCommentsByPostForTest(postMock0.id);
+    const commentsByPost = getPrimaryCommentsByPostForTest(postMock0.id);
 
     await waitFor(() => {
       commentsByPost.forEach((comment) => {
