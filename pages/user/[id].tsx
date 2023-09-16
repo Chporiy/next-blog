@@ -16,9 +16,7 @@ export const getStaticProps: GetStaticProps = nextReduxWrapper.getStaticProps(
   (store) =>
     async ({ params }) => {
       if (typeof params.id === 'string') {
-        store.dispatch(
-          postApi.endpoints.getPostsByUser.initiate(Number(params.id)),
-        );
+        store.dispatch(postApi.endpoints.getPostsByUser.initiate(params.id));
         store.dispatch(userApi.endpoints.getUsers.initiate());
       }
 

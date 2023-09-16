@@ -4,6 +4,7 @@ import { nextReduxWrapper, rootReducer } from '~/app';
 
 import { PostPage } from '~/pages/post';
 
+import { commentApi } from '~/entities/comment';
 import { postApi } from '~/entities/post';
 import { userApi } from '~/entities/user';
 
@@ -16,8 +17,11 @@ export const getStaticProps: GetStaticProps = nextReduxWrapper.getStaticProps(
   (store) =>
     async ({ params }) => {
       if (typeof params.id === 'string') {
-        store.dispatch(postApi.endpoints.getPost.initiate(Number(params.id)));
+        store.dispatch(postApi.endpoints.getPost.initiate(params.id));
         store.dispatch(userApi.endpoints.getUsers.initiate());
+        store.dispatch(
+          commentApi.endpoints.getPrimaryCommentsByPost.initiate(params.id),
+        );
       }
 
       await Promise.all(store.dispatch(baseApiUtil.getRunningQueriesThunk()));
