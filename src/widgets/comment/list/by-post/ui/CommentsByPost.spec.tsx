@@ -11,7 +11,7 @@ describe('<CommentsByPost />', () => {
 
     const commentsByPost = getPrimaryCommentsByPostForTest(postMock0.id);
 
-    await waitFor(async () => {
+    await waitFor(() => {
       commentsByPost.forEach((comment) => {
         const element = screen.getByText(comment.body);
 

@@ -60,10 +60,12 @@ describe('Page User', () => {
 
     const userPosts = getUserPostsForTest(userMock0.id);
 
-    userPosts.forEach(async (post) => {
-      const postTitle = await screen.findByText(post.title);
+    await waitFor(() => {
+      userPosts.forEach((post) => {
+        const postTitle = screen.getByText(post.title);
 
-      expect(postTitle).toBeInTheDocument();
+        expect(postTitle).toBeInTheDocument();
+      });
     });
   });
 
