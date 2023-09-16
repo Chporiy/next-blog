@@ -1,7 +1,8 @@
 import { rest } from 'msw';
 
-import { getCommentsByPostForTest } from '~/tests/utils/get-comments-by-post-for-test/getCommentsByPostForTest';
-import { getCommentsByUserForTest } from '~/tests/utils/get-comments-by-user-for-test/getCommentsByUserForTest';
+import { getCommentsByCommentsForTest } from '~/tests/utils/get-comments-by-comments-for-test/getCommentsByCommentsForTest';
+import { getCommentsByUserForTest } from '~/tests/utils/get-comments-by-user-for-test/getPrimaryCommentsByUserForTest';
+import { getPrimaryCommentsByPostForTest } from '~/tests/utils/get-primary-comments-by-post-for-test/getPrimaryCommentsByPostForTest';
 
 import { allCommentMocks } from '../data';
 
@@ -10,7 +11,7 @@ export const commentApiHandlers = [
     const postId = req.url.searchParams.get('postId');
 
     if (postId) {
-      return res(ctx.json(getCommentsByPostForTest(postId)));
+      return res(ctx.json(getPrimaryCommentsByPostForTest(postId)));
     }
 
     const userId = req.url.searchParams.get('userId');
@@ -28,5 +29,10 @@ export const commentApiHandlers = [
     };
 
     return res(ctx.json(comment));
+  }),
+  rest.get('/comments/:commentId/comments', (req, res, ctx) => {
+    const commentId = req.params.commentId.toString();
+
+    return res(ctx.json(getCommentsByCommentsForTest(commentId)));
   }),
 ];

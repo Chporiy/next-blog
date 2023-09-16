@@ -3,6 +3,8 @@ import { baseApi } from '~/shared/api';
 import {
   CreateCommentRequest,
   CreateCommentResponse,
+  GetCommentsByComemntRequest,
+  GetCommentsByCommentResponse,
   GetCommentsByPostRequest,
   GetCommentsByPostResponse,
   GetCommentsByUserRequest,
@@ -12,11 +14,11 @@ import {
 const api = baseApi.injectEndpoints({
   overrideExisting: true,
   endpoints: (builder) => ({
-    getCommentsByPost: builder.query<
+    getPrimaryCommentsByPost: builder.query<
       GetCommentsByPostResponse,
       GetCommentsByPostRequest
     >({
-      query: (id) => `/comments?postId=${id}`,
+      query: (id) => `/comments?postId=${id}&commentId=`,
     }),
     getCommentsByUser: builder.query<
       GetCommentsByUserResponse,
@@ -33,6 +35,12 @@ const api = baseApi.injectEndpoints({
         method: 'POST',
         body: comment,
       }),
+    }),
+    getCommentsByComment: builder.query<
+      GetCommentsByCommentResponse,
+      GetCommentsByComemntRequest
+    >({
+      query: (id) => `/comments/${id}/comments`,
     }),
   }),
 });

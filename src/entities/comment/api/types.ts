@@ -8,3 +8,6 @@ export type GetCommentsByUserResponse = Comment[];
 
 export type CreateCommentRequest = Omit<Comment, 'id'>;
 export type CreateCommentResponse = Comment;
+
+export type GetCommentsByComemntRequest = Comment['id'];
+export type GetCommentsByCommentResponse = Comment[];
