@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Tab } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -6,8 +6,8 @@ interface Props {
   text: string;
 }
 export const Activity = ({ icon, text }: Props) => (
-  <Flex gap="2" alignItems="center">
+  <Tab p="2" gap="2" justifyContent="start">
     {icon}
     {text}
-  </Flex>
+  </Tab>
 );

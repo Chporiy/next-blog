@@ -3,7 +3,14 @@ import routerMock from 'next-router-mock';
 import { rootReducer } from '~/app';
 
 import { userMock0 } from '~/tests/mocks';
-import { act, getUserPostsForTest, render, screen } from '~/tests/utils';
+import {
+  act,
+  getUserPostsForTest,
+  render,
+  screen,
+  waitFor,
+} from '~/tests/utils';
+import { getCommentsByUserForTest } from '~/tests/utils/get-comments-by-user-for-test/getPrimaryCommentsByUserForTest';
 
 import { userApi } from '~/entities/user';
 
@@ -71,5 +78,31 @@ describe('Page User', () => {
     );
 
     expect(publishedPosts).toBeInTheDocument();
+  });
+
+  it('should render user comments', async () => {
+    const { user } = render(<Page />, { store });
+    const commentsByUser = getCommentsByUserForTest(userMock0.id);
+
+    commentsByUser.forEach((comment) => {
+      const element = screen.queryByText(comment.body);
+
+      expect(element).toBeNull();
+    });
+
+    const commentsAmount = commentsByUser.length;
+    const userCommentsTab = await screen.findByText(
+      `${commentsAmount} published comments`,
+    );
+
+    await user.click(userCommentsTab);
+
+    await waitFor(() => {
+      commentsByUser.forEach((comment) => {
+        const element = screen.getByText(comment.body);
+
+        expect(element).toBeInTheDocument();
+      });
+    });
   });
 });

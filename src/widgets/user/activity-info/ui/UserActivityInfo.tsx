@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { TabList } from '@chakra-ui/react';
 
 import { CommentIcon, useGetCommentsByUserQuery } from '~/entities/comment';
 import { PostIcon, useGetPostsByUserQuery } from '~/entities/post';
@@ -20,7 +20,7 @@ export const UserActivityInfo = ({ userId }: Props) => {
     useGetCommentsByUserQuery(userId);
 
   return (
-    <Flex direction="column" gap="2">
+    <TabList>
       {isPostsSuccess && (
         <Activity
           icon={<PostIcon />}
@@ -33,6 +33,6 @@ export const UserActivityInfo = ({ userId }: Props) => {
           text={`${getEntitiesAmount(comments)} published comments`}
         />
       )}
-    </Flex>
+    </TabList>
   );
 };

@@ -1,7 +1,8 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Flex, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
+import { CommentsByUser } from '~/widgets/comment';
 import { Header } from '~/widgets/header';
 import { PostsByUser } from '~/widgets/post';
 import { UserActivityInfo } from '~/widgets/user';
@@ -23,7 +24,15 @@ export const Page: AppProps['Component'] = () => {
         <UserAvatar user={user} size="2xl" />
         <UserFullname user={user} mt="4" fontWeight="bold" fontSize="4xl" />
       </ContentWrapper>
-      <Flex mt="4" gap="4" justifyContent="space-between">
+      <Flex
+        as={Tabs}
+        isLazy
+        colorScheme="teal"
+        orientation="vertical"
+        mt="4"
+        gap="4"
+        justifyContent="space-between"
+      >
         <ContentWrapper
           p="4"
           width="full"
@@ -33,9 +42,14 @@ export const Page: AppProps['Component'] = () => {
         >
           <UserActivityInfo userId={user.id} />
         </ContentWrapper>
-        <Box width="full">
-          <PostsByUser userId={user.id} />
-        </Box>
+        <TabPanels width="full">
+          <TabPanel p="0">
+            <PostsByUser userId={user.id} />
+          </TabPanel>
+          <TabPanel p="0">
+            <CommentsByUser userId={user.id} />
+          </TabPanel>
+        </TabPanels>
       </Flex>
     </>
   );
