@@ -80,9 +80,7 @@ export const Form = ({ postId, commentId, close }: Props) => {
             <Button type="submit" colorScheme="teal" isDisabled={isSubmitting}>
               Submit
             </Button>
-            <Button colorScheme="teal" onClick={() => onClose(handleReset)}>
-              Cancel
-            </Button>
+            <Button onClick={() => onClose(handleReset)}>Cancel</Button>
           </ButtonGroup>
         </FormikForm>
       )}
