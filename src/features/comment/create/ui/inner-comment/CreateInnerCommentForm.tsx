@@ -2,7 +2,10 @@ import { ButtonGroup } from '@chakra-ui/react';
 import { Field } from 'formik';
 import { useEffect } from 'react';
 
-import { useCreateCommentMutation } from '~/entities/comment';
+import {
+  useCreateCommentMutation,
+  useUpdateParentCommentMutation,
+} from '~/entities/comment';
 
 import { Comment, Post } from '~/shared/model';
 import { TextareaField } from '~/shared/ui';
@@ -19,9 +22,19 @@ interface Props {
 }
 
 export const Form = ({ postId, commentId, close }: Props) => {
+  const [updateParentComment] = useUpdateParentCommentMutation();
   const [, { isSuccess }] = useCreateCommentMutation({
     fixedCacheKey: getFixedCacheKey(commentId),
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      updateParentComment({
+        id: commentId,
+        childrenCommentsAmount: 1,
+      });
+    }
+  }, [commentId, isSuccess, updateParentComment]);
 
   useEffect(() => {
     if (isSuccess) {

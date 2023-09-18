@@ -3,12 +3,14 @@ import { baseApi } from '~/shared/api';
 import {
   CreateCommentRequest,
   CreateCommentResponse,
-  GetCommentsByComemntRequest,
+  GetCommentsByCommentRequest,
   GetCommentsByCommentResponse,
   GetCommentsByPostRequest,
   GetCommentsByPostResponse,
   GetCommentsByUserRequest,
   GetCommentsByUserResponse,
+  UpdateParentCommentRequest,
+  UpdateParentCommentResponse,
 } from './types';
 
 const api = baseApi.injectEndpoints({
@@ -38,9 +40,21 @@ const api = baseApi.injectEndpoints({
     }),
     getCommentsByComment: builder.query<
       GetCommentsByCommentResponse,
-      GetCommentsByComemntRequest
+      GetCommentsByCommentRequest
     >({
       query: (id) => `/comments/${id}/comments`,
+    }),
+    updateParentComment: builder.mutation<
+      UpdateParentCommentResponse,
+      UpdateParentCommentRequest
+    >({
+      query: ({ id, childrenCommentsAmount }) => ({
+        url: `/comments/${id}`,
+        method: 'PATCH',
+        body: {
+          childrenCommentsAmount,
+        },
+      }),
     }),
   }),
 });

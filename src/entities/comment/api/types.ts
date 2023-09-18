@@ -9,5 +9,11 @@ export type GetCommentsByUserResponse = Comment[];
 export type CreateCommentRequest = Omit<Comment, 'id'>;
 export type CreateCommentResponse = Comment;
 
-export type GetCommentsByComemntRequest = Comment['id'];
+export type GetCommentsByCommentRequest = Comment['id'];
 export type GetCommentsByCommentResponse = Comment[];
+
+export type UpdateParentCommentRequest = Pick<
+  Comment,
+  'id' | 'childrenCommentsAmount'
+>;
+export type UpdateParentCommentResponse = Comment;

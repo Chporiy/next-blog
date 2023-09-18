@@ -17,6 +17,9 @@ const commentApi = api.enhanceEndpoints({
     getCommentsByComment: {
       providesTags: apiCacher.providesTagsWithList(['Comment']),
     },
+    updateParentComment: {
+      invalidatesTags: apiCacher.cacheByIdArgumentProperty(['Comment']),
+    },
   },
 });
 
@@ -25,5 +28,6 @@ export const {
   useGetCommentsByUserQuery,
   useCreateCommentMutation,
   useGetCommentsByCommentQuery,
+  useUpdateParentCommentMutation,
 } = commentApi;
 export { commentApi };

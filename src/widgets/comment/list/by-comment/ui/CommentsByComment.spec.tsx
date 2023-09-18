@@ -6,7 +6,12 @@ import { List } from './CommentsByComment';
 
 describe('<CommentsByComemnt />', () => {
   it('should render comments by a comment', async () => {
-    render(<List commentId={commentMock0.id} />);
+    render(
+      <List
+        commentId={commentMock0.id}
+        childrenCommentsAmount={commentMock0.childrenCommentsAmount}
+      />,
+    );
 
     const commentsByComment = getCommentsByCommentsForTest(commentMock0.id);
 
