@@ -23,7 +23,7 @@ interface Props {
 
 export const Form = ({ postId, commentId, close }: Props) => {
   const [updateParentComment] = useUpdateParentCommentMutation();
-  const [, { isSuccess }] = useCreateCommentMutation({
+  const [, { isSuccess, reset }] = useCreateCommentMutation({
     fixedCacheKey: getFixedCacheKey(commentId),
   });
 
@@ -39,8 +39,9 @@ export const Form = ({ postId, commentId, close }: Props) => {
   useEffect(() => {
     if (isSuccess) {
       close();
+      reset();
     }
-  }, [isSuccess, close]);
+  }, [isSuccess, close, reset]);
 
   return (
     <CreateCommentBaseForm postId={postId} commentId={commentId}>
