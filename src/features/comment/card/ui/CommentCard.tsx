@@ -31,7 +31,7 @@ export const Card = ({
 
   return (
     <>
-      <ContentWrapper align="start" p="4">
+      <ContentWrapper align="start" p="4" shadow="base">
         <CommentAuthor comment={comment} />
         <Text mt="3">{comment.body}</Text>
         {user && (
@@ -49,7 +49,7 @@ export const Card = ({
           />
         </Box>
       )}
-      <Box mt="4" pl="4">
+      <Box mt="4" pl="8">
         <slots.commentsList commentId={comment.id} />
       </Box>
     </>
