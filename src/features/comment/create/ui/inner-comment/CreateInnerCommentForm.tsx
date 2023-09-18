@@ -1,24 +1,16 @@
-import { Button, ButtonGroup } from '@chakra-ui/react';
-import {
-  Field,
-  Formik,
-  FormikConfig,
-  Form as FormikForm,
-  FormikHandlers,
-  FormikHelpers,
-} from 'formik';
-import { useCallback } from 'react';
+import { ButtonGroup } from '@chakra-ui/react';
+import { Field } from 'formik';
+import { useEffect } from 'react';
 
-import {
-  CreateCommentRequest,
-  useCreateCommentMutation,
-} from '~/entities/comment';
-import { userModel } from '~/entities/user';
+import { useCreateCommentMutation } from '~/entities/comment';
 
 import { Comment, Post } from '~/shared/model';
 import { TextareaField } from '~/shared/ui';
 
-import { initialValues, schema } from '../../model';
+import { getFixedCacheKey } from '../../lib/getFixedCacheKey';
+import { CreateCommentBaseForm } from '../base-form/CreateCommentBaseForm';
+import { CancelButton } from '../cancel-button/CancelButton';
+import { SubmitButton } from '../submit-button/SubmitButton';
 
 interface Props {
   postId: Post['id'];
@@ -27,49 +19,20 @@ interface Props {
 }
 
 export const Form = ({ postId, commentId, close }: Props) => {
-  const [create] = useCreateCommentMutation();
-  const user = userModel.selectors.useCurrentUser();
+  const [, { isSuccess }] = useCreateCommentMutation({
+    fixedCacheKey: getFixedCacheKey(commentId),
+  });
 
-  const onClose = useCallback(
-    (
-      resetForm:
-        | FormikHelpers<typeof initialValues>['resetForm']
-        | FormikHandlers['handleReset'],
-    ) => {
-      resetForm();
+  useEffect(() => {
+    if (isSuccess) {
       close();
-    },
-    [close],
-  );
-
-  const onSubmit: FormikConfig<typeof initialValues>['onSubmit'] = useCallback(
-    async (values, { resetForm }) => {
-      const comment: CreateCommentRequest = {
-        ...values,
-        postId,
-        commentId,
-        date: new Date().toISOString(),
-        userId: user.id,
-        childrenCommentsAmount: 0,
-      };
-
-      const result = await create(comment).unwrap();
-
-      if (result) {
-        onClose(resetForm);
-      }
-    },
-    [postId, commentId, user, create, onClose],
-  );
+    }
+  }, [isSuccess, close]);
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
-      onSubmit={onSubmit}
-    >
-      {({ isSubmitting, handleReset }) => (
-        <FormikForm>
+    <CreateCommentBaseForm postId={postId} commentId={commentId}>
+      {() => (
+        <>
           <Field
             component={TextareaField}
             name="body"
@@ -77,13 +40,11 @@ export const Form = ({ postId, commentId, close }: Props) => {
             placeholder="Reply..."
           />
           <ButtonGroup mt="2">
-            <Button type="submit" colorScheme="teal" isDisabled={isSubmitting}>
-              Submit
-            </Button>
-            <Button onClick={() => onClose(handleReset)}>Cancel</Button>
+            <SubmitButton />
+            <CancelButton close={close} />
           </ButtonGroup>
-        </FormikForm>
+        </>
       )}
-    </Formik>
+    </CreateCommentBaseForm>
   );
 };
