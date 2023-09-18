@@ -6,7 +6,7 @@ import { render, screen, signInForTest, waitFor } from '~/tests/utils';
 import { Form } from './CreateInnerCommentForm';
 
 describe('<CreateInnerCommentForm />', () => {
-  const getBodyField = () => screen.getByRole('textbox', { name: 'Content' });
+  const getBodyField = () => screen.getByPlaceholderText('Reply...');
   const getSubmitButton = () => screen.getByRole('button', { name: 'Submit' });
   const getCancelButton = () => screen.getByRole('button', { name: 'Cancel' });
   const fillForm = async (user: UserEvent) => {
@@ -29,20 +29,6 @@ describe('<CreateInnerCommentForm />', () => {
   });
 
   describe('body field', () => {
-    it('should have a placeholder', () => {
-      render(
-        <Form
-          postId={postMock0.id}
-          commentId={commentMock0.id}
-          close={close}
-        />,
-      );
-
-      const bodyField = getBodyField();
-
-      expect(bodyField).toHaveAttribute('placeholder', 'Reply...');
-    });
-
     it('should show an error if field is empty', async () => {
       const { user } = render(
         <Form

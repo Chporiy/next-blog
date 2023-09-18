@@ -33,12 +33,7 @@ export const Form = ({ postId, commentId, close }: Props) => {
     <CreateCommentBaseForm postId={postId} commentId={commentId}>
       {() => (
         <>
-          <Field
-            component={TextareaField}
-            name="body"
-            label="Content"
-            placeholder="Reply..."
-          />
+          <Field component={TextareaField} name="body" placeholder="Reply..." />
           <ButtonGroup mt="2">
             <SubmitButton />
             <CancelButton close={close} />

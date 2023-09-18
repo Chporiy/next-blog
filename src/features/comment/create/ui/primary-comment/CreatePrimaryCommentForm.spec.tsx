@@ -6,7 +6,8 @@ import { render, screen, signInForTest, waitFor } from '~/tests/utils';
 import { Form } from './CreatePrimaryCommentForm';
 
 describe('<CreatePrimaryCommentForm />', () => {
-  const getBodyField = () => screen.getByRole('textbox', { name: 'Content' });
+  const getBodyField = () =>
+    screen.getByPlaceholderText('Add to the discussion');
   const getSubmitButton = () => screen.getByRole('button', { name: 'Submit' });
 
   it('should contain fields', () => {
@@ -18,14 +19,6 @@ describe('<CreatePrimaryCommentForm />', () => {
   });
 
   describe('body field', () => {
-    it('should have a placeholder', () => {
-      render(<Form postId={postMock0.id} />);
-
-      const bodyField = getBodyField();
-
-      expect(bodyField).toHaveAttribute('placeholder', 'Add to the discussion');
-    });
-
     it('should show an error if field is empty', async () => {
       const { user } = render(<Form postId={postMock0.id} />);
       const button = getSubmitButton();

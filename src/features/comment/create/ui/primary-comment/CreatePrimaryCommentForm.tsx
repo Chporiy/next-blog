@@ -17,7 +17,6 @@ export const Form = ({ postId }: Props) => (
         <Field
           component={TextareaField}
           name="body"
-          label="Content"
           placeholder="Add to the discussion"
         />
         <SubmitButton mt="2" />
