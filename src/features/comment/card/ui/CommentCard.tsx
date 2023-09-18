@@ -50,7 +50,10 @@ export const Card = ({
         </Box>
       )}
       <Box mt="4" pl="8">
-        <slots.commentsList commentId={comment.id} />
+        <slots.commentsList
+          commentId={comment.id}
+          hasChildrenComments={comment.hasChildrenComments}
+        />
       </Box>
     </>
   );

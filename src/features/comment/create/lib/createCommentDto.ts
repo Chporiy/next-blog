@@ -9,7 +9,7 @@ export const createCommentDto = (params: Params) => {
   const comment: CreateCommentRequest = {
     ...params,
     date: new Date().toISOString(),
-    childrenCommentsAmount: 0,
+    hasChildrenComments: false,
   };
 
   return comment;

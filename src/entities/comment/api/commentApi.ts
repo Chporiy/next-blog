@@ -48,11 +48,11 @@ const api = baseApi.injectEndpoints({
       UpdateParentCommentResponse,
       UpdateParentCommentRequest
     >({
-      query: ({ id, childrenCommentsAmount }) => ({
+      query: ({ id, hasChildrenComments }) => ({
         url: `/comments/${id}`,
         method: 'PATCH',
         body: {
-          childrenCommentsAmount,
+          hasChildrenComments,
         },
       }),
     }),

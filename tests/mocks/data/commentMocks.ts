@@ -10,7 +10,7 @@ export const commentMock0: Comment = {
   commentId: '',
   body: 'comment body 0',
   date: '2022-01-29T00:00:00.000Z',
-  childrenCommentsAmount: 1,
+  hasChildrenComments: true,
 };
 
 export const commentMock1: Comment = {
@@ -20,7 +20,7 @@ export const commentMock1: Comment = {
   commentId: commentMock0.id,
   body: 'comment body 1',
   date: '2022-01-30T00:00:00.000Z',
-  childrenCommentsAmount: 0,
+  hasChildrenComments: false,
 };
 
 export const allCommentMocks = [commentMock0, commentMock1];

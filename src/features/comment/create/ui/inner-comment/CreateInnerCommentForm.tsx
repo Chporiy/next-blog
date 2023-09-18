@@ -31,7 +31,7 @@ export const Form = ({ postId, commentId, close }: Props) => {
     if (isSuccess) {
       updateParentComment({
         id: commentId,
-        childrenCommentsAmount: 1,
+        hasChildrenComments: true,
       });
     }
   }, [commentId, isSuccess, updateParentComment]);

@@ -8,5 +8,5 @@ export interface Comment {
   commentId: Comment['id'];
   body: string;
   date: string;
-  childrenCommentsAmount: number;
+  hasChildrenComments: boolean;
 }

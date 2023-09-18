@@ -25,7 +25,7 @@ describe('<CommentsByPost />', () => {
 
     const postCommentsWithInnerComments = getPrimaryCommentsByPostForTest(
       postMock0.id,
-    ).find((comment) => comment.childrenCommentsAmount !== 0);
+    ).find((comment) => comment.hasChildrenComments);
     const innerComments = getCommentsByCommentsForTest(
       postCommentsWithInnerComments.id,
     );

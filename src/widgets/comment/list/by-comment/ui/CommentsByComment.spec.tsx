@@ -9,7 +9,7 @@ describe('<CommentsByComemnt />', () => {
     render(
       <List
         commentId={commentMock0.id}
-        childrenCommentsAmount={commentMock0.childrenCommentsAmount}
+        hasChildrenComments={commentMock0.hasChildrenComments}
       />,
     );
 

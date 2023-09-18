@@ -14,6 +14,6 @@ export type GetCommentsByCommentResponse = Comment[];
 
 export type UpdateParentCommentRequest = Pick<
   Comment,
-  'id' | 'childrenCommentsAmount'
+  'id' | 'hasChildrenComments'
 >;
 export type UpdateParentCommentResponse = Comment;

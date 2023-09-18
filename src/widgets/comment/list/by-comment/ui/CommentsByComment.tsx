@@ -8,12 +8,12 @@ import { BaseCommentList } from '../../base';
 
 interface Props {
   commentId: Comment['id'];
-  childrenCommentsAmount: Comment['childrenCommentsAmount'];
+  hasChildrenComments: Comment['hasChildrenComments'];
 }
 
-export const List = ({ commentId, childrenCommentsAmount }: Props) => {
+export const List = ({ commentId, hasChildrenComments }: Props) => {
   const { data: comments, isSuccess } = useGetCommentsByCommentQuery(
-    childrenCommentsAmount !== 0 ? commentId : skipToken,
+    hasChildrenComments ? commentId : skipToken,
     {
       selectFromResult: (result) => ({
         ...result,
